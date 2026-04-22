@@ -4,30 +4,35 @@ import android.app.Activity;
 import android.content.pm.PackageInstaller;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AlertDialog;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import io.github.kennethchoinfosec.haven.R;
 
 public class InstallationProgressListener extends PackageInstaller.SessionCallback {
-    private AlertDialog mDialog;
-    private ProgressBar mProgress;
-    private int mSessionId;
-    private PackageInstaller mPi;
+    private final Activity mActivity;
+    private final AlertDialog mDialog;
+    private final LinearProgressIndicator mProgress;
+    private final int mSessionId;
+    private final PackageInstaller mPi;
 
     // Create a listener from an activity, and show a progress dialog for the sessionId
     // Only cares about the one sessionId provided here.
     // The caller is responsible for registering the callback;
     // however, this class will remove itself once the session has been finished.
     public InstallationProgressListener(Activity activity, PackageInstaller pi, int sessionId) {
+        mActivity = activity;
         mPi = pi;
+        mSessionId = sessionId;
 
         ViewGroup layout = (ViewGroup) LayoutInflater.from(activity)
                 .inflate(R.layout.progress_dialog, (ViewGroup) activity.getWindow().getDecorView(), false);
         mProgress = layout.findViewById(R.id.progress);
 
-        mDialog = new AlertDialog.Builder(activity)
+        mDialog = new MaterialAlertDialogBuilder(activity)
                 .setCancelable(false)
                 .setTitle(R.string.app_installing)
                 .setView(layout)
@@ -52,7 +57,12 @@ public class InstallationProgressListener extends PackageInstaller.SessionCallba
 
     @Override
     public void onProgressChanged(int sessionId, float progress) {
-        mProgress.setProgress((int) (progress * 100));
+        if (sessionId != mSessionId) {
+            return;
+        }
+
+        int progressPercent = Math.max(0, Math.min(100, (int) (progress * 100)));
+        mActivity.runOnUiThread(() -> mProgress.setProgressCompat(progressPercent, true));
     }
 
     @Override
@@ -61,7 +71,11 @@ public class InstallationProgressListener extends PackageInstaller.SessionCallba
             return;
         }
 
-        mDialog.hide();
+        mActivity.runOnUiThread(() -> {
+            if (mDialog.isShowing()) {
+                mDialog.dismiss();
+            }
+        });
         mPi.unregisterSessionCallback(this);
     }
 }

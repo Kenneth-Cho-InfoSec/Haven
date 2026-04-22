@@ -30,6 +30,32 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.Material3Expressive.Light" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/main_search_layout"
+            style="@style/Widget.Haven.SearchField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="12dp"
+            android:hint="@string/search"
+            app:endIconMode="clear_text"
+            app:startIconDrawable="@drawable/ic_search_tinted_24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/main_search_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/md_theme_onSurface"
+                android:textColorHint="@color/md_theme_onSurfaceVariant"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager2.widget.ViewPager2

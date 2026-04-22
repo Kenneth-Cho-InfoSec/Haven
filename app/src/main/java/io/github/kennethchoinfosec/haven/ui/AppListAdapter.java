@@ -14,7 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.card.MaterialCardView;
 
 import io.github.kennethchoinfosec.haven.R;
 import io.github.kennethchoinfosec.haven.services.ILoadIconCallback;
@@ -30,6 +33,7 @@ import java.util.stream.Collectors;
 
 public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder {
+        private MaterialCardView mCard;
         private ImageView mIcon;
         private TextView mTitle;
         private TextView mPackage;
@@ -38,6 +42,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         int mIndex = -1;
         ViewHolder(View view) {
             super(view);
+            mCard = view.findViewById(R.id.list_app_card);
             mIcon = view.findViewById(R.id.list_app_icon);
             mTitle = view.findViewById(R.id.list_app_title);
             mPackage = view.findViewById(R.id.list_app_package);
@@ -131,11 +136,9 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         // (not necessarily when the user clicked on it; the view might have been recycled)
         void showSelectOrder() {
             if (!mList.get(mIndex).isHidden()) {
-                itemView.setBackgroundResource(R.color.selectedAppBackground);
+                setCardColor(R.color.selectedAppBackground);
             } else {
-                // The app is both frozen and selected
-                // we use a blended color of the two for its background
-                itemView.setBackgroundResource(R.color.selectedAndDisabledAppBackground);
+                setCardColor(R.color.selectedAndDisabledAppBackground);
             }
             mSelectOrder.setVisibility(View.VISIBLE);
             mSelectOrder.setText(String.valueOf(mSelectedIndices.indexOf(mIndex) + 1));
@@ -150,10 +153,14 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         // Set the background when not in the selected state
         void setUnselectedBackground() {
             if (!mList.get(mIndex).isHidden()) {
-                itemView.setBackground(null);
+                setCardColor(R.color.md_theme_surface);
             } else {
-                itemView.setBackgroundResource(R.color.disabledAppBackground);
+                setCardColor(R.color.disabledAppBackground);
             }
+        }
+
+        void setCardColor(int colorRes) {
+            mCard.setCardBackgroundColor(ContextCompat.getColor(itemView.getContext(), colorRes));
         }
 
         void setIndex(final int index) {

@@ -23,13 +23,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
+import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import io.github.kennethchoinfosec.haven.R;
 import io.github.kennethchoinfosec.haven.services.IAppInstallCallback;
@@ -184,6 +186,12 @@ public class AppListFragment extends BaseFragment {
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mList.setHasFixedSize(true);
 
+        mSwipeRefresh.setColorSchemeColors(
+                ContextCompat.getColor(requireContext(), R.color.md_theme_primary),
+                ContextCompat.getColor(requireContext(), R.color.md_theme_secondary),
+                ContextCompat.getColor(requireContext(), R.color.md_theme_tertiary));
+        mSwipeRefresh.setProgressBackgroundColorSchemeColor(
+                ContextCompat.getColor(requireContext(), R.color.md_theme_surfaceContainerHigh));
         mSwipeRefresh.setOnRefreshListener(this::refresh);
         registerForContextMenu(mList);
 
@@ -353,7 +361,7 @@ public class AppListFragment extends BaseFragment {
                     // Cannot clone non-system apps on MIUI
                     // Keep this variable intact when showing the dialog
                     final ApplicationInfoWrapper selectedApp = mSelectedApp;
-                    new AlertDialog.Builder(getContext())
+                    new MaterialAlertDialogBuilder(requireContext())
                             .setMessage(R.string.miui_cannot_clone)
                             .setPositiveButton(android.R.string.ok, null)
                             .setNegativeButton(R.string.continue_anyway, (diag, button) ->

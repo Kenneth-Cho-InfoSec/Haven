@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,15 +23,15 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputEditText;
 
 import io.github.kennethchoinfosec.haven.R;
 import io.github.kennethchoinfosec.haven.HavenApplication;
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar(findViewById(R.id.main_toolbar));
+        initSearch();
         mStorage = LocalStorageManager.getInstance();
 
         if (getSystemService(DevicePolicyManager.class).isProfileOwnerApp(getPackageName())) {
@@ -92,6 +95,29 @@ public class MainActivity extends AppCompatActivity {
             init();
         }
 
+    }
+
+    private void initSearch() {
+        TextInputEditText search = findViewById(R.id.main_search_text);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Intent intent = new Intent(BROADCAST_SEARCH_FILTER_CHANGED);
+                intent.putExtra("text", s.toString().toLowerCase(Locale.ROOT).trim());
+                LocalBroadcastManager.getInstance(MainActivity.this)
+                        .sendBroadcast(intent);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     private void init() {
@@ -360,24 +386,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_activity_menu, menu);
-
-        // Initialize the search button
-        SearchView searchView = (SearchView) menu.findItem(R.id.main_menu_search).getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                Intent intent = new Intent(BROADCAST_SEARCH_FILTER_CHANGED);
-                intent.putExtra("text", newText.toLowerCase(Locale.ROOT).trim());
-                LocalBroadcastManager.getInstance(MainActivity.this)
-                        .sendBroadcast(intent);
-                return true;
-            }
-        });
         return true;
     }
 
@@ -425,7 +433,7 @@ public class MainActivity extends AppCompatActivity {
             };
 
             if (!item.isChecked()) {
-                new AlertDialog.Builder(this)
+                new MaterialAlertDialogBuilder(this)
                         .setMessage(R.string.show_all_warning)
                         .setPositiveButton(R.string.first_run_alert_continue,
                                 (dialog, which) -> update.run())

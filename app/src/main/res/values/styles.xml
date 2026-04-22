@@ -78,11 +78,29 @@
     <style name="Widget.Haven.BottomNavigation" parent="Widget.Material3Expressive.BottomNavigationView">
         <item name="android:background">@color/md_theme_surfaceContainer</item>
         <item name="itemActiveIndicatorStyle">@style/Widget.Haven.BottomNavigation.ActiveIndicator</item>
+        <item name="itemIconSize">26dp</item>
+        <item name="itemPaddingTop">10dp</item>
+        <item name="itemPaddingBottom">12dp</item>
         <item name="itemRippleColor">@color/md_theme_primaryContainer</item>
+        <item name="labelVisibilityMode">labeled</item>
     </style>
 
     <style name="Widget.Haven.BottomNavigation.ActiveIndicator" parent="Widget.Material3Expressive.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/md_theme_primaryContainer</item>
+        <item name="android:width">72dp</item>
+        <item name="android:height">40dp</item>
+    </style>
+
+    <style name="Widget.Haven.SearchField" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/md_theme_surfaceContainer</item>
+        <item name="boxCornerRadiusTopStart">28dp</item>
+        <item name="boxCornerRadiusTopEnd">28dp</item>
+        <item name="boxCornerRadiusBottomStart">28dp</item>
+        <item name="boxCornerRadiusBottomEnd">28dp</item>
+        <item name="boxStrokeColor">@color/md_theme_outlineVariant</item>
+        <item name="hintTextColor">@color/md_theme_onSurfaceVariant</item>
+        <item name="startIconTint">@color/md_theme_onSurfaceVariant</item>
+        <item name="endIconTint">@color/md_theme_onSurfaceVariant</item>
     </style>
 
     <style name="Widget.Haven.Button" parent="Widget.Material3Expressive.Button">

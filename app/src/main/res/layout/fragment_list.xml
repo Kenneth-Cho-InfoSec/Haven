@@ -11,10 +11,13 @@
         android:background="@color/md_theme_surface">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_list_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/md_theme_surface"
-            android:id="@+id/fragment_list_recycler_view"
+            android:clipToPadding="false"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:scrollbars="vertical" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

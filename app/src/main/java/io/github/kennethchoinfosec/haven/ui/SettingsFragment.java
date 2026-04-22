@@ -13,7 +13,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -21,6 +20,8 @@ import androidx.preference.CheckBoxPreference;
 import androidx.preference.DropDownPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import io.github.kennethchoinfosec.haven.R;
 import io.github.kennethchoinfosec.haven.services.IHavenService;
@@ -238,7 +239,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
 
     private boolean ensureSpecialAccessPermission(CheckPermissionCallback checkPermission, int alertRes, String settingsAction) {
         if (!checkPermission.check()) {
-            new AlertDialog.Builder(getContext())
+            new MaterialAlertDialogBuilder(requireContext())
                     .setMessage(alertRes)
                     .setPositiveButton(android.R.string.ok,
                             (dialog, which) -> startActivity(new Intent(settingsAction)))
