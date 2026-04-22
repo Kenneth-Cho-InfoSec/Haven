@@ -1,0 +1,5 @@
+Initial F-Droid submission for Haven 0.1.2.
+
+- Uses the io.github.kennethchoinfosec.haven package id.
+- Provides explicit release version metadata for reproducible F-Droid builds.
+- Includes updated Work Profile isolation UI and current Android SDK targeting.

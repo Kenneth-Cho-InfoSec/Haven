@@ -1,0 +1,11 @@
+Haven is a Free and Open-Source app that leverages the "Work Profile" feature of Android to provide an isolated space that you can install or clone apps into.
+
+Haven uses the application id io.github.kennethchoinfosec.haven, so it installs as a separate app and does not upgrade or replace existing installs of the original app.
+
+The main use-cases of Haven include:
+
+- Installing apps inside a work profile for isolation
+- "Freeze" apps inside the work profile to prevent them from running or being woken up when you are not actively using them
+- Installing two copies of the same app on the same device
+
+Note that Haven depends on the Work Profile feature of the Android system, so any bugs related to Work Profiles in the Android-derived system you are using will affect Haven. In addition, Haven can only be as secure as the Work Profile implementation.
