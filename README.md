@@ -1,6 +1,11 @@
 Haven
 =====
 
+[![Android CI](https://github.com/Kenneth-Cho-InfoSec/Haven/actions/workflows/android-ci.yml/badge.svg)](https://github.com/Kenneth-Cho-InfoSec/Haven/actions/workflows/android-ci.yml)
+![Platform](https://img.shields.io/badge/platform-Android-green)
+![Language](https://img.shields.io/badge/language-Java-blue)
+![License](https://img.shields.io/badge/license-GPLv3-informational)
+
 <p align="center">
   <img src="docs/images/haven-icon.png" alt="Haven app icon" width="128" />
 </p>
@@ -8,6 +13,15 @@ Haven
 Haven is a Free and Open-Source Android Work Profile isolation app. It is a modernized fork in the Shelter / Island lineage, focused on maintaining the practical app-isolation workflow while bringing the codebase up to date with current Android security expectations, modern build tooling, and a Material Design 3 Expressive UI.
 
 Haven lets you install, clone, freeze, and run apps inside a managed Work Profile so they stay separate from your main profile. This fork uses the application id `io.github.kennethchoinfosec.haven`, so it installs as a separate app and does not upgrade or replace existing installs of Shelter, Island, or other Work Profile managers.
+
+Case Study
+==========
+
+**Problem:** Work Profile managers remain useful for Android privacy, but older Shelter / Island lineage code needs modern SDK targeting, dependency maintenance, and a cleaner user experience to remain credible on current devices.
+
+**Approach:** Haven preserves the proven managed-profile workflow while refreshing the Android build stack, package identity, UI surfaces, and compatibility assumptions around newer platform behavior.
+
+**Result:** The project demonstrates practical Android security maintenance: keeping a privacy tool auditable, installable beside its predecessors, and aligned with current Android expectations.
 
 Screenshots
 ===========
@@ -47,6 +61,24 @@ Haven keeps the original Work Profile isolation model while applying modern secu
 - Hardened manifest/package identity for the Haven fork
 - Compatibility fixes for recent Android permission and provisioning flows
 - Continued GPLv3 source availability for auditability
+
+Architecture Snapshot
+=====================
+
+- Android Device Policy APIs own Work Profile provisioning and profile state.
+- The app layer coordinates profile app listing, cloning, freezing, shortcuts, and cross-profile document handoff.
+- The Haven package identity isolates this fork from existing Shelter or Island installs.
+
+Status and Roadmap
+==================
+
+Current status: active modernization fork.
+
+Near-term roadmap:
+
+- Keep target SDK, AGP, and AndroidX dependencies current.
+- Expand device compatibility notes for vendor-specific Work Profile behavior.
+- Continue UI polish around setup, clone, freeze, and profile-management flows.
 
 Build
 =====
