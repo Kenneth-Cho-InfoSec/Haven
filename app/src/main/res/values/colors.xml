@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="md_theme_primary">#536EBE</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_primaryContainer">#DDE4FF</color>
+    <color name="md_theme_onPrimaryContainer">#0E1D4E</color>
+    <color name="md_theme_secondary">#745B9E</color>
+    <color name="md_theme_onSecondary">#FFFFFF</color>
+    <color name="md_theme_secondaryContainer">#EBDCFF</color>
+    <color name="md_theme_onSecondaryContainer">#2C164B</color>
+    <color name="md_theme_tertiary">#986172</color>
+    <color name="md_theme_onTertiary">#FFFFFF</color>
+    <color name="md_theme_tertiaryContainer">#FFD9E2</color>
+    <color name="md_theme_onTertiaryContainer">#3D001D</color>
+    <color name="md_theme_error">#BA1A1A</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_errorContainer">#FFDAD6</color>
+    <color name="md_theme_onErrorContainer">#410002</color>
+    <color name="md_theme_background">#FFFBFF</color>
+    <color name="md_theme_onBackground">#1B1B22</color>
+    <color name="md_theme_surface">#FFFBFF</color>
+    <color name="md_theme_onSurface">#1B1B22</color>
+    <color name="md_theme_surfaceVariant">#E4E1EC</color>
+    <color name="md_theme_onSurfaceVariant">#46464F</color>
+    <color name="md_theme_surfaceContainer">#F1EDF7</color>
+    <color name="md_theme_surfaceContainerHigh">#EBE7F1</color>
+    <color name="md_theme_outline">#777680</color>
+    <color name="md_theme_outlineVariant">#C8C5D0</color>
+    <color name="md_theme_inverseSurface">#303037</color>
+    <color name="md_theme_inverseOnSurface">#F3EFF8</color>
+
+    <color name="iconBackground">#DDE4FF</color>
+    <color name="colorPrimary">@color/md_theme_surface</color>
+    <color name="colorAccent">@color/md_theme_primary</color>
+    <color name="colorAccentSetupWizard">@color/md_theme_tertiary</color>
+    <color name="colorNavigationBar">@color/md_theme_surfaceContainer</color>
+    <color name="colorNavigationIconTint">@color/md_theme_primary</color>
+    <color name="colorNavigationIconTintSelected">@color/md_theme_onSurfaceVariant</color>
+    <color name="colorTextPrimary">@color/md_theme_onSurface</color>
+    <color name="colorTextSecondary">@color/md_theme_onSurfaceVariant</color>
+    <color name="disabledAppBackground">@color/md_theme_surfaceContainer</color>
+    <color name="selectedAppBackground">@color/md_theme_primaryContainer</color>
+    <color name="selectedAndDisabledAppBackground">@color/md_theme_secondaryContainer</color>
+</resources>

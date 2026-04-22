@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_alert_cancel">Ciao</string>
+    <string name="first_run_alert_continue">Continua</string>
+    <string name="device_admin_desc">Servizio di isolazione app</string>
+    <string name="device_admin_explanation">Haven ha bisogno di diventare amministratore del dispositivo per eseguire l\'isolamento delle app.</string>
+    <string name="notifications_important">Notifiche importanti</string>
+    <string name="finish_provision_title">Premi qui per finire la configurazione di Haven</string>
+    <string name="finish_provision_desc">Congratulazioni! Ti manca solo un passo per finire la configurazione di Haven.</string>
+    <string name="service_title">Servizio Haven</string>
+    <string name="service_desc">Haven in esecuzione …</string>
+    <string name="service_auto_freeze_title">Congelamento automatico in attesa</string>
+    <string name="settings_bug_report">Segnalazione di errori / Tracciatore dei problemi</string>
+    <string name="service_auto_freeze_now">Congela adesso</string>
+    <string name="app_installing">Installazione...</string>
+    <string name="fragment_profile_main">Pagina principale</string>
+    <string name="fragment_profile_work">Haven</string>
+    <string name="clone_to_work_profile">Clona in Haven (Profilo di Lavoro)</string>
+    <string name="clone_to_main_profile">Clona nel Profilo principale</string>
+    <string name="uninstall_app">Disinstalla</string>
+    <string name="freeze_app">Congela</string>
+    <string name="unfreeze_app">Scongela</string>
+    <string name="launch">Avvia</string>
+    <string name="unfreeze_and_launch">Scongela e avvia</string>
+    <string name="auto_freeze">Auto-congela</string>
+    <string name="allow_cross_profile_widgets">Permetti i widget nel profilo principale</string>
+    <string name="search">Cerca</string>
+    <string name="freeze_all">Congela in massa</string>
+    <string name="freeze_all_shortcut">Congela</string>
+    <string name="show_all">Mostra tutte le app</string>
+    <string name="settings">Impostazioni</string>
+    <string name="documents_ui">Apri interfaccia dei documenti</string>
+    <string name="settings_interaction">Interazione</string>
+    <string name="settings_cross_profile_file_chooser">Shuttle dei file</string>
+    <string name="device_admin_toast">Serve i permessi di Amministratore Dispositivo per far funzionare Haven. Riprovare.</string>
+    <string name="settings_block_contacts_searching">Blocca la ricerca dei contatti</string>
+    <string name="settings_block_contacts_searching_desc">Impedisci l\'accesso dal profilo principale ai contatti dentro il profilo lavorativo.</string>
+    <string name="settings_services">Servizi</string>
+    <string name="settings_auto_freeze_service">Servizio di auto-congelamento</string>
+    <string name="settings_auto_freeze_service_desc">Quando lo schermo è bloccato, congela automaticamente le app avviate da \"Scorciatoia scongela e avvia\".</string>
+    <string name="settings_auto_freeze_delay">Ritardo di auto-congelamento</string>
+    <string name="settings_dont_freeze_foreground">Tralascia le app in primo piano</string>
+    <string name="settings_version">Versione</string>
+    <string name="settings_source_code">Codice sorgente</string>
+    <string name="settings_translate">Traduci</string>
+    <string name="provision_still_pending">Attendi mentre Haven prepara il profilo per te …</string>
+    <string name="msg_device_unsupported">Autorizzazione negata o dispositivo non supportato</string>
+    <string name="work_profile_not_found">Profilo di lavoro non trovato. Si prega di riavviare l\'app per ricreare il profilo.</string>
+    <string name="work_profile_provision_failed">Non è possibile ricreare il profilo di lavoro. Riprova riavviando Haven.</string>
+    <string name="clone_success">Applicazione \"%s\" clonata correttamente</string>
+    <string name="uninstall_success">App \"%s\" disinstallata correttamente</string>
+    <string name="freeze_success">App \"%s\" congelata correttamente</string>
+    <string name="unfreeze_success">App \"%s\" scongelata correttamente</string>
+    <string name="clone_fail_system_app">Non è possibile clonare le app di sistema su un profilo di cui Haven non ha controllo.</string>
+    <string name="unsupported_launcher">Non è possibile aggiungere una scorciatoia. Si prega di contattare lo sviluppatore per maggiori informazioni.</string>
+    <string name="app_context_menu_title">Operazioni per %s</string>
+    <string name="freeze_all_success">Tutte le app nella lista \"Auto-congela\" sono state congelate correttamente.</string>
+    <string name="shortcut_create_success">Scorciatoia creata correttamente nel launcher.</string>
+    <string name="launch_app_fail">Non è possibile avviare l\'app %s perché non ha alcuna interfaccia utente.</string>
+    <string name="request_system_alert">Haven ha bisogno di <b>Disegnare sopra le altre applicazioni</b> per far funzionare lo Shuttle dei file correttamente. Attiva <b>ENTRAMBE</b> le app di Haven (Personale / Lavorativo) mostrate nella finestra dopo aver premuto \"Ok\". Questa autorizzazione è usata per avviare i servizi dello Shuttle dei file in secondo piano.</string>
+    <string name="continue_anyway">Continua comunque</string>
+    <string name="first_run_alert">Stai per configurare Haven.
+\n
+\nQuest\'app dipende dal &lt;b&gt;Profilo lavorativo&lt;/b&gt; di Android per isolare le app. Se il brand o la ROM personalizzata rompe questa funzionalita(es. Xiaomi/MIUI), &lt;b&gt;USCITE&lt;/b&gt; adesso e &lt;b&gt;NON&lt;/b&gt; usate quest\'app.
+\n
+\nSe si sceglie di continuare, Haven impostera\' un profilo di lavoro per te.
+\n
+\n(Se sei uno sviluppatore e ti piacerebbe rendere Haven funzionante su ROM incompatibili come MIUI, il contrinuto al codice e\' benvenuto. Lo sviluppatore &lt;b&gt;NON SI ASSUME ALCUNA RESPONSABILITA\'&lt;/b&gt; se si rompe il dispositivo che fa girare l\'app su ROM incompatibili.)
+\n
+\nC\'e\' bisogno di ricevere una notifica per finire la configurazione, assicurarsi che il dispositivo &lt;b&gt;NON&lt;/b&gt; e\' in modalita Silenziosa.<b>Work Profile</b> feature of Android to isolate the apps. If you use a vendor / custom ROM that breaks related features (e.g. MIUI), you should now <b>QUIT</b> and <b>DO NOT</b> use this app.\n\nIf you choose to continue, Haven will set up Work Profile for you.\n\nIf you are a developer and would like to make Haven work on those incompatible ROMs like MIUI, pull requests are always welcome. The developer takes <b>ABSOLUTELY NO RESPONSIBILITY</b> if you break your device running an incompatible ROM.\n\nYou will need to receive a notification in order to finish setup, please make sure your device is <b>NOT</b> on Do Not Disturb mode.</string>
+    <string name="show_all_warning">Manipolare le app nascoste dalla lista può causare crash e ogni tipo di comportamento inaspettato. Tuttavia, questa funzionalità può essere utile quando le ROM personalizzate in modo errato non attivano in modo predefinito tutte le app di sistema necessarie nel profilo lavorativo. Se continui, ti assumi la responsabilità delle tue azioni.</string>
+    <string name="provision_finished">Configurazione di Haven completata. Haven verrà riavviato. Se Haven non si avvia automaticamente, riaprilo a mano.</string>
+    <string name="miui_cannot_clone">La clonazione di app non di sistema su un altro profilo attualmente non è possibile su MIUI. Si prega di clonare il negozio delle app (es. <b>Play Store</b>) nell\'altro profilo e poi installarle da lì.</string>
+    <string name="service_auto_freeze_desc">Haven congelerà automaticamente le app avviate da \"Scongela e avvia\" al prossimo blocco schermo.</string>
+    <string name="settings_cross_profile_file_chooser_desc">Quando attivo, potrai sfogliare / vedere / selezionare / copiare i file in Haven dal profilo principale e viceversa, SOLO tramite l\'interfaccia dei documenti (chiamata File o Documenti nel tuo launcher) o tramite le app con il supporto all\'interfaccia dei documenti (ottengono accesso solo temporaneo ai file che scegli), mantenendo al contempo l\'isolamento del filesystem.</string>
+    <string name="work_mode_disabled">Sembra che tu abbia disattivato la modalità lavorativa mentre avviavi Haven. Se la attivi adesso, riavvia Haven.</string>
+    <string name="list_item_disabled">[Congelata] %s</string>
+    <string name="uninstall_fail_system_app">Non è possibile disinstallare le app di sistema in un profilo di cui Haven non ha controllo.</string>
+    <string name="batch_operation">Operazione in massa</string>
+    <string name="create_unfreeze_shortcut">Crea una scorciatoia di scongelamento e/o avvio</string>
+    <string name="create_freeze_all_shortcut">Crea una scorciatoia di congelamento in massa</string>
+    <string name="install_app_to_profile">Installa l\'APK in Haven</string>
+    <string name="settings_dont_freeze_foreground_desc">NON congelare le app in primo piano (con attività visibile) quando si blocca lo schermo. Ciò può essere utile per app come i riproduttori musicali, ma poi dovrai congelarle a mano tramite \"Scorciatoia di congelamento in massa\".</string>
+    <string name="request_usage_stats">Haven ha bisogno dell\'autorizzazione <b>Statistiche d\'uso</b> per farlo. Attiva l\'autorizzazione per <b>ENTRAMBE</b> le app di Haven mostrate nella finestra dopo aver premuto \"Ok\". Altrimenti questa funzione non funzionerà correttamente.</string>
+    <string name="install_app_to_profile_success">L\'installazione dell\'app nel profilo lavorativo è finita.</string>
+    <string name="settings_about">Al riguardo</string>
+    <string name="request_storage_manager">Haven ha bisogno dell\'accesso a <b>Tutti i file</b> per lo Shuttle dei file. Attiva l\'autorizzazione per <b>ENTRAMBE</b> le app di Haven (Personale / Lavorativo) mostrate nella finestra dopo aver premuto \"Ok\".</string>
+    <string name="setup_wizard_failed">Configurazione fallita</string>
+    <string name="setup_wizard_action_required">Azione richiesta</string>
+    <string name="setup_wizard_compatibility_text">Haven viene sviluppato e testato su derivate AOSP-like di Android . Ciò include AOSP (Android Open Source Project), Google Android (sui Pixel) e <b>la maggior parte delle ROM open-source basate su AOSP</b> come LineageOS. Se il tuo telefono utilizza una delle derivate di Android elencate sopra, congratulazioni! Haven probabilmente funzionerà correttamente sul tuo dispositivo.
+\n
+\nAlcuni produttori di dispositivi introducono personalizzazioni molto invasive nel codice di Android, risultanti in conflitti, incompatibilità e comportamenti inattesi. Anche alcune ROM personalizzate possono introdurre modifiche che intaccano la compatibilità, ma generalmente sono casi più rari a confronto di quelle introdotte dai produttori di telefoni.
+\n
+\nHaven è una mera interfaccia per la funzione Profilo di Lavoro fornita dal sistema. Se la funzione fornita dal sistema è malfunzionante o non-standard, <b>Haven non può risolvere magicamente il problema da solo</b>. Se stai usando una versione di Android modificata dal produttore nota per rovinare i Profili di Lavoro, <b>sei stato avvisato</b>. Puoi comunque proseguire, ma non c\'è alcuna garanzia che Haven si comporti correttamente in queste circostanze.</string>
+    <string name="setup_wizard_failed_text">Ci spiace informarti che non siamo stati in grado di configurare Haven per te.
+\n
+\nSe non hai annullato la configurazione a mano, allora il motivo dell\'errore solitamente è a causa di un sistema pesantemente modificato, o di un conflitto tra Haven e altri gestori del Profilo di Lavoro. Sfortunatamente, non c\'è molto che possiamo fare.
+\n
+\nClicca Avanti per uscire.</string>
+    <string name="setup_wizard_action_required_text">Ora dovresti vedere una notifica da Haven. <b>Clicca quella notifica</b> per completare il processo di configurazione.
+\n
+\nSe non la vedi, assicurati che il dispositivo non sia in modalità Non Disturbare e prova a tirare giù il centro delle notifiche.
+\n
+\nPre ripristinare Haven e ricominciare, puoi cancellare i dati di Haven nelle impostazioni.</string>
+    <string name="setup_wizard_ready_text">Siamo pronti per configurare Haven per te. Prima assicurati che il dispositivo <b>non</b> sia in modalità Non Disturbare, poiché tra poco dovrai <b>cliccare una notifica</b> per finalizzare il processo di configurazione.
+\n
+\nQuando è tutto pronto, clicca \"Avanti\" per iniziare la configurazione.</string>
+    <string name="setup_wizard_welcome">Benvenuti in Haven</string>
+    <string name="setup_wizard_permissions">Una parola in merito alle autorizzazioni</string>
+    <string name="setup_wizard_compatibility">Compatibilità</string>
+    <string name="setup_wizard_ready">Iniziamo?</string>
+    <string name="setup_wizard_please_wait">Attendere prego…</string>
+    <string name="setup_wizard_please_wait_text">Stiamo provando a inizializzare il Profilo di Lavoro e configurare Haven sul tuo dispositivo.</string>
+    <string name="setup_wizard_welcome_text">Haven è un\'app che ti permette di usare altre applicazioni in un profilo isolato. Tutto questo viene fatto sfruttando la funzione <b>Profilo di Lavoro</b> di Android.
+\n
+\nClicca \"Avanti\" e ti daremo più informazioni riguardo Haven, oltre a guidarti nel processo di configurazione.
+\n
+\nTi consigliamo di leggere attentamente tutte le pagine seguenti.</string>
+    <string name="setup_wizard_permissions_text">Haven non chiederà alcuna autorizzazione in modo predefinito. Tuttavia, andando avanti con il processo di configurazione, Haven proverà a creare un Profilo di Lavoro e di conseguenza a diventarne l\'<b>amministratore</b>.
+\n
+\nCiò darà a Haven numerose autorizzazioni all\'interno del profilo, comparabili a quelle di un admin di dispositivo, ma pur sempre confinate nel profilo. Essere l\'amministratore del profilo è necessario perché Haven funzioni correttamente.
+\n
+\nAlcune funzioni avanzate di Haven potrebbero richiedere più autorizzazioni <b>fuori</b> dal Profilo di Lavoro. Se necessarie, Haven le richiederà separatamente quando attivi le funzioni corrispondenti.</string>
+</resources>

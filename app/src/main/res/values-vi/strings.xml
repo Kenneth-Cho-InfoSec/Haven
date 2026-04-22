@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setup_wizard_failed_text">Chúng tôi rất tiếc phải thông báo cho bạn rằng chúng tôi đã không thể thiết lập Haven cho bạn.
+\n
+\nNếu thiết bị của bạn đã có một Hồ sơ công việc được tạo từ Haven hoặc một ứng dụng khác, bạn sẽ phải xoá hồ sơ đó trong Cài đặt -&gt; Tài khoản trước khi Haven có thể tiếp tục.
+\n
+\nNgoài ra, nếu bạn đã không huỷ thiết lập theo cách thủ công, thì lý do thất bại thường là do hệ thống bị sửa đổi sâu, hoặc có xung đột giữa Haven và các trình quản lý Hồ sơ công việc khác. Không may mắn là chúng tôi không thể làm gì nhiều về điều này.
+\n
+\nNhấn Tiếp để thoát.</string>
+    <string name="setup_wizard_action_required_text">Bây giờ, bạn rất có thể đang thấy một thông báo từ Haven. <b>Vui lòng nhấn vào thông báo đó</b> để hoàn thành quá trình thiết lập.
+\n
+\nNếu bạn không thấy thông báo đó, hãy chắc chắn là thiết bị của bạn đang không ở chế độ Không làm phiền và thử kéo trung tâm thông báo xuống.
+\n
+\nĐể đặt lại Haven và bắt đầu lại, bạn có thể xoá dữ liệu của Haven trong Cài đặt.</string>
+    <string name="finish_provision_desc">Chúc mừng! Bạn còn một cú nhấn nữa để hoàn tất thiết lập Haven.</string>
+    <string name="service_auto_freeze_desc">Haven sẽ tự động đóng băng các ứng dụng được chạy từ \"Huỷ đóng băng &amp; Chạy\" vào sự kiện khoá màn hình tiếp theo.</string>
+    <string name="unfreeze_app">Huỷ đóng băng</string>
+    <string name="allow_cross_profile_widgets">Cho phép tiện ích trong Hồ sơ chính</string>
+    <string name="install_app_to_profile_success">Đã hoàn thành cài đặt ứng dụng trong hồ sơ công việc.</string>
+    <string name="show_all_warning">Việc điều khiển các ứng dụng bị ẩn khỏi danh sách có thể sẽ gây ra dừng đột ngột và nhiều hành vi không mong đợi. Tuy nhiên, tính năng này có thể hữu ích khi các bản ROM có lỗi do hãng tuỳ biến không bật tất cả các ứng dụng hệ thống cần thiết trong hồ sơ công việc theo mặc định. Nếu bạn tiếp tục, bạn tự chịu trách nhiệm.</string>
+    <string name="first_run_alert_continue">Tiếp tục</string>
+    <string name="device_admin_desc">Dịch vụ cô lập ứng dụng</string>
+    <string name="device_admin_explanation">Haven cần trở thành Quản trị viên thiết bị để thực hiện các công việc cô lập của nó.</string>
+    <string name="setup_wizard_permissions">Một lời về các quyền</string>
+    <string name="setup_wizard_compatibility">Sự tương thích</string>
+    <string name="setup_wizard_ready">Sẵn sàng chưa?</string>
+    <string name="setup_wizard_please_wait">Vui lòng đợi…</string>
+    <string name="setup_wizard_failed">Thiết lập thất bại</string>
+    <string name="setup_wizard_action_required">Yêu cầu hành động</string>
+    <string name="notifications_important">Haven - Quan trọng</string>
+    <string name="finish_provision_title">Nhấn vào đây để hoàn tất thiết lập Haven</string>
+    <string name="service_title">Dịch vụ Haven</string>
+    <string name="service_desc">Haven hiện đang chạy…</string>
+    <string name="service_auto_freeze_title">Đang chờ tự động đóng băng</string>
+    <string name="service_auto_freeze_now">Đóng băng ngay</string>
+    <string name="app_installing">Đang cài đặt…</string>
+    <string name="fragment_profile_main">Chính</string>
+    <string name="fragment_profile_work">Haven</string>
+    <string name="list_item_disabled">[Đã đóng băng] %s</string>
+    <string name="batch_operation">Hoạt động hàng loạt</string>
+    <string name="clone_to_work_profile">Nhân bản vào Haven (Hồ sơ công việc)</string>
+    <string name="clone_to_main_profile">Nhân bản vào Hồ sơ chính</string>
+    <string name="uninstall_app">Gỡ cài đặt</string>
+    <string name="freeze_app">Đóng băng</string>
+    <string name="launch">Chạy</string>
+    <string name="create_unfreeze_shortcut">Tạo lối tắt Huỷ đóng băng và/hoặc Chạy</string>
+    <string name="unfreeze_and_launch">Huỷ đóng băng và Chạy</string>
+    <string name="auto_freeze">Tự động đóng băng</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="freeze_all">Đóng băng hàng loạt</string>
+    <string name="create_freeze_all_shortcut">Tạo lối tắt Đóng băng hàng loạt</string>
+    <string name="freeze_all_shortcut">Đóng băng</string>
+    <string name="install_app_to_profile">Cài đặt APK vào Haven</string>
+    <string name="show_all">Hiện tất cả ứng dụng</string>
+    <string name="documents_ui">Mở giao diện Tài liệu</string>
+    <string name="settings">Cài đặt</string>
+    <string name="settings_interaction">Tương tác</string>
+    <string name="first_run_alert_cancel">Tạm biệt</string>
+    <string name="setup_wizard_welcome">Chào mừng đến Haven</string>
+    <string name="setup_wizard_welcome_text">Haven là một ứng dụng giúp bạn chạy các ứng dụng khác trong một hồ sơ được cô lập. Nó làm vậy bằng cách sử dụng tính năng <b>Hồ sơ công việc</b> của Android.
+\n
+\nNhấn \"Tiếp\", và chúng tôi sẽ cung cấp cho bạn thêm thông tin về Haven, và hướng dẫn bạn qua quá trình thiết lập.
+\n
+\nChúng tôi khuyên bạn đọc tất cả những trang sau đây một cách cẩn thận.</string>
+    <string name="setup_wizard_permissions_text">Theo mặc định, Haven sẽ không hỏi bất kỳ quyền riêng biệt nào. Tuy nhiên, khi bạn tiếp tục quá trình thiết lập, Haven sẽ cố thiết lập một Hồ sơ công việc và do đó trở thành <b>người quản lý hồ sơ</b> của hồ sơ đó.
+\n
+\nViệc này sẽ cấp cho Haven một danh sách dài các quyền ở trong hồ sơ, có thể so sánh với một Quản trị viên thiết bị, mặc dù bị giới hạn trong hồ sơ đó. Việc làm người quản lý hồ sơ là cần thiết cho đa số chức năng của Haven.
+\n
+\nMột số tính năng nâng cao của Haven có thể sẽ yêu cầu nhiều quyền hơn <b>ở ngoài</b> Hồ sơ công việc. Khi cần, Haven sẽ hỏi các quyền đó một cách riêng biệt khi bạn bật các tính năng tương ứng.</string>
+    <string name="setup_wizard_compatibility_text">Haven được phát triển và thử nghiệm trên các biến thể Android giống AOSP. Những biến thể này bao gồm AOSP (Android Open Source Project), Google Android (trên các thiết bị Pixel), và <b>đa số các bản ROM tuỳ chỉnh mã nguồn mở dựa trên AOSP</b> như là LineageOS. Nếu điện thoại của bạn đang chạy một trong số những biến thể Android được liệt kê ở trên, thì chúc mừng! Haven có thể sẽ hoạt động đúng trên thiết bị của bạn.
+\n
+\nMột số hãng thiết bị giới thiệu những tuỳ biến rất gây xâm hại vào mã nguồn của Android, việc này dẫn đến sự xung đột, không tương thích và hành vi không mong đợi. Một số bản ROM tuỳ chỉnh cũng có thể giới thiệu các thay đổi phá vỡ sự tương thích, nhưng nói chung thì chúng xảy ra hiếm hơn so với những sự không tương thích do hãng điện thoại gây ra.
+\n
+\nHaven chỉ là một giao diện truy cập tính năng Hồ sơ công việc được hệ thống cung cấp. Nếu tính năng được hệ thống cung cấp bị hỏng hoặc phi tiêu chuẩn, <b>Haven không thể tự giải quyết vấn đề một cách nhiệm màu</b>. Nếu bạn hiện đang sử dụng một phiên bản Android được hãng sửa đổi được biết là làm hỏng Hồ sơ công việc, <b>bạn đã được cảnh báo</b>. Bạn có thể vẫn tiếp tục, nhưng không có đảm bảo rằng Haven sẽ hoạt động đúng dưới hoàn cảnh này.</string>
+    <string name="setup_wizard_ready_text">Chúng tôi bây giờ đã sẵn sàng thiết lập Haven cho bạn. Trước hết, vui lòng chắc chắn rằng thiết bị của bạn đang <b>không</b> ở chế độ Không làm phiền nếu thiết bị đang chạy Android 7 hoặc thấp hơn, vì bạn sẽ cần phải <b>nhấn vào một thông báo</b> vào lúc sau để hoàn thành quá trình thiết lập.
+\n
+\nKhi bạn đã sẵn sàng, hãy nhấn vào \"Tiếp\" để bắt đầu quá trình thiết lập.</string>
+    <string name="setup_wizard_please_wait_text">Chúng tôi đang cố khởi tạo Hồ sơ công việc và thiết lập Haven trên thiết bị của bạn.</string>
+    <string name="settings_auto_freeze_delay">Độ trễ tự động đóng băng</string>
+    <string name="settings_dont_freeze_foreground">Bỏ qua các ứng dụng ở trước</string>
+    <string name="settings_dont_freeze_foreground_desc">KHÔNG đóng băng các ứng dụng ở trước (có hoạt động có thể nhìn thấy được) khi bạn khoá màn hình. Việc này có thể hữu ích đối với các ứng dụng như trình phát nhạc, nhưng sau đó bạn sẽ cần phải đóng băng chúng theo cách thủ công qua \"Lối tắt Đóng băng hàng loạt\".</string>
+    <string name="settings_translate">Phiên dịch</string>
+    <string name="settings_bug_report">Báo cáo lỗi / Trình theo dõi vấn đề</string>
+    <string name="provision_finished">Thiết lập Haven hoàn tất. Bây giờ đang khởi động lại Haven. Nếu Haven không tự động khởi động, bạn có thể chạy nó lại từ launcher của bạn.</string>
+    <string name="work_profile_not_found">Không tìm thấy hồ sơ công việc. Vui lòng khởi động lại ứng dụng để quản lý lại hồ sơ.</string>
+    <string name="work_mode_disabled">Có vẻ như bạn đã tắt Chế độ công việc trong khi đang khởi động Haven. Nếu bạn đã bật nó ngay bây giờ, vui lòng khởi động lại Haven.</string>
+    <string name="freeze_success">Đã đóng băng ứng dụng \"%s\" thành công</string>
+    <string name="clone_fail_system_app">Không thể nhân bản ứng dụng hệ thống vào một hồ sơ mà Haven không thể kiểm soát.</string>
+    <string name="uninstall_fail_system_app">Không thể gỡ cài đặt ứng dụng hệ thống trong một hồ sơ mà Haven không thể kiểm soát.</string>
+    <string name="freeze_all_success">Tất cả ứng dụng trong danh sách \"Tự động đóng băng\" đã được đóng băng thành công.</string>
+    <string name="request_usage_stats">Haven cần quyền <b>Thống kê sử dụng</b> để làm việc này. Vui lòng bật quyền đó cho <b>CẢ HAI</b> ứng dụng Haven được hiện trong hộp thoại sau khi bạn nhấn \"Ok\". Tính năng này sẽ không hoạt động đúng nếu bạn không làm vậy.</string>
+    <string name="settings_cross_profile_file_chooser">Chia sẻ tệp</string>
+    <string name="settings_cross_profile_file_chooser_desc">Khi được bật, bạn sẽ có thể duyệt / xem / chọn / sao chép các tệp trong Haven từ hồ sơ chính và ngược lại, CHỈ qua Giao diện Tài liệu (có tên là Tệp hoặc Tài liệu trên launcher của bạn) hoặc các ứng dụng có hỗ trợ Giao diện Tài liệu (chúng chỉ có quyền truy cập tạm thời vào các tệp bạn chọn trong Giao diện Tài liệu), trong khi vẫn giữ sự cô lập hệ thống tệp.</string>
+    <string name="settings_block_contacts_searching">Chặn tìm kiếm danh bạ</string>
+    <string name="settings_block_contacts_searching_desc">Từ chối quyền truy cập danh bạ từ hồ sơ chính trong hồ sơ công việc.</string>
+    <string name="settings_services">Dịch vụ</string>
+    <string name="settings_auto_freeze_service">Dịch vụ tự động đóng băng</string>
+    <string name="settings_auto_freeze_service_desc">Khi màn hình bị khoá, tự động đóng băng các ứng dụng được chạy từ \"Lối tắt Huỷ đóng băng &amp; Chạy\".</string>
+    <string name="settings_about">Giới thiệu</string>
+    <string name="settings_version">Phiên bản</string>
+    <string name="settings_source_code">Mã nguồn</string>
+    <string name="msg_device_unsupported">Quyền bị từ chối hoặc thiết bị không được hỗ trợ</string>
+    <string name="work_profile_provision_failed">Không thể quản lý hồ sơ công việc. Bạn có thể thử lại bằng cách khởi động lại Haven.</string>
+    <string name="clone_success">Đã nhân bản ứng dụng \"%s\" thành công</string>
+    <string name="uninstall_success">Đã gỡ cài đặt ứng dụng \"%s\" thành công</string>
+    <string name="unfreeze_success">Đã huỷ đóng băng ứng dụng \"%s\" thành công</string>
+    <string name="unsupported_launcher">Không thể thêm lối tắt vào launcher. Vui lòng liên hệ với nhà phát triển để biết thêm thông tin.</string>
+    <string name="app_context_menu_title">Hoạt động cho %s</string>
+    <string name="shortcut_create_success">Đã tạo lối tắt trên launcher.</string>
+    <string name="launch_app_fail">Không thể chạy ứng dụng %s vì nó không có giao diện đồ hoạ.</string>
+    <string name="request_storage_manager">Haven cần quyền truy cập <b>Tất cả tệp</b> cho Chia sẻ tệp. Vui lòng bật quyền đó cho <b>CẢ HAI</b> ứng dụng Haven (Cá nhân / Công việc) được hiện trong hộp thoại sau khi bạn nhấn \"Ok\".</string>
+    <string name="request_system_alert">Haven cần <b>Hiện trên các ứng dụng khác</b> để Chia sẻ tệp hoạt động đúng. Vui lòng bật quyền đó cho <b>CẢ HAI</b> ứng dụng Haven (Cá nhân / Công việc) được hiện trong hộp thoại sau khi bạn nhấn \"Ok\". Quyền này được sử dụng để khởi động các dịch vụ Chia sẻ tệp trong nền.</string>
+    <string name="miui_cannot_clone">Việc nhân bản các ứng dụng không phải hệ thống vào một hồ sơ khác hiện chưa làm được trên MIUI. Vui lòng nhân bản cửa hàng ứng dụng của hệ thống (vd: <b>CH Play</b>) vào hồ sơ khác đó và sau đó là cài đặt các ứng dụng từ đó.</string>
+    <string name="continue_anyway">Vẫn tiếp tục</string>
+</resources>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="service_auto_freeze_now">Geler Maintenant</string>
+    <string name="notifications_important">Haven Important</string>
+    <string name="first_run_alert_continue">Continuer</string>
+    <string name="device_admin_desc">Service d\'isolation d\'application</string>
+    <string name="finish_provision_title">Cliquez ici pour finir de configurer Haven</string>
+    <string name="finish_provision_desc">Félicitations ! Vous êtes à un clic de finir de configurer Haven.</string>
+    <string name="service_title">Service Haven</string>
+    <string name="service_desc">Haven est en fonctionnement…</string>
+    <string name="service_auto_freeze_title">Gel automatique en attente</string>
+    <string name="service_auto_freeze_desc">Haven va geler automatiquement les applications chargées depuis \"Dégeler &amp; Lancer\" sur le prochain verrouillage d\'écran.</string>
+    <string name="app_installing">Installation...</string>
+    <string name="batch_operation">Opération par lots</string>
+    <string name="clone_to_work_profile">Cloner vers Haven (Profil Professionnel)</string>
+    <string name="uninstall_app">Désinstaller</string>
+    <string name="freeze_all_shortcut">Geler</string>
+    <string name="fragment_profile_main">Profil Principal</string>
+    <string name="fragment_profile_work">Haven</string>
+    <string name="clone_to_main_profile">Cloner vers le Profil Principal</string>
+    <string name="freeze_app">Geler</string>
+    <string name="unfreeze_app">Dégeler</string>
+    <string name="launch">Lancer</string>
+    <string name="unfreeze_and_launch">Dégeler et Lancer</string>
+    <string name="auto_freeze">Gel Automatique</string>
+    <string name="allow_cross_profile_widgets">Autoriser les Widgets dans le Profil Principal</string>
+    <string name="search">Chercher</string>
+    <string name="freeze_all">Gel par lots</string>
+    <string name="create_freeze_all_shortcut">Créer un Raccourci de Gel par Lots</string>
+    <string name="create_unfreeze_shortcut">Créer un Raccourci de Dégel et/ou de Lancement</string>
+    <string name="install_app_to_profile">Installer un APK dans Haven</string>
+    <string name="install_app_to_profile_success">Installation de l\'application terminée dans le Profil Professionnel.</string>
+    <string name="first_run_alert">Vous allez à présent configurer Haven.
+\n
+\nCette application dépend de la fonctionnalité &lt;b&gt;Profil Professionnel&lt;/b&gt; d\'Android pour isoler les application. Si vous utilisez une ROM vendeur / custom qui casse ces fonctionnalités (ex : MIUI), vous devriez &lt;b&gt;QUITTER&lt;/b&gt; maintenant et &lt;b&gt;NE PAS&lt;/b&gt; utiliser cette application.
+\n
+\nSi vous choisissez de continuer, Haven va configurer le Profil Professionnel pour vous.
+\n
+\nSi vous êtes un développeur et que vous voulez faire en sorte que Haven fonctionne sur des ROMs incompatibles telles que MIUI, les contributions sont bienvenues. Le développeur ne prend &lt;b&gt;AUCUNE RESPONSABILITÉ&lt;/b&gt; si vous cassez votre appareil utilisant une ROM incompatible.
+\n
+\nVous devez recevoir une notification pour finir la configuration, s\'il vous plaît veuillez vérifier que votre appareil n\'est &lt;b&gt;PAS&lt;/b&gt; en mode Ne Pas Déranger.<b>Work Profile</b> feature of Android to isolate the apps. If you use a vendor / custom ROM that breaks related features (e.g. MIUI), you should now <b>QUIT</b> and <b>DO NOT</b> use this app.\n\nIf you choose to continue, Haven will set up Work Profile for you.\n\nIf you are a developer and would like to make Haven work on those incompatible ROMs like MIUI, pull requests are always welcome. The developer takes <b>ABSOLUTELY NO RESPONSIBILITY</b> if you break your device running an incompatible ROM.\n\nYou will need to receive a notification in order to finish setup, please make sure your device is <b>NOT</b> on Do Not Disturb mode.</string>
+    <string name="show_all_warning">Manipuler des applications qui ne sont pas visibles dans la liste pourrait causer des plantages et toutes sortes de comportements inattendus. Cependant, cette fonctionnalité peut être utile quand des ROMs personnalisées fautives n\'activent pas toutes les applications systèmes nécessaires dans le Profil Professionnel par défaut. Ne continuez que si vous êtes sûr de vous.</string>
+    <string name="settings_cross_profile_file_chooser_desc">Si activé, vous pourrez parcourir / afficher / sélectionner / copier des fichiers dans Haven depuis le Profil Principal et vice-versa. UNIQUEMENT via l\'application Documents (nommée Fichiers ou Documents dans votre lanceur d\'applications) ou via des applications supportant la gestion de Documents (elles n\'obtiennent qu\'un accès temporaire aux fichiers à choisir), tout en concervant l\'isolation du système de fichiers.</string>
+    <string name="settings_dont_freeze_foreground_desc">Ne PAS geler les applications en premier plan (avec une activité visible) quand l\'écran est verrouillé. Cela peut être utile pour des applications telles que des lecteurs de musique, mais vous devrez ensuite les geler depuis \"Raccourci de Gel par Lots\".</string>
+    <string name="provision_finished">Configuration de Haven complète. L\'application redémarre. Si Haven ne redémarre pas automatiquement, vous pouvez le lancer depuis votre Lanceur d\'Applications.</string>
+    <string name="work_mode_disabled">Il semble que vous ayez désactivé le Mode de Travail en démarrant Haven. Si vous l\'avez activé maintenant, veuillez redémarrer Haven.</string>
+    <string name="list_item_disabled">[Gelé] %s</string>
+    <string name="show_all">Afficher Toutes les Applications</string>
+    <string name="settings">Paramètres</string>
+    <string name="settings_interaction">Interaction</string>
+    <string name="settings_block_contacts_searching">Bloquer la recherche de contacts</string>
+    <string name="settings_block_contacts_searching_desc">Refuser au Profil Principal l\'accès aux contacts à l\'intérieur du Profil Professionnel.</string>
+    <string name="settings_services">Services</string>
+    <string name="settings_auto_freeze_service">Service de gel automatique</string>
+    <string name="settings_auto_freeze_service_desc">Lorsque l\'écran est verrouillé, gèle automatiquement les applications lancées à partir de \"Raccourcis de Dégel &amp; Lancement\".</string>
+    <string name="settings_auto_freeze_delay">Délai de gel automatique</string>
+    <string name="settings_dont_freeze_foreground">Ignorer les applications au premier plan</string>
+    <string name="settings_about">À propos</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_source_code">Code Source</string>
+    <string name="settings_bug_report">Rapport de bogue / Suivi des problèmes</string>
+    <string name="device_admin_toast">Vous devez autoriser l\'Administration de l\'Appareil pour que Haven fonctionne. Veuillez réessayer.</string>
+    <string name="provision_still_pending">Veuillez patienter pendant que nous préparons le Profil de Haven pour vous…</string>
+    <string name="msg_device_unsupported">L\'autorisation est refusée ou l\'appareil n\'est pas pris en charge</string>
+    <string name="work_profile_not_found">Profil Professionnel introuvable. Veuillez redémarrer l\'application pour réapprovisionner le Profil.</string>
+    <string name="work_profile_provision_failed">Impossible de provisionner le Profil Professionnel. Vous pouvez réessayer en redémarrant Haven.</string>
+    <string name="clone_success">Application \"%s\" clonée avec succès</string>
+    <string name="freeze_success">Application \"%s\" gelée avec succès</string>
+    <string name="uninstall_success">Application \"%s\" désinstallée avec succès</string>
+    <string name="unfreeze_success">Application \"%s\" dégelée avec succès</string>
+    <string name="clone_fail_system_app">Impossible de cloner des applications système vers un profil sur lequel Haven n\'a aucun contrôle.</string>
+    <string name="uninstall_fail_system_app">Impossible de désinstaller les applications système dans un profil sur lequel Haven n\'a aucun contrôle.</string>
+    <string name="documents_ui">Ouvrir la Navigation de Documents</string>
+    <string name="settings_translate">Traduire</string>
+    <string name="unsupported_launcher">Impossible d\'ajouter de raccourcis à votre lanceur d\'applications. Veuillez contacter le développeur pour plus d\'informations.</string>
+    <string name="first_run_alert_cancel">Au revoir</string>
+    <string name="device_admin_explanation">Haven à besoin de devenir Administrateur d\'Appareil pour pouvoir executer les tâches d\'isolation.</string>
+    <string name="app_context_menu_title">Opérations pour %s</string>
+    <string name="freeze_all_success">Toutes les applications de la liste \"Gel Automatique\" ont été gelées avec succès.</string>
+    <string name="shortcut_create_success">Raccourci créé sur votre lanceur d\'applications.</string>
+    <string name="request_usage_stats">Haven à besoin de la permission <b>Statistiques d\'Usage</b> pour faire ça. S\'il vous plaît activez la permission pour <b>LES DEUX</b> applications Haven dans la boite de dialogue affichée après avoir appuyé sur \"Ok\". Sinon cette fonctionnalité de pourra pas fonctionner correctement.</string>
+    <string name="launch_app_fail">Impossible de lancer l\'application %s car elle n\'a pas d\'interface graphique.</string>
+    <string name="request_storage_manager">Haven doit accéder à <b>Tous les Fichiers</b> pour la Navigation de Fichiers. Veuillez activer l\'autorisation pour <b>LES DEUX</b> applications Haven (personnelle / professionnelle) dans la boîte de dialogue affichée après avoir appuyé sur \"Ok\".</string>
+    <string name="request_system_alert">Haven doit <b>Dessiner par dessus les autres applications</b> pour que la Navigation de Fichier fonctionne correctement. Veuillez activer l\'autorisation pour <b>LES DEUX</b> applications Haven (personnelle / professionnelle) dans la boîte de dialogue affichée après avoir appuyé sur \"Ok\". Cette autorisation est utilisée pour démarrer les services de Navigation de Fichiers en arrière-plan.</string>
+    <string name="miui_cannot_clone">Le clonage d\'applications non système vers un autre profil n\'est actuellement pas possible sur MIUI. Veuillez cloner la boutique d\'applications de votre système (par exemple, &lt;b&gt;Play Store&lt;/b&gt;) dans l\'autre profil, puis installer les applications à partir de là.<b>Play Store</b>) into the other profile and then install apps from there.</string>
+    <string name="continue_anyway">Continuer quand même</string>
+    <string name="settings_cross_profile_file_chooser">Navigation de Documents</string>
+    <string name="setup_wizard_please_wait">Veuillez patienter…</string>
+    <string name="setup_wizard_failed">Échec de l\'installation</string>
+    <string name="setup_wizard_action_required">Action requise</string>
+    <string name="setup_wizard_action_required_text">Vous devriez maintenant voir une notification de Haven. <b>Veuillez cliquer sur cette notification</b> pour terminer le processus d\'installation.
+\n
+\nSi vous ne voyez pas la notification, assurez-vous que votre appareil n\'est pas en mode Ne pas déranger et essayez de tirer le centre de notifications vers le bas.
+\n
+\nPour réinitialiser Haven et recommencer, vous pouvez vider l\'espace de stockage de Haven dans les paramètres de votre téléphone.</string>
+    <string name="setup_wizard_please_wait_text">Nous essayons d\'initialiser le profil professionnel et de configurer Haven sur votre appareil.</string>
+    <string name="setup_wizard_failed_text">Nous avons le regret de vous informer que nous n\'avons pas réussi à configurer Haven.
+\n
+\nSi vous n\'avec pas annulé manuellement la configuration, alors l\'origine de cet échec est probablement liée à une version d\'Android trop lourdement modifiée, ou bien à un conflit entre Haven et d\'autres gestionnaires de Profil professionnel. Malheureusement, nous ne pouvons pas y faire grand chose.
+\n
+\nAppuyez sur \"Suivant\" pour sortir.</string>
+    <string name="setup_wizard_welcome">Bienvenue dans Haven</string>
+    <string name="setup_wizard_permissions">Un point sur les permissions</string>
+    <string name="setup_wizard_compatibility">Compatibilité</string>
+    <string name="setup_wizard_ready">Prêt(e) ?</string>
+    <string name="setup_wizard_welcome_text">Haven est une application permettant d\'exécuter d\'autres application à l\'intérieur d\'un compartiment isolé. Pour cela, elle utilise la fonctionnalité &lt;b&gt;Profil Professionnel&lt;b&gt; d\'Android.
+\n
+\nAppuyez sur \"Suivant\", afin que nous puissions vous fournir de plus amples informations sur Haven et vous guider dans le processus de configuration.
+\n
+\nNous vous suggérons de lire attentivement l\'intégralité des informations suivantes.</string>
+    <string name="setup_wizard_permissions_text">Par défaut, Haven ne demandera pas de permissions spécifiques. Cependant, une fois que vous aurez terminé le processus de configuration, Haven essaiera de créer un profil de travail et en deviendra donc le <b>gestionnaire de profil</b>.
+\n
+\nCela accordera à Haven une liste étendue d\'autorisations à l\'intérieur du profil, comparable à celle d\'un Administrateur de l\'appareil, mais bien limitée au profil. Le statut de gestionnaire de profil est indispensable à la plupart des fonctionnalités de Haven.
+\n
+\nCertaines fonctionnalités avancées de Haven peuvent nécessiter davantage de permissions <b>en dehors</b> du profil de travail. Au besoin, Haven demandera ces autorisations séparément lorsque vous activerez les fonctionnalités correspondantes.</string>
+    <string name="setup_wizard_compatibility_text">Haven est développé et testé sur des dérivés d\'Android de type AOSP. Cela inclut AOSP (Android Open Source Project), Google Android (sur la gamme Google Pixel), et &lt;b&gt;la plupart des ROM customisées open-source basées sur AOSP&lt;/b&gt; comme LineageOS. Si votre téléphone exécute l\'un des dérivés d\'Android énumérés ci-dessus, alors félicitations ! Haven va probablement fonctionner correctement sur votre appareil.
+\n
+\nCertains fabricants de téléphones introduisent des éléments personnalisés très envahissants dans la base de code Android, ce qui entraîne des conflits, une incompatibilité et un comportement inattendu. Certaines ROM customisées peuvent également introduire des modifications qui compromettent le bon fonctionnement de Haven, mais celles-ci sont généralement plus rares que les incompatibilités liées aux fabricants.
+\n
+\nHaven est simplement une interface permettant de contrôler la fonctionnalité d\'Android \"Profil professionnel\". Si celle-ci est défaillante ou non-conforme, &lt;/b&gt;Haven sera incapable de résoudre le problème tout seul&lt;/b&gt;. Si vous utilisez actuellement une version d\'Android modifiée par le fabricant qui est connue pour altérer le fonctionnement du Profil professionnel, &lt;/b&gt;vous êtes prévenu(e)&lt;/b&gt;. Vous pouvez quand même continuer, mais il n\'est pas garanti que Haven fonctionne normalement dans ces circonstances.</string>
+    <string name="setup_wizard_ready_text">Nous sommes maintenant prêts à configurer Haven pour vous. Veuillez d\'abord vous assurer que votre appareil n\'est <b>pas</b> en mode Ne pas déranger, car vous devrez <b>cliquer sur une notification</b> plus tard pour finaliser le processus de configuration.
+\n
+\nLorsque vous serez prêt(e), cliquez sur \"Suivant\" pour commencer le processus de configuration.</string>
+</resources>

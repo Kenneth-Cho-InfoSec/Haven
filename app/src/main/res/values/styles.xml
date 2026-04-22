@@ -1,0 +1,115 @@
+<resources>
+    <style name="AppTheme.Base" parent="Theme.Material3Expressive.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/md_theme_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_theme_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_theme_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_onTertiaryContainer</item>
+        <item name="colorError">@color/md_theme_error</item>
+        <item name="colorOnError">@color/md_theme_onError</item>
+        <item name="colorErrorContainer">@color/md_theme_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_theme_onErrorContainer</item>
+        <item name="colorSurface">@color/md_theme_surface</item>
+        <item name="colorOnSurface">@color/md_theme_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_theme_outline</item>
+        <item name="colorOutlineVariant">@color/md_theme_outlineVariant</item>
+        <item name="colorAccent">@color/md_theme_primary</item>
+        <item name="android:colorAccent">@color/md_theme_primary</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:colorBackground">@color/md_theme_background</item>
+        <item name="android:textColor">@color/md_theme_onSurface</item>
+        <item name="android:textColorSecondary">@color/md_theme_onSurfaceVariant</item>
+        <item name="android:itemBackground">@color/md_theme_surface</item>
+        <item name="android:listViewStyle">@style/ListViewTheme</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="materialButtonStyle">@style/Widget.Haven.Button</item>
+        <item name="bottomNavigationStyle">@style/Widget.Haven.BottomNavigation</item>
+    </style>
+
+    <style name="AppTheme.Override" parent="AppTheme.Base">
+        <!-- Empty; override from specific styles. -->
+    </style>
+
+    <style name="AppTheme" parent="AppTheme.Override">
+        <!-- Empty; override from specific styles. -->
+    </style>
+
+    <style name="AppTheme.SetupWizard" parent="AppTheme">
+        <item name="android:navigationBarColor">@color/md_theme_surface</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="ListViewTheme" parent="@android:style/Widget.ListView">
+        <item name="android:background">@color/md_theme_surface</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="ThemeOverlay.Material3Expressive.MaterialAlertDialog">
+        <item name="android:background">@color/md_theme_surface</item>
+        <item name="android:headerBackground">@color/md_theme_surface</item>
+        <item name="android:windowTitleStyle">@style/AlertDialogTitleTextStyle</item>
+    </style>
+
+    <style name="AlertDialogTitleTextStyle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:background">@color/md_theme_surface</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="ThemeOverlay.Material3Expressive.Toolbar.Surface">
+        <item name="android:textColorPrimary">@color/md_theme_primary</item>
+        <item name="colorOnSurface">@color/md_theme_primary</item>
+    </style>
+
+    <style name="Widget.Haven.Toolbar" parent="Widget.Material3Expressive.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.Haven.TitleLarge</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.Material3.BodyMedium</item>
+        <item name="android:background">@color/md_theme_surface</item>
+    </style>
+
+    <style name="Widget.Haven.BottomNavigation" parent="Widget.Material3Expressive.BottomNavigationView">
+        <item name="android:background">@color/md_theme_surfaceContainer</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.Haven.BottomNavigation.ActiveIndicator</item>
+        <item name="itemRippleColor">@color/md_theme_primaryContainer</item>
+    </style>
+
+    <style name="Widget.Haven.BottomNavigation.ActiveIndicator" parent="Widget.Material3Expressive.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/md_theme_primaryContainer</item>
+    </style>
+
+    <style name="Widget.Haven.Button" parent="Widget.Material3Expressive.Button">
+        <item name="cornerRadius">24dp</item>
+    </style>
+
+    <style name="TextAppearance.Haven.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="android:textColor">@color/md_theme_onSurface</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Haven.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">@color/md_theme_onSurface</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Haven.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/md_theme_onSurfaceVariant</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="Theme.Haven.Translucent.NoTitleBar" parent="Theme.Material3Expressive.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+</resources>

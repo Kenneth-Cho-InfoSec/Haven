@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/main_menu_search"
+        android:icon="@drawable/ic_search_tinted_24dp"
+        android:title="@string/search"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+    <item
+        android:id="@+id/main_menu_freeze_all"
+        android:icon="@drawable/ic_freeze_tinted"
+        android:title="@string/freeze_all"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/main_menu_settings"
+        android:icon="@drawable/ic_settings_tinted_24dp"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/main_menu_create_freeze_all_shortcut"
+        android:title="@string/create_freeze_all_shortcut" />
+
+    <item
+        android:id="@+id/main_menu_install_app_to_profile"
+        android:title="@string/install_app_to_profile" />
+
+    <item
+        android:id="@+id/main_menu_documents_ui"
+        android:title="@string/documents_ui" />
+
+    <item
+        android:id="@+id/main_menu_show_all"
+        android:title="@string/show_all"
+        android:checkable="true"
+        android:checked="false" />
+</menu>

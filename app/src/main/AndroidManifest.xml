@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="internalOnly" >
+
+    <uses-feature android:name="android.software.device_admin" android:required="true"/>
+    <uses-feature android:name="android.software.managed_users" android:required="true"/>
+
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
+    <uses-permission android:maxSdkVersion="25"
+        android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.NFC" />
+
+    <!-- For querying apps on Android R and later -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+        </intent>
+    </queries>
+
+    <application
+        android:name=".HavenApplication"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher_egg"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_egg_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- The main activity for UI -->
+        <activity android:name=".ui.MainActivity"
+            android:launchMode="singleTask"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Setup Wizard -->
+        <activity android:name=".ui.SetupWizardActivity"
+            android:theme="@style/AppTheme.SetupWizard"
+            android:launchMode="singleTask"
+            android:exported="false"/>
+
+        <!-- The Settings activity -->
+        <activity android:name=".ui.SettingsActivity"
+            android:label="@string/settings" />
+
+        <!-- An activity that wraps intents that cross the profile boundary -->
+        <!-- Needed because only cross-profile Activity intents are supported -->
+        <activity android:name=".ui.DummyActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Haven.Translucent.NoTitleBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="io.github.kennethchoinfosec.haven.action.FINALIZE_PROVISION" />
+                <action android:name="io.github.kennethchoinfosec.haven.action.START_SERVICE" />
+                <action android:name="io.github.kennethchoinfosec.haven.action.TRY_START_SERVICE" />
+                <action android:name="io.github.kennethchoinfosec.haven.action.INSTALL_PACKAGE" />
+                <action android:name="io.github.kennethchoinfosec.haven.action.UNINSTALL_PACKAGE" />
+                <action android:name="io.github.kennethchoinfosec.haven.action.UNFREEZE_AND_LAUNCH" />
+                <action android:name="io.github.kennethchoinfosec.haven.action.PUBLIC_UNFREEZE_AND_LAUNCH" />
+                <action android:name="io.github.kennethchoinfosec.haven.action.PUBLIC_FREEZE_ALL" />
+                <action android:name="io.github.kennethchoinfosec.haven.action.FREEZE_ALL_IN_LIST" />
+                <!-- We need two of these to avoid being prompted with an action chooser dialog -->
+                <!-- When the intent is actually already forwarded to work profile -->
+                <action android:name="io.github.kennethchoinfosec.haven.action.START_FILE_SHUTTLE" />
+                <action android:name="io.github.kennethchoinfosec.haven.action.START_FILE_SHUTTLE_2" />
+                <action android:name="io.github.kennethchoinfosec.haven.action.SYNCHRONIZE_PREFERENCE" />
+                <action android:name="io.github.kennethchoinfosec.haven.action.PACKAGEINSTALLER_CALLBACK" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- An activity to listen to ACTION_PROVISIONING_SUCCESSFUL for finalization -->
+        <!-- This replaces the functionality of HavenDeviceAdminReceiver on Oreo and above -->
+        <activity android:name=".ui.FinalizeActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Haven.Translucent.NoTitleBar"
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.app.action.PROVISIONING_SUCCESSFUL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Implementation of the device policy controller -->
+        <receiver android:name=".receivers.HavenDeviceAdminReceiver"
+            android:label="@string/device_admin_label"
+            android:description="@string/device_admin_desc"
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:exported="true">
+            <meta-data android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.app.action.DEVICE_ADMIN_DISABLED" />
+                <action android:name="android.app.action.PROVISION_MANAGED_PROFILE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- A FileProvider that proxies opened Fd from the other profile -->
+        <provider
+            android:name="io.github.kennethchoinfosec.haven.util.FileProviderProxy"
+            android:authorities="io.github.kennethchoinfosec.haven.files"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- A DocumentsProvider that lists files in another profile -->
+        <provider
+            android:name="io.github.kennethchoinfosec.haven.util.CrossProfileDocumentsProvider"
+            android:authorities="io.github.kennethchoinfosec.haven.documents"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.MANAGE_DOCUMENTS"
+            android:exported="true"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.content.action.DOCUMENTS_PROVIDER" />
+            </intent-filter>
+        </provider>
+
+        <!-- Core service running on both the main profile and the work profile -->
+        <!-- Actions like cloning / freezing apps will be performed by this service -->
+        <service android:name=".services.HavenService"
+                android:exported="true"
+                android:foregroundServiceType="systemExempted"
+                android:permission="android.permission.BIND_DEVICE_ADMIN"
+                tools:ignore="ForegroundServicePermission" />
+
+        <!-- Service to forward file information between profiles -->
+        <service android:name=".services.FileShuttleService"
+                android:exported="true"
+                android:permission="android.permission.BIND_DEVICE_ADMIN" />
+
+        <!-- A hack service to ensure every HavenService is killed when App is removed -->
+        <!-- from recent tasks -->
+        <service android:name=".services.KillerService" />
+
+        <!-- Service to freeze apps on screen lock -->
+        <service android:name=".services.FreezeService"
+            android:foregroundServiceType="systemExempted"
+            tools:ignore="ForegroundServicePermission" />
+
+        <!-- Payment stub service -->
+        <service android:name=".services.PaymentStubService"
+            android:exported="true"
+            android:enabled="false"
+            android:permission="android.permission.BIND_NFC_SERVICE">
+            <intent-filter>
+                <action android:name="android.nfc.cardemulation.action.HOST_APDU_SERVICE"/>
+            </intent-filter>
+            <meta-data android:name="android.nfc.cardemulation.host_apdu_service"
+                android:resource="@xml/payment_stub"/>
+        </service>
+
+    </application>
+
+</manifest>

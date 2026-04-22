@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/md_theme_surface</color>
+    <color name="colorAccent">@color/md_theme_primary</color>
+    <color name="colorNavigationBar">@color/md_theme_surfaceContainer</color>
+    <color name="colorAccentSetupWizard">@color/md_theme_tertiary</color>
+    <color name="disabledAppBackground">@color/md_theme_surfaceContainer</color>
+    <color name="selectedAppBackground">@color/md_theme_primaryContainer</color>
+    <color name="selectedAndDisabledAppBackground">@color/md_theme_secondaryContainer</color>
+</resources>
