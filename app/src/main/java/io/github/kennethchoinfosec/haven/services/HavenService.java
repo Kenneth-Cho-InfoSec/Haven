@@ -263,7 +263,7 @@ public class HavenService extends Service {
         public boolean setCrossProfileWidgetProviderEnabled(String pkgName, boolean enabled) {
             if (!mIsProfileOwner)
                 throw new IllegalStateException("Cannot access cross-profile widget providers without being profile owner");
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN) {
                 HashSet<String> packages = new HashSet<>(mPolicyManager.getCrossProfileWidgetProviders(mAdminComponent));
                 boolean changed = updateWidgetProviderAllowlist(packages, pkgName, enabled);
                 if (changed) {
