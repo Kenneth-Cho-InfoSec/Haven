@@ -1,11 +1,9 @@
 package io.github.kennethchoinfosec.haven.ui;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.RestrictionEntry;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
@@ -13,12 +11,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.text.InputType;
+import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,7 +26,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.core.content.ContextCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -44,14 +44,13 @@ import io.github.kennethchoinfosec.haven.util.LocalStorageManager;
 import io.github.kennethchoinfosec.haven.util.Utility;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AppListFragment extends BaseFragment {
-    static final String BROADCAST_REFRESH = "io.github.kennethchoinfosec.haven.broadcast.REFRESH";
-
     // Menu Items
     private static final int MENU_ITEM_CLONE = 10001;
     private static final int MENU_ITEM_UNINSTALL = 10002;
@@ -62,6 +61,7 @@ public class AppListFragment extends BaseFragment {
     private static final int MENU_ITEM_AUTO_FREEZE = 10007;
     private static final int MENU_ITEM_ALLOW_CROSS_PROFILE_WIDGET = 10008;
     private static final int MENU_ITEM_ALLOW_CROSS_PROFILE_INTERACTION = 10009;
+    private static final int MENU_ITEM_MANAGE_APP_RESTRICTIONS = 10010;
 
     private IHavenService mService = null;
     private boolean mIsRemote = false;
@@ -80,39 +80,10 @@ public class AppListFragment extends BaseFragment {
     private RecyclerView mList = null;
     private AppListAdapter mAdapter = null;
     private SwipeRefreshLayout mSwipeRefresh = null;
+    private MainUiViewModel mUiViewModel = null;
 
     // Variable to store the current action mode object if any
     private ActionMode mActionMode = null;
-
-    // Receiver for Refresh events
-    // used for app changes
-    private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            refresh();
-        }
-    };
-
-    // Receiver for context menu closed event
-    private BroadcastReceiver mContextMenuClosedReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            mSelectedApp = null;
-        }
-    };
-
-    // Receiver for search event
-    private BroadcastReceiver mSearchReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String query = intent.getStringExtra("text");
-            if ("".equals(query)) {
-                // Consider empty query as null
-                query = null;
-            }
-            mAdapter.setSearchQuery(query);
-        }
-    };
 
     static AppListFragment newInstance(IHavenService service, boolean isRemote) {
         AppListFragment fragment = new AppListFragment();
@@ -135,14 +106,6 @@ public class AppListFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        LocalBroadcastManager.getInstance(getContext())
-                .registerReceiver(mRefreshReceiver, new IntentFilter(BROADCAST_REFRESH));
-        LocalBroadcastManager.getInstance(getContext())
-                .registerReceiver(mContextMenuClosedReceiver,
-                        new IntentFilter(MainActivity.BROADCAST_CONTEXT_MENU_CLOSED));
-        LocalBroadcastManager.getInstance(getContext())
-                .registerReceiver(mSearchReceiver,
-                        new IntentFilter(MainActivity.BROADCAST_SEARCH_FILTER_CHANGED));
         refresh();
     }
 
@@ -150,12 +113,6 @@ public class AppListFragment extends BaseFragment {
     public void onPause() {
         super.onPause();
         mSelectedApp = null;
-        LocalBroadcastManager.getInstance(getContext())
-                .unregisterReceiver(mRefreshReceiver);
-        LocalBroadcastManager.getInstance(getContext())
-                .unregisterReceiver(mContextMenuClosedReceiver);
-        LocalBroadcastManager.getInstance(getContext())
-                .unregisterReceiver(mSearchReceiver);
     }
 
     @Nullable
@@ -169,7 +126,15 @@ public class AppListFragment extends BaseFragment {
         mAdapter = new AppListAdapter(mService, mDefaultIcon);
         mAdapter.setContextMenuHandler((info, v) -> {
             mSelectedApp = info;
-            mList.showContextMenuForChild(v);
+            PopupMenu popup = new PopupMenu(requireContext(), v);
+            populateAppMenu(popup.getMenu());
+            if (popup.getMenu().size() == 0) {
+                mSelectedApp = null;
+                return;
+            }
+            popup.setOnMenuItemClickListener(this::onContextItemSelected);
+            popup.setOnDismissListener(ignored -> mSelectedApp = null);
+            popup.show();
         });
         if (mIsRemote) {
             // Allow multi-select actions if this is in the work profile
@@ -193,9 +158,27 @@ public class AppListFragment extends BaseFragment {
         mSwipeRefresh.setProgressBackgroundColorSchemeColor(
                 ContextCompat.getColor(requireContext(), R.color.md_theme_surfaceContainerHigh));
         mSwipeRefresh.setOnRefreshListener(this::refresh);
-        registerForContextMenu(mList);
-
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mUiViewModel = new ViewModelProvider(requireActivity()).get(MainUiViewModel.class);
+        mUiViewModel.searchQuery().observe(getViewLifecycleOwner(), query -> {
+            String filter = query == null || query.isEmpty() ? null : query;
+            mAdapter.setSearchQuery(filter);
+        });
+        mUiViewModel.events().observe(getViewLifecycleOwner(), event -> {
+            if (event == null || event.isRemoteProfile() != mIsRemote || !event.markHandled()) {
+                return;
+            }
+            if (event.type() == MainUiViewModel.EventType.REFRESH_APPS) {
+                refresh();
+            } else if (event.type() == MainUiViewModel.EventType.CONTEXT_MENU_CLOSED) {
+                mSelectedApp = null;
+            }
+        });
     }
 
     void refresh() {
@@ -290,9 +273,7 @@ public class AppListFragment extends BaseFragment {
         return true;
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
+    private void populateAppMenu(Menu menu) {
         if (mSelectedApp == null) return;
 
         if (mIsRemote) {
@@ -323,6 +304,11 @@ public class AppListFragment extends BaseFragment {
                         mCrossProfilePackages.contains(mSelectedApp.getPackageName()));
             }
 
+            if (!mSelectedApp.isHidden()) {
+                menu.add(Menu.NONE, MENU_ITEM_MANAGE_APP_RESTRICTIONS, Menu.NONE,
+                        R.string.manage_app_restrictions);
+            }
+
             // TODO: If we implement God Mode (i.e. Haven as device owner), we should
             // TODO: use two different lists to store auto freeze apps because we'll be
             // TODO: able to freeze apps in main profile.
@@ -342,13 +328,6 @@ public class AppListFragment extends BaseFragment {
             menu.add(Menu.NONE, MENU_ITEM_UNINSTALL, Menu.NONE, R.string.uninstall_app);
         }
 
-        if (menu.size() > 0) {
-            // Only set title when the menu is not empty
-            // this ensures that no menu will be shown
-            // if no operation available
-            menu.setHeaderTitle(
-                    getString(R.string.app_context_menu_title, mSelectedApp.getLabel()));
-        }
     }
 
     @Override
@@ -438,6 +417,9 @@ public class AppListFragment extends BaseFragment {
                 }
                 return true;
             }
+            case MENU_ITEM_MANAGE_APP_RESTRICTIONS:
+                showManagedApplicationRestrictions(mSelectedApp.getPackageName(), mSelectedApp.getLabel());
+                return true;
             case MENU_ITEM_ALLOW_CROSS_PROFILE_INTERACTION: {
                 boolean newState = !item.isChecked();
                 if (newState) {
@@ -456,6 +438,208 @@ public class AppListFragment extends BaseFragment {
         }
 
         return super.onContextItemSelected(item);
+    }
+
+    private void showManagedApplicationRestrictions(String packageName, String appLabel) {
+        mSelectedApp = null;
+        new Thread(() -> {
+            try {
+                Bundle response = mService.getManagedApplicationRestrictions(packageName);
+                Bundle values = response.getBundle("values");
+                ArrayList<Bundle> schema = response.getParcelableArrayList("schema");
+                Activity activity = getActivity();
+                if (activity == null) return;
+                activity.runOnUiThread(() -> {
+                    if (!isAdded()) return;
+                    if (schema == null || schema.isEmpty()) {
+                        new MaterialAlertDialogBuilder(requireContext())
+                                .setTitle(getString(R.string.managed_restrictions_title, appLabel))
+                                .setMessage(R.string.managed_restrictions_none)
+                                .setPositiveButton(android.R.string.ok, null)
+                                .show();
+                        return;
+                    }
+                    Bundle current = values == null ? new Bundle() : values;
+                    String[] labels = schema.stream()
+                            .map(entry -> {
+                                String title = entry.getString("title");
+                                String key = entry.getString("key");
+                                return title == null || title.trim().isEmpty() ? key : title;
+                            })
+                            .toArray(String[]::new);
+                    new MaterialAlertDialogBuilder(requireContext())
+                            .setTitle(getString(R.string.managed_restrictions_title, appLabel))
+                            .setItems(labels, (dialog, which) -> editManagedRestriction(
+                                    packageName, schema.get(which), current))
+                            .setNegativeButton(android.R.string.cancel, null)
+                            .show();
+                });
+            } catch (Exception e) {
+                Activity activity = getActivity();
+                if (activity != null) {
+                    activity.runOnUiThread(() -> Toast.makeText(activity,
+                            R.string.managed_restrictions_load_failed, Toast.LENGTH_SHORT).show());
+                }
+            }
+        }).start();
+    }
+
+    private void editManagedRestriction(String packageName, Bundle entry, Bundle current) {
+        String key = entry.getString("key");
+        String title = entry.getString("title");
+        if (title == null || title.trim().isEmpty()) title = key;
+        String description = entry.getString("description");
+        int type = entry.getInt("type", RestrictionEntry.TYPE_NULL);
+
+        if (type == RestrictionEntry.TYPE_BOOLEAN) {
+            boolean enabled = current.containsKey(key)
+                    ? current.getBoolean(key) : entry.getBoolean("defaultBoolean");
+            String[] options = {getString(R.string.managed_restrictions_disabled),
+                    getString(R.string.managed_restrictions_enabled)};
+            new MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(title)
+                    .setMessage(description)
+                    .setSingleChoiceItems(options, enabled ? 1 : 0, (dialog, which) -> {
+                        Bundle updated = new Bundle(current);
+                        updated.putBoolean(key, which == 1);
+                        saveManagedApplicationRestrictions(packageName, updated);
+                        dialog.dismiss();
+                    })
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .show();
+            return;
+        }
+
+        if (type == RestrictionEntry.TYPE_CHOICE || type == RestrictionEntry.TYPE_MULTI_SELECT) {
+            String[] labels = entry.getStringArray("choiceEntries");
+            String[] choices = entry.getStringArray("choiceValues");
+            if (labels == null || choices == null || labels.length == 0 || labels.length != choices.length) {
+                showUnsupportedRestriction(title, description);
+                return;
+            }
+            Set<String> selected = selectedRestrictionValues(current, entry, key);
+            if (type == RestrictionEntry.TYPE_CHOICE) {
+                String currentValue = selected.isEmpty() ? null : selected.iterator().next();
+                int checked = Arrays.asList(choices).indexOf(currentValue);
+                new MaterialAlertDialogBuilder(requireContext())
+                        .setTitle(title)
+                        .setMessage(description)
+                        .setSingleChoiceItems(labels, checked, (dialog, which) -> {
+                            Bundle updated = new Bundle(current);
+                            updated.putStringArray(key, new String[]{choices[which]});
+                            saveManagedApplicationRestrictions(packageName, updated);
+                            dialog.dismiss();
+                        })
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .show();
+            } else {
+                boolean[] checked = new boolean[choices.length];
+                for (int i = 0; i < choices.length; i++) checked[i] = selected.contains(choices[i]);
+                Set<String> selectedValues = new HashSet<>(selected);
+                new MaterialAlertDialogBuilder(requireContext())
+                        .setTitle(title)
+                        .setMessage(description)
+                        .setMultiChoiceItems(labels, checked, (dialog, which, isChecked) -> {
+                            if (isChecked) selectedValues.add(choices[which]);
+                            else selectedValues.remove(choices[which]);
+                        })
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                            Bundle updated = new Bundle(current);
+                            updated.putStringArray(key, selectedValues.toArray(new String[0]));
+                            saveManagedApplicationRestrictions(packageName, updated);
+                        })
+                        .show();
+            }
+            return;
+        }
+
+        if (type == RestrictionEntry.TYPE_STRING || type == RestrictionEntry.TYPE_INTEGER) {
+            EditText input = new EditText(requireContext());
+            input.setSingleLine(true);
+            String currentText;
+            if (type == RestrictionEntry.TYPE_INTEGER) {
+                input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
+                currentText = String.valueOf(current.containsKey(key)
+                        ? current.getInt(key) : entry.getInt("defaultInteger"));
+            } else {
+                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+                currentText = current.getString(key, entry.getString("defaultString", ""));
+            }
+            input.setText(currentText);
+            new MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(title)
+                    .setMessage(description)
+                    .setView(input)
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                        Bundle updated = new Bundle(current);
+                        if (type == RestrictionEntry.TYPE_INTEGER) {
+                            try {
+                                updated.putInt(key, Integer.parseInt(input.getText().toString()));
+                            } catch (NumberFormatException ignored) {
+                                Toast.makeText(requireContext(), R.string.managed_restrictions_save_failed,
+                                        Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        } else {
+                            updated.putString(key, input.getText().toString());
+                        }
+                        saveManagedApplicationRestrictions(packageName, updated);
+                    })
+                    .show();
+            return;
+        }
+
+        showUnsupportedRestriction(title, description);
+    }
+
+    private Set<String> selectedRestrictionValues(Bundle current, Bundle entry, String key) {
+        String[] values = current.getStringArray(key);
+        if (values == null) {
+            String singleValue = current.getString(key);
+            if (singleValue != null) values = new String[]{singleValue};
+        }
+        if (values == null) values = entry.getStringArray("defaultStrings");
+        if (values == null) {
+            String defaultValue = entry.getString("defaultString");
+            if (defaultValue != null) values = new String[]{defaultValue};
+        }
+        return values == null ? new HashSet<>() : new HashSet<>(Arrays.asList(values));
+    }
+
+    private void showUnsupportedRestriction(String title, String description) {
+        String message = description == null || description.isEmpty()
+                ? getString(R.string.managed_restrictions_unsupported)
+                : description + "\n\n" + getString(R.string.managed_restrictions_unsupported);
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
+    }
+
+    private void saveManagedApplicationRestrictions(String packageName, Bundle restrictions) {
+        new Thread(() -> {
+            boolean saved = false;
+            try {
+                mService.setManagedApplicationRestrictions(packageName, restrictions);
+                saved = true;
+            } catch (Exception ignored) {
+                // Report the failure in the UI below.
+            }
+            final boolean succeeded = saved;
+            Activity activity = getActivity();
+            if (activity != null) {
+                activity.runOnUiThread(() -> {
+                    if (!isAdded()) return;
+                    Toast.makeText(requireContext(), succeeded
+                                    ? R.string.managed_restrictions_saved
+                                    : R.string.managed_restrictions_save_failed,
+                            Toast.LENGTH_SHORT).show();
+                });
+            }
+        }).start();
     }
 
     void installOrUninstall(final ApplicationInfoWrapper app, final boolean isInstall) {
@@ -485,12 +669,13 @@ public class AppListFragment extends BaseFragment {
             String message = getString(isInstall ? R.string.clone_success : R.string.uninstall_success);
             message = String.format(message, app.getLabel());
             Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-            LocalBroadcastManager.getInstance(getContext())
-                    .sendBroadcast(new Intent(BROADCAST_REFRESH));
+            refresh();
         } else if (result == HavenService.RESULT_CANNOT_INSTALL_SYSTEM_APP) {
             Toast.makeText(getContext(),
                     getString(isInstall ? R.string.clone_fail_system_app :
                             R.string.uninstall_fail_system_app), Toast.LENGTH_SHORT).show();
+        } else if (result == Activity.RESULT_CANCELED) {
+            Toast.makeText(getContext(), R.string.app_operation_cancelled, Toast.LENGTH_SHORT).show();
         }
     }
 

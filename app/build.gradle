@@ -7,13 +7,13 @@ if (releaseKeystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdk = 36
+    compileSdk = 37
     defaultConfig {
         applicationId = "io.github.kennethchoinfosec.haven"
         minSdk = 24
-        targetSdk = 36
-        versionCode = 8
-        versionName = "0.1.4"
+        targetSdk = 37
+        versionCode = 9
+        versionName = "0.1.5"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -49,16 +49,34 @@ android {
     namespace = 'io.github.kennethchoinfosec.haven'
 }
 
+// Never produce a release APK that Android will sign with a temporary debug key or leave
+// unsigned. Debug builds remain available without the private release credentials.
+tasks.configureEach { task ->
+    if (task.name == 'packageRelease' || task.name == 'bundleRelease') {
+        task.doFirst {
+            if (releaseKeystoreProperties.isEmpty()) {
+                throw new GradleException('Release signing is required. Configure release/keystore.properties; see docs/RELEASING.md.')
+            }
+        }
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
-    implementation 'androidx.fragment:fragment:1.8.9'
-    implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation 'androidx.preference:preference:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
-    implementation 'com.google.android.material:material:1.14.0-beta01'
-    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.7.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
+    implementation libs.androidx.activity
+    implementation libs.androidx.annotation
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.core
+    implementation libs.androidx.fragment
+    implementation libs.androidx.lifecycle.livedata
+    implementation libs.androidx.lifecycle.viewmodel
+    implementation libs.androidx.preference
+    implementation libs.androidx.recyclerview
+    implementation libs.androidx.swiperefreshlayout
+    implementation libs.androidx.viewpager2
+    implementation libs.material
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.runner
+    androidTestImplementation libs.espresso
 }

@@ -37,6 +37,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_BUG_REPORT = "settings_bug_report";
     private static final String SETTINGS_PATREON = "settings_patreon";
     private static final String SETTINGS_CROSS_PROFILE_FILE_CHOOSER = "settings_cross_profile_file_chooser";
+    private static final String SETTINGS_CROSS_PROFILE_PICKER = "settings_cross_profile_picker";
     private static final String SETTINGS_BLOCK_CONTACTS_SEARCHING = "settings_block_contacts_searching";
     private static final String SETTINGS_AUTO_FREEZE_SERVICE = "settings_auto_freeze_service";
     private static final String SETTINGS_AUTO_FREEZE_DELAY = "settings_auto_freeze_delay";
@@ -49,6 +50,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private IHavenService mServiceWork = null;
 
     private CheckBoxPreference mPrefCrossProfileFileChooser = null;
+    private CheckBoxPreference mPrefCrossProfilePicker = null;
     private CheckBoxPreference mPrefBlockContactsSearching = null;
     private CheckBoxPreference mPrefAutoFreezeService = null;
     private CheckBoxPreference mPrefSkipForeground = null;
@@ -70,13 +72,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     public void onCreatePreferences(Bundle bundle, String s) {
         addPreferencesFromResource(R.xml.preferences_settings);
         mServiceWork = IHavenService.Stub.asInterface(
-                ((Bundle) getActivity().getIntent().getParcelableExtra("extras")).getBinder("profile_service"));
+                getActivity().getIntent().getBundleExtra("extras").getBinder("profile_service"));
 
         // Set the displayed version
         try {
             findPreference(SETTINGS_VERSION).setSummary(
-                    getContext().getPackageManager().getPackageInfo(
-                            getContext().getPackageName(), 0).versionName);
+                    getPackageInfo().versionName);
         } catch (PackageManager.NameNotFoundException e) {
             // WTF?
         }
@@ -95,6 +96,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         mPrefCrossProfileFileChooser = (CheckBoxPreference) findPreference(SETTINGS_CROSS_PROFILE_FILE_CHOOSER);
         mPrefCrossProfileFileChooser.setChecked(mManager.getCrossProfileFileChooserEnabled());
         mPrefCrossProfileFileChooser.setOnPreferenceChangeListener(this);
+        mPrefCrossProfilePicker = (CheckBoxPreference) findPreference(SETTINGS_CROSS_PROFILE_PICKER);
+        mPrefCrossProfilePicker.setChecked(mManager.getCrossProfilePickerEnabled());
+        mPrefCrossProfilePicker.setOnPreferenceChangeListener(this);
         mPrefBlockContactsSearching = (CheckBoxPreference) findPreference(SETTINGS_BLOCK_CONTACTS_SEARCHING);
         mPrefBlockContactsSearching.setChecked(mManager.getBlockContactsSearchingEnabled());
         mPrefBlockContactsSearching.setOnPreferenceChangeListener(this);
@@ -128,6 +132,16 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         if (am.isLowRamDevice()) {
             mPrefCrossProfileFileChooser.setEnabled(false);
         }
+    }
+
+    @SuppressWarnings("deprecation")
+    private android.content.pm.PackageInfo getPackageInfo() throws PackageManager.NameNotFoundException {
+        PackageManager packageManager = requireContext().getPackageManager();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return packageManager.getPackageInfo(requireContext().getPackageName(),
+                    PackageManager.PackageInfoFlags.of(0));
+        }
+        return packageManager.getPackageInfo(requireContext().getPackageName(), 0);
     }
 
     @Override
@@ -194,6 +208,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             }
 
             mManager.setCrossProfileFileChooserEnabled(true);
+            return true;
+        } else if (preference == mPrefCrossProfilePicker) {
+            mManager.setCrossProfilePickerEnabled((boolean) newState);
             return true;
         } else if (preference == mPrefBlockContactsSearching) {
             mManager.setBlockContactsSearchingEnabled((boolean) newState);

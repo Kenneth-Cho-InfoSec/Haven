@@ -1,13 +1,12 @@
 package io.github.kennethchoinfosec.haven.services;
 
 import android.app.Service;
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.media.ThumbnailUtils;
-import android.net.Uri;
+import android.media.MediaScannerConnection;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
@@ -15,6 +14,7 @@ import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Size;
 import android.webkit.MimeTypeMap;
 
 import androidx.annotation.Nullable;
@@ -25,7 +25,6 @@ import io.github.kennethchoinfosec.haven.util.CrossProfileDocumentsProvider;
 import io.github.kennethchoinfosec.haven.util.Utility;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
@@ -67,7 +66,7 @@ public class FileShuttleService extends Service {
             File f = new File(resolvePath(path));
             HashMap<String, Serializable> map = new HashMap<>();
             map.put(DocumentsContract.Document.COLUMN_DOCUMENT_ID, f.getAbsolutePath());
-            if (f.equals(Environment.getExternalStorageDirectory())) {
+            if (f.equals(getSharedStorageRoot())) {
                 // Show "Haven" as the name of the root directory
                 map.put(DocumentsContract.Document.COLUMN_DISPLAY_NAME, getString(R.string.app_name));
             } else {
@@ -137,7 +136,7 @@ public class FileShuttleService extends Service {
                 return loadImageThumbnail(fullPath, sizeHint);
             } else if (mime.startsWith("video/")) {
                 // Video thumbnail
-                return loadVideoThumbnail(fullPath);
+                return loadVideoThumbnail(fullPath, sizeHint);
             } else {
                 return null;
             }
@@ -214,7 +213,7 @@ public class FileShuttleService extends Service {
     private String resolvePath(String path) {
         if (path.startsWith(CrossProfileDocumentsProvider.DUMMY_ROOT)) {
             return path.replaceFirst(CrossProfileDocumentsProvider.DUMMY_ROOT,
-                    Environment.getExternalStorageDirectory().getAbsolutePath());
+                    getSharedStorageRoot().getAbsolutePath());
         } else {
             return path;
         }
@@ -232,42 +231,41 @@ public class FileShuttleService extends Service {
     }
 
     private ParcelFileDescriptor loadImageThumbnail(String fullPath, Point sizeHint) {
-        int id = Utility.getMediaStoreId(FileShuttleService.this, fullPath);
-        if (id == -1) {
-            // Fallback to directly loading thumbnail from file
-            return loadBitmapThumbnail(fullPath, sizeHint);
-        }
-        Cursor result = MediaStore.Images.Thumbnails.queryMiniThumbnail(
-                getContentResolver(), id, MediaStore.Images.Thumbnails.MINI_KIND, null);
-        if (result.getCount() == 0) {
-            // If no thumbnail is found, we try to request one first
-            MediaStore.Images.Thumbnails.getThumbnail(
-                    getContentResolver(), id, MediaStore.Images.Thumbnails.MINI_KIND, null);
-            result = MediaStore.Images.Thumbnails.queryMiniThumbnail(
-                    getContentResolver(), id, MediaStore.Images.Thumbnails.MINI_KIND, null);
-        }
-        if (result.getCount() == 0) {
-            // Fallback to directly loading thumbnail from file
-            return loadBitmapThumbnail(fullPath, sizeHint);
-        } else {
-            result.moveToFirst();
+        Bitmap bmp;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             try {
-                int index = result.getColumnIndex(MediaStore.Images.Thumbnails.DATA);
-                return getContentResolver().openFileDescriptor(
-                        Uri.fromFile(new File(result.getString(index))), "r");
-            } catch (FileNotFoundException e) {
-                return null;
+                bmp = ThumbnailUtils.createImageThumbnail(new File(fullPath), thumbnailSize(sizeHint), null);
+            } catch (IOException e) {
+                bmp = Utility.decodeSampledBitmap(fullPath, sizeHint.x, sizeHint.y);
             }
+        } else {
+            bmp = Utility.decodeSampledBitmap(fullPath, sizeHint.x, sizeHint.y);
         }
+        return bmp == null ? null : bitmapToFd(bmp);
     }
 
-    private ParcelFileDescriptor loadVideoThumbnail(String fullPath) {
-        // The MediaStore interface for video thumbnails just do not work at all
-        // It can't even retrieve video IDs from the database
-        // Anyway, use this as a temporary fix.
-        // TODO: Figure out how to use the MediaStore interface with videos
-        Bitmap bmp = ThumbnailUtils.createVideoThumbnail(fullPath, MediaStore.Video.Thumbnails.MINI_KIND);
-        return bitmapToFd(bmp);
+    private ParcelFileDescriptor loadVideoThumbnail(String fullPath, Point sizeHint) {
+        Bitmap bmp;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            try {
+                bmp = ThumbnailUtils.createVideoThumbnail(new File(fullPath), thumbnailSize(sizeHint), null);
+            } catch (IOException e) {
+                bmp = null;
+            }
+        } else {
+            bmp = createLegacyVideoThumbnail(fullPath);
+        }
+        return bmp == null ? null : bitmapToFd(bmp);
+    }
+
+    @SuppressWarnings("deprecation")
+    private Bitmap createLegacyVideoThumbnail(String fullPath) {
+        // The String overload is the available platform API on Android 7 through 9.
+        return ThumbnailUtils.createVideoThumbnail(fullPath, MediaStore.Video.Thumbnails.MINI_KIND);
+    }
+
+    private static Size thumbnailSize(Point sizeHint) {
+        return new Size(Math.max(1, sizeHint.x), Math.max(1, sizeHint.y));
     }
 
     // Fallback method for thumbnail loading: just load from disk, but load a scaled down version
@@ -307,12 +305,16 @@ public class FileShuttleService extends Service {
     }
 
     private void notifyMediaScannerIfNecessary(File f, String mimeType) {
-        // Notify the media scanner to scan the file as needed
-        // This has to be done AFTER file creation
+        // Scan after the file has been created or its output stream has closed.
         if (mimeType != null && (mimeType.startsWith("image/") || mimeType.startsWith("video/"))) {
-            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-            intent.setData(Uri.fromFile(f));
-            sendBroadcast(intent);
+            MediaScannerConnection.scanFile(this, new String[]{f.getAbsolutePath()},
+                    new String[]{mimeType}, null);
         }
+    }
+
+    @SuppressWarnings("deprecation")
+    private static File getSharedStorageRoot() {
+        // Haven's DocumentsProvider exposes shared storage paths and requires MANAGE_EXTERNAL_STORAGE.
+        return Environment.getExternalStorageDirectory();
     }
 }

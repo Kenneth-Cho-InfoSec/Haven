@@ -1,11 +1,12 @@
 package io.github.kennethchoinfosec.haven.util;
 
-import android.annotation.TargetApi;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.RequiresApi;
 
 public class ApplicationInfoWrapper implements Parcelable {
     public static final Parcelable.Creator<ApplicationInfoWrapper> CREATOR = new Parcelable.Creator<ApplicationInfoWrapper>() {
@@ -57,7 +58,7 @@ public class ApplicationInfoWrapper implements Parcelable {
         return mInfo.sourceDir;
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     public String[] getSplitApks() {
         return mInfo.splitSourceDirs;
     }

@@ -24,7 +24,9 @@
     <string name="setup_wizard_please_wait">Please wait…</string>
     <string name="setup_wizard_please_wait_text">We are trying to initialize Work Profile and set up Haven on your device.</string>
     <string name="setup_wizard_failed">Setup failed</string>
-    <string name="setup_wizard_failed_text">We regret to inform you that we were not able to set up Haven for you.\n\nIf your device already had a Work Profile, either from a previous installation of Haven or from another application, you will have to remove that profile in Settings -> Account before Haven can proceed.\n\nOtherwise, if you did not cancel the setup manually, then the reason for the failure is most commonly due to a heavily modified system, or a conflict between Haven and other Work Profile managers. Unfortunately, there is not much that we could do about this.\n\nClick \"Next\" to exit.</string>
+    <string name="setup_wizard_failed_text">We were unable to set up Haven.\n\nIf this device already has a work profile from Haven or another management app, remove it in Settings before trying again. On custom ROMs, setup can also fail when the system provisioning role holder or related setup components are missing. Tap Copy details to collect device and provisioning-handler information. Include it, and a provisioning logcat if available, when reporting the problem.\n\nTap OK to exit.</string>
+    <string name="setup_copy_diagnostics">Copy details</string>
+    <string name="setup_diagnostics_copied">Provisioning details copied.</string>
     <string name="setup_wizard_action_required">Action required</string>
     <string name="setup_wizard_action_required_text">You should now be seeing a notification from Haven. <b>Please click on that notification</b> to finish the setup process.\n\nIf you do not see the notification, make sure your device is not in Do Not Disturb mode and try pulling down the notification center.\n\nTo reset Haven and start over, you can clear the data of Haven in Settings.</string>
 
@@ -56,7 +58,8 @@
     <string name="unfreeze_and_launch">Unfreeze and Launch</string>
     <string name="auto_freeze">Auto Freeze</string>
     <string name="allow_cross_profile_widgets">Allow Widgets in Main Profile</string>
-    <string name="allow_cross_profile_interaction">Allow Cross-Profile Interaction</string>
+    <string name="allow_cross_profile_interaction">Allow Connected App Requests</string>
+    <string name="manage_app_restrictions">Manage app restrictions</string>
 
     <!-- Action Bar Options Menu -->
     <string name="search">Search</string>
@@ -74,6 +77,16 @@
     <string name="settings_interaction">Interaction</string>
     <string name="settings_cross_profile_file_chooser">File Shuttle</string>
     <string name="settings_cross_profile_file_chooser_desc">When enabled, you\'ll be able to browse / view / pick / copy files in Haven from main profile and vice-versa, ONLY through Documents UI (named Files or Documents on your launcher) or apps with Documents UI support (they only gain temporary access to files you choose in Documents UI), while still pertaining the filesystem isolation.</string>
+    <string name="settings_cross_profile_picker">Allow file picking between profiles</string>
+    <string name="settings_cross_profile_picker_desc">Lets apps request files from the other profile through Android\'s system pickers. Access is limited to files you choose and is off by default.</string>
+    <string name="managed_restrictions_title">Managed restrictions: %1$s</string>
+    <string name="managed_restrictions_none">This app does not publish editable managed restrictions.</string>
+    <string name="managed_restrictions_unsupported">This restriction uses a nested format that Haven cannot edit yet.</string>
+    <string name="managed_restrictions_saved">Managed app restrictions saved.</string>
+    <string name="managed_restrictions_save_failed">Could not save these app restrictions.</string>
+    <string name="managed_restrictions_load_failed">Could not load managed restrictions for this app.</string>
+    <string name="managed_restrictions_enabled">On</string>
+    <string name="managed_restrictions_disabled">Off</string>
     <string name="settings_block_contacts_searching">Block Contacts Searching</string>
     <string name="settings_block_contacts_searching_desc">Deny access from main profile to contacts inside work profile.</string>
     <string name="settings_payment_stub">Payment Service Stub</string>
@@ -107,6 +120,7 @@
     <string name="unfreeze_success">Application \"%s\" unfrozen successfully</string>
     <string name="clone_fail_system_app">Cannot clone system apps to a profile that Haven has no control of.</string>
     <string name="uninstall_fail_system_app">Cannot uninstall system apps in a profile that Haven has no control of.</string>
+    <string name="app_operation_cancelled">The app operation was cancelled or could not be started. Please try again.</string>
     <string name="unsupported_launcher">Cannot add shortcuts to your launcher. Please contact the developer for more information.</string>
     <string name="app_context_menu_title">Operations for %s</string>
     <string name="freeze_all_success">All apps in \"Auto Freeze\" list have been frozen successfully.</string>

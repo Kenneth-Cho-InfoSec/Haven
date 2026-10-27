@@ -2,6 +2,7 @@
 package io.github.kennethchoinfosec.haven.services;
 
 import android.content.pm.ApplicationInfo;
+import android.os.Bundle;
 
 import io.github.kennethchoinfosec.haven.services.IAppInstallCallback;
 import io.github.kennethchoinfosec.haven.services.IGetAppsCallback;
@@ -28,4 +29,6 @@ interface IHavenService {
     void setStartActivityProxy(in IStartActivityProxy proxy);
     List<String> getCrossProfilePackages();
     void setCrossProfilePackages(in List<String> packages);
+    Bundle getManagedApplicationRestrictions(String packageName);
+    void setManagedApplicationRestrictions(String packageName, in Bundle restrictions);
 }

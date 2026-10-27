@@ -13,13 +13,20 @@ import androidx.fragment.app.Fragment;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.ActivityNotFoundException;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ProviderInfo;
+import android.content.pm.ResolveInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
@@ -96,6 +103,63 @@ public class SetupWizardActivity extends AppCompatActivity {
     private void finishWithResult(boolean succeeded) {
         setResult(succeeded ? RESULT_OK : RESULT_CANCELED);
         finish();
+    }
+
+    private String getProvisioningDiagnostics() {
+        StringBuilder report = new StringBuilder();
+        PackageManager packageManager = getPackageManager();
+        report.append("Haven provisioning diagnostics\n")
+                .append("Device: ").append(Build.MANUFACTURER).append(' ').append(Build.MODEL)
+                .append(" ( ").append(Build.DEVICE).append(" )\n")
+                .append("Android: ").append(Build.VERSION.RELEASE).append(" / API ")
+                .append(Build.VERSION.SDK_INT).append("\n")
+                .append("Build: ").append(Build.DISPLAY).append("\n")
+                .append("Managed users feature: ")
+                .append(packageManager.hasSystemFeature(PackageManager.FEATURE_MANAGED_USERS)).append("\n")
+                .append("Managed-profile provisioning allowed: ")
+                .append(mPolicyManager.isProvisioningAllowed(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE))
+                .append("\n");
+
+        ResolveInfo provisioningHandler = packageManager.resolveActivity(
+                new Intent(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE),
+                PackageManager.MATCH_DEFAULT_ONLY);
+        report.append("Provisioning handler: ");
+        if (provisioningHandler == null || provisioningHandler.activityInfo == null) {
+            report.append("not found\n");
+        } else {
+            report.append(provisioningHandler.activityInfo.packageName).append('/')
+                    .append(provisioningHandler.activityInfo.name).append('\n');
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            String roleHolder = mPolicyManager.getDevicePolicyManagementRoleHolderPackage();
+            report.append("Device policy role holder: ")
+                    .append(roleHolder == null ? "not configured" : roleHolder)
+                    .append(roleHolder != null && isPackageInstalled(roleHolder) ? " (installed)" :
+                            roleHolder == null ? "" : " (not installed)")
+                    .append('\n');
+        }
+
+        ProviderInfo partnerProvider = packageManager.resolveContentProvider(
+                "com.google.android.setupwizard.partner", 0);
+        report.append("Google SetupWizard partner provider: ")
+                .append(partnerProvider == null ? "not present" : partnerProvider.packageName)
+                .append(" (ROM dependent)\n");
+        return report.toString();
+    }
+
+    @SuppressWarnings("deprecation")
+    private boolean isPackageInstalled(String packageName) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                getPackageManager().getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(0));
+            } else {
+                getPackageManager().getPackageInfo(packageName, 0);
+            }
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 
     private void setupProfile() {
@@ -477,6 +541,16 @@ public class SetupWizardActivity extends AppCompatActivity {
             super.onViewCreated(view, savedInstanceState);
             setNavigationVisible(false, true);
             mNextButton.setText(android.R.string.ok);
+            MaterialButton copyDiagnostics = view.findViewById(R.id.setup_wizard_copy_diagnostics);
+            copyDiagnostics.setVisibility(View.VISIBLE);
+            copyDiagnostics.setOnClickListener(ignored -> {
+                ClipboardManager clipboard = (ClipboardManager)
+                        requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                clipboard.setPrimaryClip(ClipData.newPlainText(
+                        "Haven provisioning diagnostics", mActivity.getProvisioningDiagnostics()));
+                Toast.makeText(requireContext(), R.string.setup_diagnostics_copied,
+                        Toast.LENGTH_SHORT).show();
+            });
         }
     }
 }

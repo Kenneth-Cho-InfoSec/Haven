@@ -1,6 +1,5 @@
 package io.github.kennethchoinfosec.haven.util;
 
-import android.annotation.TargetApi;
 import android.app.AppOpsManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -15,7 +14,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -32,6 +30,7 @@ import android.widget.Toast;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import io.github.kennethchoinfosec.haven.R;
 import io.github.kennethchoinfosec.haven.receivers.HavenDeviceAdminReceiver;
@@ -123,11 +122,6 @@ public class Utility {
         DevicePolicyManager manager = context.getSystemService(DevicePolicyManager.class);
         ComponentName adminComponent = new ComponentName(context.getApplicationContext(), HavenDeviceAdminReceiver.class);
 
-        // Hide this app in the work profile
-        context.getPackageManager().setComponentEnabledSetting(
-                new ComponentName(context.getApplicationContext(), MainActivity.class),
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED, 0);
-
         // Clear everything first to ensure our policies are set properly
         manager.clearCrossProfileIntentFilters(adminComponent);
 
@@ -202,6 +196,33 @@ public class Utility {
                 adminComponent,
                 actionSendFilter,
                 DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
+
+        // Picker-based sharing is user mediated and independent from File Shuttle.
+        if (SettingsManager.getInstance().getCrossProfilePickerEnabled()) {
+            IntentFilter photoPickerFilter = new IntentFilter(MediaStore.ACTION_PICK_IMAGES);
+            photoPickerFilter.addCategory(Intent.CATEGORY_DEFAULT);
+            manager.addCrossProfileIntentFilter(
+                    adminComponent,
+                    photoPickerFilter,
+                    DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED
+                            | DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
+
+            IntentFilter documentPickerFilter = new IntentFilter();
+            documentPickerFilter.addAction(Intent.ACTION_GET_CONTENT);
+            documentPickerFilter.addAction(Intent.ACTION_OPEN_DOCUMENT);
+            documentPickerFilter.addCategory(Intent.CATEGORY_DEFAULT);
+            documentPickerFilter.addCategory(Intent.CATEGORY_OPENABLE);
+            try {
+                documentPickerFilter.addDataType("*/*");
+            } catch (IntentFilter.MalformedMimeTypeException ignored) {
+                // Keep the picker filters if a vendor rejects this wildcard MIME type.
+            }
+            manager.addCrossProfileIntentFilter(
+                    adminComponent,
+                    documentPickerFilter,
+                    DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED
+                            | DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
+        }
         
         // Browser intents are allowed from work profile to parent
         IntentFilter browsableIntentFilter = new IntentFilter(Intent.ACTION_VIEW);
@@ -227,6 +248,14 @@ public class Utility {
                 SettingsManager.getInstance().getBlockContactsSearchingEnabled());
 
         manager.setProfileEnabled(adminComponent);
+    }
+
+    /** Hide the work-profile launcher entry after provisioning has returned to Android. */
+    public static void hideMainActivityInManagedProfile(Context context) {
+        context.getPackageManager().setComponentEnabledSetting(
+                new ComponentName(context.getApplicationContext(), MainActivity.class),
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
     }
 
     public static void enforceUserRestrictions(Context context) {
@@ -329,20 +358,6 @@ public class Utility {
         }
     }
 
-    public static int getMediaStoreId(Context context, String path) {
-        try (Cursor cursor = context.getContentResolver().query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                new String[]{MediaStore.MediaColumns._ID},
-                MediaStore.MediaColumns.DATA + " LIKE ? ",
-                new String[]{path}, null)) {
-            if (cursor == null || !cursor.moveToFirst()) {
-                return -1;
-            }
-
-            return cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID));
-        }
-    }
-
     // Functions to load scaled down version of Bitmap
     // from <https://developer.android.com/topic/performance/graphics/load-bitmap?hl=es#java>
     public static int calculateInSampleSize(
@@ -419,7 +434,7 @@ public class Utility {
     }
 
     // Check if all file access r/w is granted
-    @TargetApi(Build.VERSION_CODES.R)
+    @RequiresApi(Build.VERSION_CODES.R)
     public static boolean checkAllFileAccessPermission() {
         return Environment.isExternalStorageManager();
     }
@@ -455,7 +470,6 @@ public class Utility {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private static Notification buildNotificationLollipop(Context context, boolean important, String ticker, String title, String desc, int icon) {
         return new Notification.Builder(context)
                 .setTicker(ticker)
@@ -466,7 +480,7 @@ public class Utility {
                 .build();
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     private static Notification buildNotificationOreo(Context context, boolean important, String ticker, String title, String desc, int icon) {
         String id = important ? NOTIFICATION_CHANNEL_IMPORTANT : NOTIFICATION_CHANNEL_ID;
         // Android O and later: Notification Channel

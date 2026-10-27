@@ -8,6 +8,10 @@
 
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <!-- Haven's core app-management workflow must enumerate installed apps, including non-launchers. -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
     <uses-permission android:maxSdkVersion="25"
@@ -26,13 +30,6 @@
         android:name="io.github.kennethchoinfosec.haven.permission.INTERNAL_PROFILE_IPC"
         android:protectionLevel="signature" />
     <uses-permission android:name="io.github.kennethchoinfosec.haven.permission.INTERNAL_PROFILE_IPC" />
-
-    <!-- For querying apps on Android R and later -->
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.MAIN"/>
-        </intent>
-    </queries>
 
     <application
         android:name=".HavenApplication"

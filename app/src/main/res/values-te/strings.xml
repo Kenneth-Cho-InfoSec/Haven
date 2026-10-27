@@ -33,7 +33,6 @@
     <string name="notifications_important">షెల్టర్ ముఖ్యమైనది</string>
     <string name="freeze_success">అనువర్తనం \"%s\" విజయవంతంగా ఫ్రిజ్ చేయబడింది</string>
     <string name="request_system_alert">షెల్టర్‌కు ఫైల్ షటిల్ సరిగ్గా పనిచేయడానికి <b>ఇతర యాప్‌లపై డ్రా చేయడం</b> అవసరం. \"ఓకే\" బటన్‌ను నొక్కిన తర్వాత డైలాగ్‌లో చూపించిన రెండు (వ్యక్తిగత / వర్క్) షెల్టర్ యాప్‌లకు ఈ అనుమతిని ఎనేబుల్ చేయండి. ఈ అనుమతి ఫైల్ షటిల్ సేవలను బ్యాక్‌గ్రౌండ్‌లో ప్రారంభించడానికి ఉపయోగించబడుతుంది.</string>
-    <string name="settings_patreon_url" translatable="false"/>
     <string name="setup_wizard_action_required_text">మీరు ఇప్పుడు షెల్టర్ నుండి ఒక నోటిఫికేషన్‌ను చూడాలి. <b>దయచేసి ఆ నోటిఫికేషన్‌ను నొక్కండి</b> సెటప్ ప్రక్రియను ముగించడానికి.
 \n
 \nమీరు నోటిఫికేషన్‌ను చూడకపోతే, మీ పరికరం \"డో నాట్ డిస్టర్బ్\" మోడ్‌లో లేదు అని నిర్ధారించుకోండి మరియు నోటిఫికేషన్ సెంటర్‌ను కిందకి పుల్లండి.
@@ -59,7 +58,6 @@
 \n
 \nమీరైతే \"తదుపరి\"పై క్లిక్ చేసి బయటకు వెళ్ళండి.</string>
     <string name="miui_cannot_clone">MIUIలో మరో ప్రొఫైలుకు నాన్-సిస్టమ్ యాప్‌లను క్లోన్ చేయడం ప్రస్తుతం సాధ్యం కాదు. దయచేసి మీ సిస్టమ్ యొక్క యాప్ స్టోర్ (ఉదాహరణకు, <b>ప్లే స్టోర్</b>)ని ఇతర ప్రొఫైలుకు క్లోన్ చేసి, అక్కడ నుండి యాప్‌లను ఇన్‌స్టాల్ చేయండి.</string>
-    <string name="settings_translate_url" translatable="false"/>
     <string name="service_title">షెల్టర్ సేవ</string>
     <string name="batch_operation">బ్యాచ్ ఆపరేషన్</string>
     <string name="unfreeze_and_launch">అన్‌ఫ్రీజ్ చేసి ప్రారంభించండి</string>
@@ -88,7 +86,6 @@
     <string name="install_app_to_profile">షెల్టర్‌లో APK ఇన్‌స్టాల్ చేయండి</string>
     <string name="clone_success">అనువర్తనం \"%s\" విజయవంతంగా క్లోన్ చేయబడింది</string>
     <string name="work_mode_disabled">మీరు షెల్టర్‌ను ప్రారంభించే సమయానికి వర్క్ మోడ్‌ను అడ్డించారు అనిపిస్తోంది. మీరు ఇప్పుడు దీన్ని ఎనేబుల్ చేసినట్లయితే, దయచేసి షెల్టర్‌ను మళ్లీ ప్రారంభించండి.</string>
-    <string name="settings_bug_report_url" translatable="false"/>
     <string name="settings_source_code">సోర్స్ కోడ్</string>
     <string name="search">శోధించండి</string>
     <string name="unsupported_launcher">మీ లాంచర్‌కు షార్ట్‌కట్స్‌ను జోడించలేరు. మరింత సమాచారం కోసం దయచేసి డెవలపర్‌ను సంప్రదించండి.</string>
@@ -102,7 +99,6 @@
 \nషెల్టర్ కేవలం సిస్టమ్ అందించే వర్క్ ప్రొఫైల్ ఫీచర్‌కు ఇన్టర్ఫేస్ మాత్రమే. సిస్టమ్ అందించే ఫీచర్ పనిచేయకపోతే లేదా ప్రామాణికం కాకపోతే, <b>షెల్టర్ స్వతహాగా ఆ సమస్యను పరిష్కరించలేము</b>. మీరు ప్రస్తుతం వర్క్ ప్రొఫైల్‌లను విరమించడానికి ప్రసిద్ధి చెందిన విక్రేత-మార్పుచేసిన ఆండ్రాయిడ్ వర్షన్‌ను ఉపయోగిస్తున్నట్లయితే, <b>మీకు హెచ్చరిక ఇచ్చాము</b>. అయినప్పటికీ మీరు కొనసాగవచ్చు, కానీ ఈ పరిస్థితులలో షెల్టర్ సరైన ప్రవర్తనకాని గ్యారంటీ లేదు.</string>
     <string name="finish_provision_title">షెల్టర్‌ని సెటప్ చేయడానికి ఇక్కడ క్లిక్ చేయండి</string>
     <string name="request_usage_stats">షెల్టర్‌కు ఇది చేయడానికి <b>ఉపయోగం స్థితులు</b> అనుమతి అవసరం. \"ఓకే\" బటన్‌ను నొక్కిన తర్వాత డైలాగ్‌లో చూపిన రెండు షెల్టర్ యాప్‌లకు ఈ అనుమతిని ఎనేబుల్ చేయండి. అది చేయనట్లయితే, ఈ ఫీచర్ సరిగ్గా పనిచేయదు.</string>
-    <string name="device_admin_label" translatable="false"/>
     <string name="setup_wizard_permissions">అనుమతుల గురించి ఒక మాట</string>
     <string name="install_app_to_profile_success">వర్క్ ప్రొఫైల్‌లో అప్లికేషన్ ఇన్‌స్టాలేషన్ పూర్తి చేయబడింది.</string>
     <string name="fragment_profile_main">ప్రధాన</string>
@@ -113,15 +109,12 @@
     <string name="app_context_menu_title">%s కోసం ఆపరేషన్స్</string>
     <string name="uninstall_fail_system_app">షెల్టర్ కంట్రోల్ లో లేని ప్రొఫైల్‌లో సిస్టమ్ యాప్‌లను అన్‌ఇన్‌స్టాల్ చేయలేరు.</string>
     <string name="continue_anyway">ఏదైనా కొనసాగించండి</string>
-    <string name="app_name" translatable="false"/>
     <string name="freeze_app">ఫ్రిజ్</string>
     <string name="first_run_alert_cancel">వీడ్కోలు</string>
     <string name="setup_wizard_ready">సిద్ధంగా ఉన్నారా?</string>
-    <string name="settings_source_code_url" translatable="false"/>
     <string name="settings_auto_freeze_service_desc">స్క్రీన్ లాక్ అయినప్పుడు, \"అన్‌ఫ్రిజ్ &amp; లాంచ్ షార్ట్‌కట్\" నుండి ప్రారంభించిన యాప్‌లను ఆటోమేటిక్‌గా ఫ్రిజ్ చేయండి.</string>
     <string name="clone_to_main_profile">ప్రధాన ప్రొఫైల్‌కి క్లోన్ చేయండి</string>
     <string name="show_all">అన్ని యాప్‌లను చూపించు</string>
-    <string name="settings_patreon" translatable="false"/>
     <string name="freeze_all_shortcut">ఫ్రీజ్ చేయండి</string>
     <string name="format_minutes">%d నిమిషాలు</string>
 </resources>

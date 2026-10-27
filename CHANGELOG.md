@@ -1,3 +1,17 @@
+0.1.5
+===
+
+- Updated the Android build to API 37, AGP 9.4.1, Gradle 9.8.2, and current AndroidX libraries.
+- Replaced in-process local broadcasts with lifecycle-aware shared UI state and events.
+- Hardened activity restart behavior so an incoming external intent is never replayed.
+- Modernized activity results, package-manager flags, media thumbnails, and media scanning APIs.
+- Added regression coverage for file-extension handling and sanitized activity restart intents.
+- Added package visibility for Haven's cross-profile app-management workflow. `QUERY_ALL_PACKAGES` and `MANAGE_EXTERNAL_STORAGE` require distribution-policy review before Google Play publishing.
+- Added a default-off system-picker option for user-selected files across profiles, plus managed app restrictions editing for supported manifest schema types.
+- Deferred hiding Haven inside the Work Profile until provisioning completes, replaced the Android framework context menu with an anchored popup, and added provisioning diagnostics.
+- Updated widget allowlisting for Android 17, report failed app-operation launches instead of dropping callbacks, and document release certificate verification.
+- Corrected the Indonesian resource directory and removed blank Telugu overrides.
+
 0.1.4
 ===
 

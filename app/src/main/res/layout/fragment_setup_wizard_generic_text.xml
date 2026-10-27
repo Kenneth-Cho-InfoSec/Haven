@@ -88,6 +88,15 @@
             android:text="@android:string/cancel" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/setup_wizard_copy_diagnostics"
+            style="@style/Widget.Material3Expressive.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/setup_copy_diagnostics"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/setup_wizard_next"
             style="@style/Widget.Haven.Button"
             android:layout_width="wrap_content"

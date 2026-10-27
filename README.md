@@ -47,6 +47,9 @@ Features
 - Freeze apps inside the Work Profile to prevent background activity
 - Create shortcuts for unfreezing, launching, and batch-freezing apps
 - Shuttle files across profiles through Android's Documents UI
+- Optionally pick individual files from the other profile through Android's system pickers
+- Edit apps' manifest-declared managed restrictions in the Work Profile
+- Allow Work Profile widgets in the main profile and allow compatible apps to request connected experiences
 - Updated Android target SDK, Gradle/AGP stack, and dependency set
 - Material Design 3 Expressive app theme, setup wizard, iconography, and navigation surfaces
 - Modernized app identity and launcher icon for the Haven rebrand
@@ -86,8 +89,8 @@ Build
 Requirements:
 
 - JDK 17
-- Android SDK Platform 36
-- Android Build Tools 36.0.0 or newer
+- Android SDK Platform 37
+- Android Build Tools 37.0.0 or newer
 
 Build commands:
 
@@ -104,6 +107,8 @@ Important Notes
 
 - Haven depends on Android's Work Profile and Device Policy APIs. Vendor ROMs that break or heavily customize Work Profiles may not work correctly.
 - Because Haven uses a new application id, it will not inherit data, profile ownership, shortcuts, or permissions from another Work Profile manager.
+- App discovery across the personal and Work Profiles requires `QUERY_ALL_PACKAGES`. File Shuttle currently accesses shared storage paths directly and requires `MANAGE_EXTERNAL_STORAGE`. Both permissions are restricted for Google Play distribution and require a policy eligibility review before publishing there; F-Droid and other distribution channels have separate rules.
+- The `v0.1.5` APK uses a new Haven release certificate with SHA-256 digest `3f041588698bcd386a9f9bc0ab06ef0cf6b32f226e1cb53510a48bbb3f6cfef5`. It differs from the Android Debug certificate on `v0.1.4`, so users must uninstall `v0.1.4` before installing `v0.1.5`; see [release signing](docs/RELEASING.md).
 - To uninstall Haven after provisioning, remove the Work Profile in Android Settings first, then uninstall the app normally.
 
 Source and Issues
@@ -111,6 +116,7 @@ Source and Issues
 
 - Source: https://github.com/Kenneth-Cho-InfoSec/Haven
 - Issues: https://github.com/Kenneth-Cho-InfoSec/Haven/issues
+- Issue implementation status: [docs/ISSUE_REMEDIATION.md](docs/ISSUE_REMEDIATION.md)
 
 License
 =======

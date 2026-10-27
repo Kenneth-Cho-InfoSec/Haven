@@ -5,6 +5,8 @@ import android.app.Service;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.RestrictionEntry;
+import android.content.RestrictionsManager;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -28,6 +30,7 @@ import io.github.kennethchoinfosec.haven.util.Utility;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class HavenService extends Service {
@@ -77,7 +80,7 @@ public class HavenService extends Service {
         public void getApps(IGetAppsCallback callback, boolean showAll) {
             new Thread(() -> {
                 int pmFlags = PackageManager.MATCH_DISABLED_COMPONENTS | PackageManager.MATCH_UNINSTALLED_PACKAGES;
-                List<ApplicationInfoWrapper> list = mPackageManager.getInstalledApplications(pmFlags)
+                List<ApplicationInfoWrapper> list = getInstalledApplications(pmFlags)
                         .stream()
                         .filter((it) -> !it.packageName.equals(getPackageName()))
                         .filter((it) -> {
@@ -142,9 +145,7 @@ public class HavenService extends Service {
                 callbackExtra.putBinder("callback", callback.asBinder());
                 intent.putExtra("callback", callbackExtra);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                DummyActivity.registerSameProcessRequest(intent);
-                if (mStartActivityProxy != null)
-                    mStartActivityProxy.startActivity(intent);
+                launchActivityForResult(intent, callback);
             } else {
                 if (mIsProfileOwner) {
                     // We can only enable system apps in our own profile
@@ -181,9 +182,7 @@ public class HavenService extends Service {
             intent.putExtra("callback", callbackExtra);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            DummyActivity.registerSameProcessRequest(intent);
-            if (mStartActivityProxy != null)
-                mStartActivityProxy.startActivity(intent);
+            launchActivityForResult(intent, callback);
         }
 
         @Override
@@ -199,10 +198,7 @@ public class HavenService extends Service {
                 callbackExtra.putBinder("callback", callback.asBinder());
                 intent.putExtra("callback", callbackExtra);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                DummyActivity.registerSameProcessRequest(intent);
-
-                if (mStartActivityProxy != null)
-                    mStartActivityProxy.startActivity(intent);
+                launchActivityForResult(intent, callback);
             } else {
                 if (mIsProfileOwner) {
                     // This is essentially the same as disabling the system app
@@ -249,6 +245,9 @@ public class HavenService extends Service {
 
         @Override
         public boolean hasAllFileAccessPermission() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                return false;
+            }
             return Utility.checkAllFileAccessPermission();
         }
 
@@ -260,9 +259,18 @@ public class HavenService extends Service {
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         public boolean setCrossProfileWidgetProviderEnabled(String pkgName, boolean enabled) {
             if (!mIsProfileOwner)
                 throw new IllegalStateException("Cannot access cross-profile widget providers without being profile owner");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
+                HashSet<String> packages = new HashSet<>(mPolicyManager.getCrossProfileWidgetProviders(mAdminComponent));
+                boolean changed = updateWidgetProviderAllowlist(packages, pkgName, enabled);
+                if (changed) {
+                    mPolicyManager.setCrossProfileWidgetProviders(packages);
+                }
+                return changed;
+            }
             if (enabled) {
                 return mPolicyManager.addCrossProfileWidgetProvider(mAdminComponent, pkgName);
             } else {
@@ -292,6 +300,47 @@ public class HavenService extends Service {
                 throw new IllegalStateException("Cross-profile packages support is only available on Android 11 and later");
             mPolicyManager.setCrossProfilePackages(mAdminComponent, new HashSet<>(packages));
         }
+
+        @Override
+        public Bundle getManagedApplicationRestrictions(String packageName) {
+            if (!mIsProfileOwner) {
+                throw new IllegalStateException("Application restrictions require profile owner access");
+            }
+
+            Bundle result = new Bundle();
+            Bundle configured = mPolicyManager.getApplicationRestrictions(mAdminComponent, packageName);
+            result.putBundle("values", configured == null ? new Bundle() : configured);
+
+            ArrayList<Bundle> schema = new ArrayList<>();
+            List<RestrictionEntry> entries = getSystemService(RestrictionsManager.class)
+                    .getManifestRestrictions(packageName);
+            if (entries != null) {
+                for (RestrictionEntry entry : entries) {
+                    Bundle item = new Bundle();
+                    item.putString("key", entry.getKey());
+                    item.putString("title", entry.getTitle());
+                    item.putString("description", entry.getDescription());
+                    item.putInt("type", entry.getType());
+                    item.putBoolean("defaultBoolean", entry.getSelectedState());
+                    item.putInt("defaultInteger", entry.getIntValue());
+                    item.putString("defaultString", entry.getSelectedString());
+                    item.putStringArray("defaultStrings", entry.getAllSelectedStrings());
+                    item.putStringArray("choiceEntries", entry.getChoiceEntries());
+                    item.putStringArray("choiceValues", entry.getChoiceValues());
+                    schema.add(item);
+                }
+            }
+            result.putParcelableArrayList("schema", schema);
+            return result;
+        }
+
+        @Override
+        public void setManagedApplicationRestrictions(String packageName, Bundle restrictions) {
+            if (!mIsProfileOwner) {
+                throw new IllegalStateException("Application restrictions require profile owner access");
+            }
+            mPolicyManager.setApplicationRestrictions(mAdminComponent, packageName, restrictions);
+        }
     };
 
     @Override
@@ -300,6 +349,41 @@ public class HavenService extends Service {
         mPackageManager = getPackageManager();
         mIsProfileOwner = mPolicyManager.isProfileOwnerApp(getPackageName());
         mAdminComponent = new ComponentName(getApplicationContext(), HavenDeviceAdminReceiver.class);
+    }
+
+    @SuppressWarnings("deprecation")
+    private List<ApplicationInfo> getInstalledApplications(int flags) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return mPackageManager.getInstalledApplications(PackageManager.ApplicationInfoFlags.of(flags));
+        }
+        return mPackageManager.getInstalledApplications(flags);
+    }
+
+    static boolean updateWidgetProviderAllowlist(Set<String> packages, String packageName, boolean enabled) {
+        return enabled ? packages.add(packageName) : packages.remove(packageName);
+    }
+
+    private void launchActivityForResult(Intent intent, IAppInstallCallback callback) {
+        if (mStartActivityProxy == null) {
+            FileProviderProxy.clearForwardProxy();
+            reportCancelled(callback);
+            return;
+        }
+        try {
+            DummyActivity.registerSameProcessRequest(intent);
+            mStartActivityProxy.startActivity(intent);
+        } catch (RemoteException e) {
+            FileProviderProxy.clearForwardProxy();
+            reportCancelled(callback);
+        }
+    }
+
+    private void reportCancelled(IAppInstallCallback callback) {
+        try {
+            callback.callback(Activity.RESULT_CANCELED);
+        } catch (RemoteException ignored) {
+            // The caller has already disconnected; nothing more can be reported.
+        }
     }
 
     @Nullable

@@ -2,6 +2,7 @@ package io.github.kennethchoinfosec.haven.ui;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.drawable.Icon;
@@ -25,7 +26,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -45,8 +46,6 @@ import io.github.kennethchoinfosec.haven.util.UriForwardProxy;
 import io.github.kennethchoinfosec.haven.util.Utility;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String BROADCAST_CONTEXT_MENU_CLOSED = "io.github.kennethchoinfosec.haven.broadcast.CONTEXT_MENU_CLOSED";
-    public static final String BROADCAST_SEARCH_FILTER_CHANGED = "io.github.kennethchoinfosec.haven.broadcast.SEARCH_FILTER_CHANGED";
 
     private final ActivityResultLauncher<Void> mStartSetup =
             registerForActivityResult(new SetupWizardActivity.SetupWizardContract(), this::setupWizardCb);
@@ -65,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::bindWorkServiceCb);
 
     private LocalStorageManager mStorage = null;
+    private MainUiViewModel mUiViewModel = null;
+    private ViewPager2 mPager = null;
 
     // Flag to avoid double-killing our services while restarting
     private boolean mRestarting = false;
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mUiViewModel = new ViewModelProvider(this).get(MainUiViewModel.class);
         setSupportActionBar(findViewById(R.id.main_toolbar));
         initSearch();
         mStorage = LocalStorageManager.getInstance();
@@ -107,10 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Intent intent = new Intent(BROADCAST_SEARCH_FILTER_CHANGED);
-                intent.putExtra("text", s.toString().toLowerCase(Locale.ROOT).trim());
-                LocalBroadcastManager.getInstance(MainActivity.this)
-                        .sendBroadcast(intent);
+                mUiViewModel.setSearchQuery(s.toString().toLowerCase(Locale.ROOT).trim());
             }
 
             @Override
@@ -231,12 +230,12 @@ public class MainActivity extends AppCompatActivity {
     private void buildView() {
         // Finally we can build the view
         // Find all the views
-        ViewPager2 pager = findViewById(R.id.main_pager);
+        mPager = findViewById(R.id.main_pager);
         BottomNavigationView nav = findViewById(R.id.main_bottom_navigation);
 
         // Initialize the ViewPager and the tab
         // All the remaining work will be done in the fragments
-        pager.setAdapter(new FragmentStateAdapter(this) {
+        mPager.setAdapter(new FragmentStateAdapter(this) {
             @NonNull
             @Override
             public Fragment createFragment(int position) {
@@ -254,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                 return 2;
             }
         });
-        pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 int[] menuIds = new int[]{
@@ -267,9 +266,9 @@ public class MainActivity extends AppCompatActivity {
         nav.setOnItemSelectedListener((MenuItem item) -> {
             int itemId = item.getItemId();
             if (itemId == R.id.bottom_navigation_main) {
-                pager.setCurrentItem(0);
+                mPager.setCurrentItem(0);
             } else if (itemId == R.id.bottom_navigation_work) {
-                pager.setCurrentItem(1);
+                mPager.setCurrentItem(1);
             }
             return true;
         });
@@ -342,10 +341,16 @@ public class MainActivity extends AppCompatActivity {
             // Restart the activity if the services are no longer alive
             // This might be caused by KillerService being destroyed and
             // bringing all the other services with it
-            Intent intent = getIntent();
+            // Restart with a fresh, explicit launcher intent. Never re-launch the external
+            // intent that originally reached this exported activity.
+            Intent intent = createRestartIntent(this);
             finish();
             startActivity(intent);
         }
+    }
+
+    static Intent createRestartIntent(Context context) {
+        return new Intent(context, MainActivity.class);
     }
 
     @Override
@@ -392,8 +397,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onContextMenuClosed(Menu menu) {
         super.onContextMenuClosed(menu);
-        LocalBroadcastManager.getInstance(this)
-                .sendBroadcast(new Intent(BROADCAST_CONTEXT_MENU_CLOSED));
+        mUiViewModel.contextMenuClosed(mPager != null && mPager.getCurrentItem() == 1);
     }
 
     @Override
@@ -428,8 +432,7 @@ public class MainActivity extends AppCompatActivity {
             Runnable update = () -> {
                 mShowAll = !item.isChecked();
                 item.setChecked(mShowAll);
-                LocalBroadcastManager.getInstance(this)
-                        .sendBroadcast(new Intent(AppListFragment.BROADCAST_REFRESH));
+                mUiViewModel.refreshApps(mPager != null && mPager.getCurrentItem() == 1);
             };
 
             if (!item.isChecked()) {

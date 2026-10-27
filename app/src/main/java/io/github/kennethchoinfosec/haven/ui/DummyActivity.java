@@ -3,7 +3,6 @@ package io.github.kennethchoinfosec.haven.ui;
 import android.Manifest;
 import android.app.Activity;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -22,8 +21,10 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.activity.ComponentActivity;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 
@@ -56,7 +57,7 @@ import java.util.UUID;
 // that might be required to perform across user profiles
 // which is only possible through Intents that are in
 // the crossProfileIntentFilter
-public class DummyActivity extends Activity {
+public class DummyActivity extends ComponentActivity {
     public static final String FINALIZE_PROVISION = "io.github.kennethchoinfosec.haven.action.FINALIZE_PROVISION";
     public static final String START_SERVICE = "io.github.kennethchoinfosec.haven.action.START_SERVICE";
     public static final String TRY_START_SERVICE = "io.github.kennethchoinfosec.haven.action.TRY_START_SERVICE";
@@ -88,11 +89,21 @@ public class DummyActivity extends Activity {
             UNINSTALL_PACKAGE,
             UNFREEZE_AND_LAUNCH);
 
-    private static final int REQUEST_INSTALL_PACKAGE = 1;
-    private static final int REQUEST_PERMISSION_EXTERNAL_STORAGE= 2;
-    private static final int REQUEST_PERMISSION_POST_NOTIFICATIONS = 3;
-
     private static boolean sHasRequestedPermission = false;
+
+    private final ActivityResultLauncher<Intent> mPackageActivityLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    result -> appInstallFinished(result.getResultCode()));
+    private final ActivityResultLauncher<String> mLegacyStoragePermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
+                if (granted) {
+                    doStartFileShuttle();
+                } else {
+                    finish();
+                }
+            });
+    private final ActivityResultLauncher<String> mNotificationPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> init());
 
     // A state variable to record the last time DummyActivity was informed that someone
     // in the same process needs to call an action without signature
@@ -148,7 +159,7 @@ public class DummyActivity extends Activity {
                     // This will ideally be shown and done when the user sees the app list UI for the first time
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
                             != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_PERMISSION_POST_NOTIFICATIONS);
+                        mNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
                         // Continue once the request has been completed (see onRequestPermissionResult)
                         return;
                     }
@@ -213,11 +224,16 @@ public class DummyActivity extends Activity {
         setIntent(intent);
 
         if (PACKAGEINSTALLER_CALLBACK.equals(intent.getAction())) {
-            int status = intent.getExtras().getInt(PackageInstaller.EXTRA_STATUS);
+            int status = intent.getIntExtra(PackageInstaller.EXTRA_STATUS, PackageInstaller.STATUS_FAILURE);
 
             switch (status) {
                 case PackageInstaller.STATUS_PENDING_USER_ACTION:
-                    startActivity((Intent) intent.getExtras().get(Intent.EXTRA_INTENT));
+                    Intent pendingUserAction = getParcelableIntentExtra(intent, Intent.EXTRA_INTENT);
+                    if (pendingUserAction != null) {
+                        startActivity(pendingUserAction);
+                    } else {
+                        appInstallFinished(Activity.RESULT_CANCELED);
+                    }
                     break;
                 case PackageInstaller.STATUS_SUCCESS:
                     appInstallFinished(Activity.RESULT_OK);
@@ -229,31 +245,20 @@ public class DummyActivity extends Activity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_INSTALL_PACKAGE) {
-            appInstallFinished(resultCode);
+    @SuppressWarnings("deprecation")
+    private static Uri getParcelableUriExtra(Intent intent, String key) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return intent.getParcelableExtra(key, Uri.class);
         }
+        return intent.getParcelableExtra(key);
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_PERMISSION_EXTERNAL_STORAGE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                doStartFileShuttle();
-            } else {
-                finish();
-            }
-        } else if (requestCode == REQUEST_PERMISSION_POST_NOTIFICATIONS) {
-            // Regardless of the result, continue initialization
-            // This is fine because most functionalities will work anyway; it will just be a bit buggy
-            // and unreliable.
-            init();
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    @SuppressWarnings("deprecation")
+    private static Intent getParcelableIntentExtra(Intent intent, String key) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return intent.getParcelableExtra(key, Intent.class);
         }
+        return intent.getParcelableExtra(key);
     }
 
     private void actionFinalizeProvision() {
@@ -272,6 +277,12 @@ public class DummyActivity extends Activity {
                 startActivity(intent);
             }
             finish();
+            // Changing a component state can kill the process that is completing
+            // managed-profile provisioning. Hide the launcher entry only after the
+            // provisioning activity has returned control to Android.
+            android.content.Context appContext = getApplicationContext();
+            new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(
+                    () -> Utility.hideMainActivityInManagedProfile(appContext), 5000);
         } else {
             // Set the flag telling MainActivity that we have now finished provisioning
             LocalStorageManager.getInstance()
@@ -325,7 +336,7 @@ public class DummyActivity extends Activity {
                 // The APK will be an Uri from our own FileProviderProxy
                 // which points to an opened Fd in another profile.
                 // We must close the Fd when we finish.
-                uri = getIntent().getParcelableExtra("direct_install_apk");
+                uri = getParcelableUriExtra(getIntent(), "direct_install_apk");
             }
 
             // A permissive VmPolicy must be set to work around
@@ -350,7 +361,7 @@ public class DummyActivity extends Activity {
             intent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
             intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            startActivityForResult(intent, REQUEST_INSTALL_PACKAGE);
+            mPackageActivityLauncher.launch(intent);
         }
 
         // Restore the VmPolicy anyway
@@ -427,7 +438,7 @@ public class DummyActivity extends Activity {
         // with the result code.
         // If ANY separate logic is added for any of them,
         // the request code should be separated.
-        startActivityForResult(intent, REQUEST_INSTALL_PACKAGE);
+        mPackageActivityLauncher.launch(intent);
     }
 
     private void actionUninstallPackageQ() {
@@ -581,7 +592,7 @@ public class DummyActivity extends Activity {
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 doStartFileShuttle();
             } else {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_EXTERNAL_STORAGE);
+                mLegacyStoragePermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             }
         } else {
             // The all file access permission should have been granted when enabling File Shuttle

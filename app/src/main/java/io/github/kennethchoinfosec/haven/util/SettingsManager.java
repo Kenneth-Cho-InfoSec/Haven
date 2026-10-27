@@ -71,6 +71,15 @@ public class SettingsManager {
         return mStorage.getBoolean(LocalStorageManager.PREF_CROSS_PROFILE_FILE_CHOOSER);
     }
 
+    public void setCrossProfilePickerEnabled(boolean enabled) {
+        mStorage.setBoolean(LocalStorageManager.PREF_CROSS_PROFILE_PICKER, enabled);
+        syncSettingsToProfileBool(LocalStorageManager.PREF_CROSS_PROFILE_PICKER, enabled);
+    }
+
+    public boolean getCrossProfilePickerEnabled() {
+        return mStorage.getBoolean(LocalStorageManager.PREF_CROSS_PROFILE_PICKER);
+    }
+
     // Set the blocked state of cross-profile contacts searching
     public void setBlockContactsSearchingEnabled(boolean enabled) {
         mStorage.setBoolean(LocalStorageManager.PREF_BLOCK_CONTACTS_SEARCHING, enabled);
