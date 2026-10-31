@@ -51,7 +51,7 @@ img { display: block; max-width: 100%; }
 .eyebrow-mark { width: .55rem; height: .55rem; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft); }
 h1, h2, h3, p { margin-top: 0; }
 h1, h2 { text-wrap: balance; }
-h1 { margin: 1.6rem 0 1.5rem; font-size: clamp(3.5rem, 6.1vw, 5.9rem); line-height: .92; letter-spacing: -.075em; }
+h1 { margin: 1.6rem 0 1.5rem; font-size: clamp(3.5rem, 5.4vw, 5rem); line-height: .92; letter-spacing: -.075em; }
 h1 em, h2 em { color: var(--accent); font-style: normal; }
 .hero-lead { max-width: 38ch; margin-bottom: .6rem; font-size: clamp(1.2rem, 2.1vw, 1.55rem); line-height: 1.4; }
 .hero-copy > p:not(.eyebrow):not(.hero-lead):not(.small-note) { max-width: 57ch; color: var(--muted); }
@@ -174,7 +174,7 @@ details p { max-width: 65ch; margin: .7rem 0 0; color: var(--muted); }
   .site-header nav a { font-size: .78rem; }
   .wordmark span { display: none; }
   .hero { grid-template-columns: 1fr; gap: 2rem; padding-block: 4rem 3.5rem; }
-  h1 { font-size: clamp(3.4rem, 17vw, 5rem); }
+  h1 { font-size: clamp(3rem, 13.5vw, 4.2rem); }
   .hero-visual { min-height: 430px; margin-inline: -.2rem; border-radius: 42% 42% 24px 24px; }
   .phone-shot { width: min(37%, 175px); padding: 6px 6px 36px; border-radius: 23px; }
   .phone-shot img { border-radius: 17px; }
