@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'website/**'
+      - ".github/scripts/**"
       - '.github/workflows/deploy-website.yml'
   workflow_dispatch:
 
@@ -26,6 +27,8 @@ jobs:
         uses: actions/checkout@v6
       - name: Configure Pages
         uses: actions/configure-pages@v5
+      - name: Generate sitemap and robots.txt
+        run: python3 .github/scripts/generate_sitemap.py --site-dir website --base-url https://kenneth-cho-infosec.github.io/Haven/
       - name: Upload website
         uses: actions/upload-pages-artifact@v4
         with:
