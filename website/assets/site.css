@@ -51,7 +51,7 @@ img { display: block; max-width: 100%; }
 .eyebrow-mark { width: .55rem; height: .55rem; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft); }
 h1, h2, h3, p { margin-top: 0; }
 h1, h2 { text-wrap: balance; }
-h1 { margin: 1.6rem 0 1.5rem; font-size: clamp(3.5rem, 7vw, 6.7rem); line-height: .9; letter-spacing: -.075em; }
+h1 { margin: 1.6rem 0 1.5rem; font-size: clamp(3.5rem, 6.1vw, 5.9rem); line-height: .92; letter-spacing: -.075em; }
 h1 em, h2 em { color: var(--accent); font-style: normal; }
 .hero-lead { max-width: 38ch; margin-bottom: .6rem; font-size: clamp(1.2rem, 2.1vw, 1.55rem); line-height: 1.4; }
 .hero-copy > p:not(.eyebrow):not(.hero-lead):not(.small-note) { max-width: 57ch; color: var(--muted); }

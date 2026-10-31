@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kenneth-cho-infosec.github.io/Haven/sitemap.xml
