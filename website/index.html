@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Haven is an open-source Android Work Profile manager for installing, cloning, freezing, and organizing apps in a separate managed profile.">
+    <meta name="theme-color" content="#f7f4fb">
+    <meta property="og:title" content="Haven — room for a separate profile">
+    <meta property="og:description" content="A modern Android Work Profile manager from the Shelter and Island lineage.">
+    <title>Haven — room for a separate profile</title>
+    <link rel="icon" type="image/png" href="assets/haven-icon.png">
+    <link rel="stylesheet" href="assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Haven home">
+        <img src="assets/haven-icon.png" width="38" height="38" alt="">
+        <span>Haven</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#guide">Get started</a>
+        <a href="#docs">Docs</a>
+        <a href="#compare">Compare</a>
+        <a href="#community">Community</a>
+      </nav>
+      <a class="header-cta" href="https://github.com/Kenneth-Cho-InfoSec/Haven/releases/latest">Download <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span> Android Work Profile · version 0.1.5</p>
+          <h1 id="hero-title">A little more<br><em>room to breathe.</em></h1>
+          <p class="hero-lead">Haven gives Android’s Work Profile a clear, capable manager.</p>
+          <p>Install compatible apps in a separate profile, clone them across, and freeze the work-side copy when you need it quiet. Built for people who want their apps organized around Android’s own profile boundary.</p>
+          <div class="actions">
+            <a class="button" href="https://github.com/Kenneth-Cho-InfoSec/Haven/releases/latest">Get Haven 0.1.5</a>
+            <a class="text-link" href="#features">Explore the workflow <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="small-note">Requires Android 7.0 (API 24) or newer and a device that supports managed profiles.</p>
+        </div>
+        <div class="hero-visual" aria-label="Haven showing personal and work app profiles">
+          <div class="visual-caption"><span>01 / 02</span><span>Separate by design</span></div>
+          <figure class="phone-shot phone-shot--main">
+            <img src="assets/haven-main.png" alt="Haven app list showing Android apps in the Main profile and a tab for the Haven work profile." width="1080" height="2400" fetchpriority="high">
+            <figcaption><span class="profile-dot profile-dot--main"></span>Main profile</figcaption>
+          </figure>
+          <figure class="phone-shot phone-shot--work">
+            <img src="assets/haven-work.png" alt="Haven app list with the Haven work profile selected." width="1080" height="2400" loading="eager">
+            <figcaption><span class="profile-dot profile-dot--work"></span>Work profile</figcaption>
+          </figure>
+          <span class="visual-index" aria-hidden="true">H / 01</span>
+        </div>
+      </section>
+
+      <section class="intro section" aria-labelledby="why-title">
+        <div class="section-meta"><span>Why Haven</span><span>01 — The idea</span></div>
+        <div class="intro-grid">
+          <h2 id="why-title">One phone.<br><em>Two distinct spaces.</em></h2>
+          <div>
+            <p class="intro-lead">Work Profiles are an Android feature for separating managed apps and data from a personal profile.</p>
+            <p>Haven grew from the Shelter and Island lineage: keep that practical app-isolation workflow, then bring the Android build, compatibility work, and interface forward. Haven uses its own application ID, so it installs alongside other Work Profile managers.</p>
+            <a class="underlined-link" href="https://developer.android.com/work/managed-profiles">How Android Work Profiles work <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section features" id="features" aria-labelledby="features-title">
+        <div class="section-meta"><span>What you can do</span><span>02 — Features</span></div>
+        <div class="section-heading">
+          <h2 id="features-title">The everyday<br><em>profile toolkit.</em></h2>
+          <p>Haven brings the managed-profile tasks together with a modern Android interface. Android and device support set the boundaries.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card feature-card--accent">
+            <span class="feature-number">01</span><h3>Set up a Work Profile</h3>
+            <p>Use Android’s managed-profile provisioning flow. Haven becomes the profile manager for that space.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">02</span><h3>Install and clone</h3>
+            <p>Install compatible apps inside the profile or create a work-side copy from the personal profile.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">03</span><h3>Freeze when idle</h3>
+            <p>Freeze work-profile apps to stop them running or waking until you unfreeze them.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">04</span><h3>Make quick shortcuts</h3>
+            <p>Create shortcuts to launch, unfreeze, or batch-freeze supported work apps.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">05</span><h3>Move files deliberately</h3>
+            <p>Use Android’s Documents interface for cross-profile file handoff. The newer system picker is optional and off by default.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">06</span><h3>Set managed restrictions</h3>
+            <p>Edit supported, manifest-declared restrictions for apps installed in the Work Profile.</p>
+          </article>
+        </div>
+        <div class="feature-footnote"><span aria-hidden="true">↳</span><p>Some cross-profile widgets and connected experiences can be allowed for compatible apps. Their availability depends on Android and the apps involved.</p></div>
+      </section>
+
+      <section class="section workflow" aria-labelledby="workflow-title">
+        <div class="section-meta"><span>How it fits together</span><span>03 — The model</span></div>
+        <div class="section-heading section-heading--split">
+          <h2 id="workflow-title">Android holds<br><em>the boundary.</em></h2>
+          <p>Haven is the manager interface. Android’s Device Policy APIs provision the managed profile and enforce its platform-defined separation.</p>
+        </div>
+        <ol class="flow-list">
+          <li><span class="flow-index">A</span><div><h3>Provision</h3><p>Haven asks Android to create a managed Work Profile and become its profile owner.</p></div><span class="flow-tag">Android Device Policy</span></li>
+          <li><span class="flow-index">B</span><div><h3>Organize</h3><p>Use the Haven and Main tabs to see apps, install compatible copies, and choose work-profile actions.</p></div><span class="flow-tag">Haven app</span></li>
+          <li><span class="flow-index">C</span><div><h3>Pause or pass</h3><p>Freeze selected work apps, or use Android’s document pickers when you intentionally move a file.</p></div><span class="flow-tag">User controlled</span></li>
+        </ol>
+        <p class="note"><strong>Boundary, not a promise.</strong> Profile separation depends on the Android implementation on your device. Haven does not guarantee protection from a compromised OS, vendor-specific bugs, or every form of data sharing.</p>
+      </section>
+
+      <section class="section guide" id="guide" aria-labelledby="guide-title">
+        <div class="section-meta"><span>Your first profile</span><span>04 — Beginner guide</span></div>
+        <div class="section-heading">
+          <h2 id="guide-title">Start with a<br><em>clean install.</em></h2>
+          <p>This walkthrough takes you from the official APK to a work-side app. Keep the release note nearby if you are upgrading.</p>
+        </div>
+        <ol class="guide-steps">
+          <li><span class="step-number">01</span><div><h3>Check your device</h3><p>Use Android 7.0 (API 24) or newer, with managed Work Profiles supported by the device’s system software. Back up important data first.</p></div></li>
+          <li><span class="step-number">02</span><div><h3>Install the official release</h3><p>Download <a href="https://github.com/Kenneth-Cho-InfoSec/Haven/releases/latest">the APK attached to Haven’s GitHub release</a>. Android may ask you to allow installs from that source. Review the release notes and signing details before proceeding.</p><p class="warning"><strong>Upgrading from v0.1.4?</strong> Its APK has a different signing certificate. Uninstall v0.1.4 before installing v0.1.5; Android cannot update it in place. Remove the Work Profile first if Android requires it.</p></div></li>
+          <li><span class="step-number">03</span><div><h3>Follow Android setup</h3><p>Open Haven and start Work Profile setup. Read the provisioning explanation, then accept Android’s system flow. Keep Haven installed in both the personal profile and its managed profile as setup completes.</p></div></li>
+          <li><span class="step-number">04</span><div><h3>Clone one compatible app</h3><p>Choose an app from the Main profile and use its clone action. Open the Haven tab to see the work-side copy, then launch it and confirm its data is separate from the personal copy.</p></div></li>
+          <li><span class="step-number">05</span><div><h3>Try freeze and file handoff</h3><p>Freeze a work app from its action menu and unfreeze it when you need it again. For cross-profile files, use the Android Documents UI. Haven’s optional system file picker is off by default.</p></div></li>
+        </ol>
+        <aside class="guide-trouble"><div><p class="eyebrow">If setup stalls</p><h3>Check the device’s profile support.</h3></div><p>Vendor Android builds can change or break managed-profile behavior. If provisioning fails, review Haven’s public issues with your Android version and device details. To remove Haven after setup, remove the Work Profile in Android Settings first.</p></aside>
+      </section>
+
+      <section class="section docs" id="docs" aria-labelledby="docs-title">
+        <div class="section-meta"><span>For users and builders</span><span>05 — Technical notes</span></div>
+        <div class="section-heading section-heading--split">
+          <h2 id="docs-title">Know the<br><em>prerequisites.</em></h2>
+          <p>Haven is an Android device-policy app, so its runtime and distribution requirements are shaped by both Android and the profile features it needs.</p>
+        </div>
+        <div class="docs-grid">
+          <article><p class="doc-label">01 / Platform</p><h3>Supported devices</h3><ul><li>Minimum Android version: 7.0 (API 24).</li><li>Build target: Android API 37; JDK 17.</li><li>Device must implement managed profiles and device-administration features.</li><li>Vendor ROMs may customize or break Work Profile behavior.</li></ul></article>
+          <article><p class="doc-label">02 / Permissions</p><h3>Profile and file access</h3><ul><li><code>QUERY_ALL_PACKAGES</code> supports listing apps across profiles.</li><li><code>MANAGE_EXTERNAL_STORAGE</code> is associated with the current File Shuttle implementation.</li><li>File selection is mediated through Android’s Documents UI; the optional system picker is off by default.</li></ul><p>These permissions have distribution-policy implications. Review the current channel’s rules; the README specifically notes policy eligibility review for Google Play.</p></article>
+          <article><p class="doc-label">03 / Architecture</p><h3>Android APIs first</h3><p>The setup flow requests a managed profile using Android’s provisioning intent. Device Policy APIs handle app visibility and profile-owner operations. Haven coordinates app lists, clone actions, freeze service, shortcuts, and document handoff.</p><p>It does not replace Android’s profile implementation or provide a separate OS.</p></article>
+          <article><p class="doc-label">04 / Identity</p><h3>Installed as Haven</h3><p>Package ID: <code>io.github.kennethchoinfosec.haven</code>. It is a separate app from Shelter and Island; existing app data, profile ownership, shortcuts, and permissions do not transfer.</p><p>Haven is licensed under GPLv3. The published v0.1.5 APK uses the new release key. See the <a href="https://github.com/Kenneth-Cho-InfoSec/Haven/blob/main/docs/RELEASING.md">release signing notes</a> before upgrading older builds.</p></article>
+          <article class="build-card"><p class="doc-label">05 / Build and test</p><h3>Build locally</h3><p>Install JDK 17, Android SDK Platform 37, and Android Build Tools 37.0.0 or newer.</p><pre><code>./gradlew assembleDebug
+./gradlew lintDebug
+./gradlew testDebugUnitTest</code></pre><p>The repository CI also builds Android regression tests. Release packaging requires the private signing properties described in the release guide; those credentials are not part of the source tree.</p></article>
+          <article><p class="doc-label">06 / Troubleshooting</p><h3>Common checks</h3><dl><dt>Profile setup does not finish</dt><dd>Check whether Android permits managed-profile provisioning and whether the device vendor supports it correctly.</dd><dt>An app does not appear</dt><dd>Some apps cannot be installed or run in managed profiles. Check app compatibility and the Haven tab.</dd><dt>A work app keeps running</dt><dd>Confirm it is frozen in the Haven profile. Freeze behavior is controlled through Android’s device policy APIs.</dd><dt>The APK will not update</dt><dd>v0.1.4 and v0.1.5 use different signing certificates. Follow the release note’s uninstall guidance.</dd></dl></article>
+        </div>
+        <p class="docs-source">Commands and requirements are based on the repository README, Gradle configuration, CI workflow, and release notes. Android builds were not run for this site update.</p>
+      </section>
+
+      <section class="section compare" id="compare" aria-labelledby="compare-title">
+        <div class="section-meta"><span>Choose the right tool</span><span>06 — Comparison</span></div>
+        <div class="section-heading section-heading--split">
+          <h2 id="compare-title">Different ways<br><em>to separate apps.</em></h2>
+          <p>Compared with primary project and platform documentation checked on 31 October 2026. This table describes scope, not security rankings or benchmarks.</p>
+        </div>
+        <div class="table-scroll" role="region" aria-label="Work Profile manager comparison" tabindex="0">
+          <table>
+            <thead><tr><th scope="col">Option</th><th scope="col">What it provides</th><th scope="col">A useful fit when</th><th scope="col">Considerations and license</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Haven</th><td>Work Profile provisioning, app listing and cloning, freeze actions, shortcuts, optional cross-profile file tools, and supported managed restrictions.</td><td>You want a modernized, open-source manager UI for Android’s managed profile model.</td><td>Android 7.0+ and device support required. GPLv3. v0.1.5 needs uninstall before upgrading from v0.1.4 because the signing certificate changed.</td></tr>
+              <tr><th scope="row"><a href="https://github.com/PeterCxy/Shelter">Shelter</a></th><td>FOSS Work Profile app isolation, install or clone, and freezing.</td><td>You want Shelter’s established workflow and are comfortable with its current maintenance and support channels.</td><td>GPLv3. Its GitHub repository says it mirrors a Gitea project and directs bug reports to a mailing list; it describes the project as effectively in maintenance mode.</td></tr>
+              <tr><th scope="row"><a href="https://play.google.com/store/apps/details?id=com.oasisfeng.island">Island</a></th><td>Work Profile app isolation, cloning, freezing, hiding, and other profile-oriented controls listed by its publisher.</td><td>You prefer its published Android app and feature set.</td><td>Its linked source is the Google Play listing. Check the current terms, supported Android versions, and distribution details there; this comparison does not infer a license.</td></tr>
+              <tr><th scope="row"><a href="https://developer.android.com/work/managed-profiles">Android Work Profile</a></th><td>The platform capability that separates work and personal app/data spaces on supported devices.</td><td>You use a device or organization that already manages a Work Profile.</td><td>It is an Android platform feature, not a standalone consumer manager app. Available controls and behavior depend on Android and device policy.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="source-list"><a href="https://developer.android.com/work/managed-profiles">Android Developers · Work profiles ↗</a><a href="https://github.com/PeterCxy/Shelter">Shelter · project README and GPL-3.0 ↗</a><a href="https://play.google.com/store/apps/details?id=com.oasisfeng.island">Island · Google Play listing ↗</a></div>
+      </section>
+
+      <section class="section faq" aria-labelledby="faq-title">
+        <div class="section-meta"><span>Before you install</span><span>07 — FAQ</span></div>
+        <div class="faq-grid"><h2 id="faq-title">A few useful<br><em>answers.</em></h2><div>
+          <details><summary>Does Haven create a virtual machine?</summary><p>No. Haven manages Android’s Work Profile using device policy APIs. The Android OS provides the profile boundary.</p></details>
+          <details><summary>Can it replace Shelter or Island?</summary><p>Haven uses a different app ID and installs separately. It does not transfer profile ownership, app data, shortcuts, or permissions from another manager.</p></details>
+          <details><summary>Is a frozen app uninstalled?</summary><p>No. Haven uses profile app visibility controls to freeze a work-side app. You can unfreeze it from Haven when you want it available again.</p></details>
+          <details><summary>Can I distribute Haven through Google Play?</summary><p>The repository flags package discovery and broad storage access as permissions that need policy eligibility review for Google Play. Check current Play policy and the app’s implementation before distributing it there.</p></details>
+        </div></div>
+      </section>
+
+      <section class="closing" id="community" aria-labelledby="community-title">
+        <div class="closing-copy"><p class="eyebrow">Keep the project moving</p><h2 id="community-title">Read the source.<br><em>Ask a good question.</em></h2><p>Haven’s code, releases, and issue tracker are public. Include your Android version and device details when reporting setup or compatibility problems, and remove personal information from logs.</p></div>
+        <div class="community-links">
+          <a href="https://github.com/Kenneth-Cho-InfoSec/Haven">Source repository <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/Kenneth-Cho-InfoSec/Haven/issues">Report an issue <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/Kenneth-Cho-InfoSec/Haven/releases">Releases <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/Kenneth-Cho-InfoSec/Haven/blob/main/LICENSE">GPLv3 license <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/Kenneth-Cho-InfoSec/Haven/blob/main/docs/RELEASING.md">Release signing guide <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><a class="wordmark" href="#top"><img src="assets/haven-icon.png" width="30" height="30" alt=""><span>Haven</span></a><p>Built around Android’s Work Profile APIs. <a href="#top">Back to top ↑</a></p><small>Haven is a GPLv3 open-source project. Work Profile behavior depends on your device and Android version.</small></footer>
+  </body>
+</html>
