@@ -127,4 +127,21 @@
     <string name="allow_cross_profile_interaction">Разрешить работу между профилями</string>
     <string name="settings_payment_stub_desc">Чтобы получить возможность выбрать платёжное приложение внутри рабочего профиля в Настройки - NFC, включите фальшивый платёжный сервис NFC в основном профиле. Это временное решение ошибки Android, из-за которой невозможно выбрать платёжное приложение внутри рабочего профиля, если в основном профиле таких нет.</string>
     <string name="settings_payment_stub">Заглушка платёжных сервисов</string>
+    <string name="setup_wizard_back">Назад</string>
+    <string name="setup_wizard_next">Далее</string>
+    <string name="setup_copy_diagnostics">Скопировать сведения</string>
+    <string name="setup_diagnostics_copied">Сведения о настройке рабочего профиля скопированы.</string>
+    <string name="manage_app_restrictions">Управление ограничениями приложения</string>
+    <string name="settings_cross_profile_picker">Разрешить выбор файлов между профилями</string>
+    <string name="settings_cross_profile_picker_desc">Приложения смогут запрашивать файлы из другого профиля через системное окно выбора файлов Android. Доступ предоставляется только к выбранным вами файлам. По умолчанию эта возможность отключена.</string>
+    <string name="managed_restrictions_title">Ограничения приложения: %1$s</string>
+    <string name="managed_restrictions_none">У этого приложения нет ограничений, которые можно редактировать.</string>
+    <string name="managed_restrictions_unsupported">У этого ограничения вложенная структура, которую Haven пока не может редактировать.</string>
+    <string name="managed_restrictions_saved">Ограничения приложения сохранены.</string>
+    <string name="managed_restrictions_save_failed">Не удалось сохранить ограничения приложения.</string>
+    <string name="managed_restrictions_load_failed">Не удалось загрузить ограничения приложения.</string>
+    <string name="managed_restrictions_enabled">Вкл.</string>
+    <string name="managed_restrictions_disabled">Выкл.</string>
+    <string name="app_operation_cancelled">Операция с приложением отменена или не удалось её запустить. Попробуйте ещё раз.</string>
+    <string name="format_minutes">%d мин</string>
 </resources>
