@@ -4,8 +4,11 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.PackageInstaller;
 import android.content.pm.PackageManager;
@@ -15,6 +18,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -32,6 +36,7 @@ import io.github.kennethchoinfosec.haven.R;
 import io.github.kennethchoinfosec.haven.HavenApplication;
 import io.github.kennethchoinfosec.haven.receivers.HavenDeviceAdminReceiver;
 import io.github.kennethchoinfosec.haven.services.FreezeService;
+import io.github.kennethchoinfosec.haven.services.HavenService;
 import io.github.kennethchoinfosec.haven.services.IAppInstallCallback;
 import io.github.kennethchoinfosec.haven.services.IFileShuttleService;
 import io.github.kennethchoinfosec.haven.services.IFileShuttleServiceCallback;
@@ -74,7 +79,7 @@ public class DummyActivity extends ComponentActivity {
     public static final String START_FILE_SHUTTLE = "io.github.kennethchoinfosec.haven.action.START_FILE_SHUTTLE";
     public static final String START_FILE_SHUTTLE_2 = "io.github.kennethchoinfosec.haven.action.START_FILE_SHUTTLE_2";
     public static final String SYNCHRONIZE_PREFERENCE = "io.github.kennethchoinfosec.haven.action.SYNCHRONIZE_PREFERENCE";
-    public static final String PACKAGEINSTALLER_CALLBACK = "io.github.kennethchoinfosec.haven.action.PACKAGEINSTALLER_CALLBACK";
+    private static final String PACKAGEINSTALLER_CALLBACK = "io.github.kennethchoinfosec.haven.action.PACKAGEINSTALLER_CALLBACK.";
 
     // Only these actions are allowed without a valid signature
     private static final List<String> ACTIONS_ALLOWED_WITHOUT_SIGNATURE = Arrays.asList(
@@ -133,6 +138,10 @@ public class DummyActivity extends ComponentActivity {
 
     private boolean mIsProfileOwner = false;
     private DevicePolicyManager mPolicyManager = null;
+    private BroadcastReceiver mInstallerReceiver;
+    private PendingIntent mInstallerResult;
+    private Intent mInstallerConfirmation;
+    private boolean mResumed;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -219,29 +228,87 @@ public class DummyActivity extends ComponentActivity {
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
+    protected void onPostResume() {
+        super.onPostResume();
+        mResumed = true;
+        showInstallerConfirmation();
+    }
 
-        if (PACKAGEINSTALLER_CALLBACK.equals(intent.getAction())) {
-            int status = intent.getIntExtra(PackageInstaller.EXTRA_STATUS, PackageInstaller.STATUS_FAILURE);
+    @Override
+    protected void onPause() {
+        mResumed = false;
+        super.onPause();
+    }
 
-            switch (status) {
-                case PackageInstaller.STATUS_PENDING_USER_ACTION:
-                    Intent pendingUserAction = getParcelableIntentExtra(intent, Intent.EXTRA_INTENT);
-                    if (pendingUserAction != null) {
-                        startActivity(pendingUserAction);
-                    } else {
-                        appInstallFinished(Activity.RESULT_CANCELED);
-                    }
-                    break;
-                case PackageInstaller.STATUS_SUCCESS:
-                    appInstallFinished(Activity.RESULT_OK);
-                    break;
-                default:
-                    appInstallFinished(Activity.RESULT_CANCELED);
-                    break;
+    @Override
+    protected void onDestroy() {
+        clearInstallerResult();
+        super.onDestroy();
+    }
+
+    private PendingIntent createInstallerResult() {
+        // Each operation gets its own private broadcast. The mutable token lets
+        // PackageInstaller add its status and the optional confirmation intent.
+        String action = PACKAGEINSTALLER_CALLBACK + UUID.randomUUID();
+        Intent intent = new Intent(action).setPackage(getPackageName());
+        BroadcastReceiver receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent result) {
+                handleInstallerResult(result);
             }
+        };
+        ContextCompat.registerReceiver(this, receiver, new IntentFilter(action),
+                ContextCompat.RECEIVER_NOT_EXPORTED);
+        mInstallerReceiver = receiver;
+        mInstallerResult = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_MUTABLE);
+        return mInstallerResult;
+    }
+
+    private void handleInstallerResult(Intent result) {
+        switch (result.getIntExtra(PackageInstaller.EXTRA_STATUS, PackageInstaller.STATUS_FAILURE)) {
+            case PackageInstaller.STATUS_PENDING_USER_ACTION:
+                mInstallerConfirmation = getParcelableIntentExtra(result, Intent.EXTRA_INTENT);
+                if (mInstallerConfirmation == null) {
+                    appInstallFinished(HavenService.RESULT_PACKAGE_OPERATION_FAILED);
+                } else {
+                    showInstallerConfirmation();
+                }
+                break;
+            case PackageInstaller.STATUS_SUCCESS:
+                appInstallFinished(Activity.RESULT_OK);
+                break;
+            case PackageInstaller.STATUS_FAILURE_ABORTED:
+                appInstallFinished(Activity.RESULT_CANCELED);
+                break;
+            default:
+                appInstallFinished(HavenService.RESULT_PACKAGE_OPERATION_FAILED);
+                break;
+        }
+    }
+
+    private void showInstallerConfirmation() {
+        if (!mResumed || isFinishing() || mInstallerConfirmation == null) {
+            return;
+        }
+        Intent confirmation = mInstallerConfirmation;
+        mInstallerConfirmation = null;
+        try {
+            startActivity(confirmation);
+        } catch (RuntimeException e) {
+            Log.w("DummyActivity", "Could not open package confirmation", e);
+            appInstallFinished(HavenService.RESULT_PACKAGE_OPERATION_FAILED);
+        }
+    }
+
+    private void clearInstallerResult() {
+        mInstallerConfirmation = null;
+        if (mInstallerResult != null) {
+            mInstallerResult.cancel();
+            mInstallerResult = null;
+        }
+        if (mInstallerReceiver != null) {
+            unregisterReceiver(mInstallerReceiver);
+            mInstallerReceiver = null;
         }
     }
 
@@ -383,15 +450,25 @@ public class DummyActivity extends ComponentActivity {
 
         PackageInstaller.Session session = pi.openSession(sessionId);
         doInstallPackageQ(uri, split_apks, session, () -> {
-            // We have finished piping the streams, show the progress as 10%
-            session.setStagingProgress(0.1f);
-
-            // Commit the session
-            Intent intent = new Intent(this, DummyActivity.class);
-            intent.setAction(PACKAGEINSTALLER_CALLBACK);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-                    intent, PendingIntent.FLAG_MUTABLE);
-            session.commit(pendingIntent.getIntentSender());
+            try {
+                if (isFinishing() || isDestroyed()) {
+                    session.abandon();
+                    return;
+                }
+                // We have finished piping the streams, show the progress as 10%.
+                session.setStagingProgress(0.1f);
+                session.commit(createInstallerResult().getIntentSender());
+            } catch (RuntimeException e) {
+                Log.w("DummyActivity", "Could not submit install session", e);
+                try {
+                    session.abandon();
+                } catch (RuntimeException abandonError) {
+                    Log.w("DummyActivity", "Could not abandon install session", abandonError);
+                }
+                appInstallFinished(HavenService.RESULT_PACKAGE_OPERATION_FAILED);
+            } finally {
+                session.close();
+            }
         });
     }
 
@@ -443,25 +520,28 @@ public class DummyActivity extends ComponentActivity {
 
     private void actionUninstallPackageQ() {
         PackageInstaller pi = getPackageManager().getPackageInstaller();
-        Intent intent = new Intent(this, DummyActivity.class);
-        intent.setAction(PACKAGEINSTALLER_CALLBACK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-                intent, PendingIntent.FLAG_MUTABLE);
-        pi.uninstall(getIntent().getStringExtra("package"), pendingIntent.getIntentSender());
+        try {
+            pi.uninstall(getIntent().getStringExtra("package"), createInstallerResult().getIntentSender());
+        } catch (RuntimeException e) {
+            Log.w("DummyActivity", "Could not request package uninstall", e);
+            appInstallFinished(HavenService.RESULT_PACKAGE_OPERATION_FAILED);
+        }
     }
 
     private void appInstallFinished(int resultCode) {
+        clearInstallerResult();
         // Clear the fd anyway since we have finished installation.
         // Because we might have been installing an APK opened from
         // the other profile. We don't know, but just clean it.
         FileProviderProxy.clearForwardProxy();
 
-        if (!getIntent().hasExtra("callback")) return;
-
         // Send the result code back to the caller
         Bundle callbackExtra = getIntent().getBundleExtra("callback");
+        finish();
+        if (callbackExtra == null) return;
         IAppInstallCallback callback = IAppInstallCallback.Stub
                 .asInterface(callbackExtra.getBinder("callback"));
+        if (callback == null) return;
 
         try {
             callback.callback(resultCode);
@@ -469,7 +549,6 @@ public class DummyActivity extends ComponentActivity {
             // do nothing
         }
 
-        finish();
     }
 
     private void actionUnfreezeAndLaunch() {

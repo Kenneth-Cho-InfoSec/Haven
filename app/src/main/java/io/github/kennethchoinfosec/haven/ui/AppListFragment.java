@@ -674,6 +674,8 @@ public class AppListFragment extends BaseFragment {
             Toast.makeText(getContext(),
                     getString(isInstall ? R.string.clone_fail_system_app :
                             R.string.uninstall_fail_system_app), Toast.LENGTH_SHORT).show();
+        } else if (result == HavenService.RESULT_PACKAGE_OPERATION_FAILED) {
+            Toast.makeText(getContext(), R.string.app_operation_failed, Toast.LENGTH_LONG).show();
         } else if (result == Activity.RESULT_CANCELED) {
             Toast.makeText(getContext(), R.string.app_operation_cancelled, Toast.LENGTH_SHORT).show();
         }

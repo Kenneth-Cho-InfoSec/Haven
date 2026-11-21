@@ -85,7 +85,6 @@
                 <action android:name="io.github.kennethchoinfosec.haven.action.START_FILE_SHUTTLE" />
                 <action android:name="io.github.kennethchoinfosec.haven.action.START_FILE_SHUTTLE_2" />
                 <action android:name="io.github.kennethchoinfosec.haven.action.SYNCHRONIZE_PREFERENCE" />
-                <action android:name="io.github.kennethchoinfosec.haven.action.PACKAGEINSTALLER_CALLBACK" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

@@ -35,6 +35,7 @@ import java.util.stream.Collectors;
 
 public class HavenService extends Service {
     public static final int RESULT_CANNOT_INSTALL_SYSTEM_APP = 100001;
+    public static final int RESULT_PACKAGE_OPERATION_FAILED = 100003;
 
     private static final int NOTIFICATION_ID = 0x49a11;
     private DevicePolicyManager mPolicyManager = null;

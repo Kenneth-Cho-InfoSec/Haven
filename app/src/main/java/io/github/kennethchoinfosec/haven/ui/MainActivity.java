@@ -37,6 +37,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import io.github.kennethchoinfosec.haven.R;
 import io.github.kennethchoinfosec.haven.HavenApplication;
 import io.github.kennethchoinfosec.haven.services.IAppInstallCallback;
+import io.github.kennethchoinfosec.haven.services.HavenService;
 import io.github.kennethchoinfosec.haven.services.IHavenService;
 import io.github.kennethchoinfosec.haven.services.IStartActivityProxy;
 import io.github.kennethchoinfosec.haven.services.KillerService;
@@ -469,6 +470,10 @@ public class MainActivity extends AppCompatActivity {
                         if (result == RESULT_OK)
                             Toast.makeText(MainActivity.this,
                                     R.string.install_app_to_profile_success, Toast.LENGTH_LONG).show();
+                        else if (result == HavenService.RESULT_PACKAGE_OPERATION_FAILED)
+                            Toast.makeText(MainActivity.this, R.string.app_operation_failed, Toast.LENGTH_LONG).show();
+                        else if (result == RESULT_CANCELED)
+                            Toast.makeText(MainActivity.this, R.string.app_operation_cancelled, Toast.LENGTH_SHORT).show();
                     });
                 }
             });

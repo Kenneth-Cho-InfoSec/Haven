@@ -47,6 +47,7 @@
     <string name="freeze_success">Приложение \"%s\" успешно заморожено</string>
     <string name="unfreeze_success">Приложение \"%s\" успешно разморожено</string>
     <string name="clone_fail_system_app">Невозможно клонировать системные приложения в профиль, который Haven не контролирует.</string>
+    <string name="app_operation_failed">Android не удалось выполнить операцию с приложением.</string>
     <string name="uninstall_fail_system_app">Невозможно удалить системные приложения в профиле, который Haven не контролирует.</string>
     <string name="unsupported_launcher">Невозможно добавить ярлык в ваш лаунчер. Пожалуйста, свяжитесь с разработчиком.</string>
     <string name="app_context_menu_title">Операции для %s</string>
