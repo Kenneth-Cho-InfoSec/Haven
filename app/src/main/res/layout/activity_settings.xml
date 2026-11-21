@@ -31,6 +31,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/settings_fragment_container"
         android:name="io.github.kennethchoinfosec.haven.ui.SettingsFragment"
         android:tag="io.github.kennethchoinfosec.haven.ui.SettingsFragment"
         android:layout_width="0dp"
