@@ -25,7 +25,10 @@ class WelcomeModeActivity : AppCompatActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         if (Utility.isProfileOwner(this)) {
-            Utility.hideMainActivityInManagedProfile(this)
+            // Also covers a profile that was just transferred to us: the migration bridge
+            // starts this activity once inside the work profile. This applies the
+            // profile-owner policies and hides the launcher entry again.
+            Utility.adoptTransferredWorkProfile(this)
             finish()
             return
         }

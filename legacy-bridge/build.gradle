@@ -1,0 +1,67 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+// The bridge must be signed with the same key as the published 0.1.5 APK
+// (certificate SHA-256 3f041588...cfef5), otherwise Android will refuse to install
+// it over the existing io.github.kennethchoinfosec.haven installation.
+// See docs/LEGACY_MIGRATION.md.
+def legacyKeystorePropertiesFile = rootProject.file('release/legacy-keystore.properties')
+def legacyKeystoreProperties = new Properties()
+if (legacyKeystorePropertiesFile.exists()) {
+    legacyKeystoreProperties.load(new FileInputStream(legacyKeystorePropertiesFile))
+}
+
+android {
+    compileSdk = 37
+    defaultConfig {
+        // Must stay identical to the 0.1.x application ID so that this APK updates
+        // the existing installation in both the personal and the work profile.
+        applicationId = "io.github.kennethchoinfosec.haven"
+        // transferOwnership() and installExistingPackage() need API 28, which is
+        // also the minSdk of com.arcturus.haven.
+        minSdk = 28
+        targetSdk = 37
+        // 0.1.5 was versionCode 9.
+        versionCode = 10
+        versionName = "0.1.6"
+    }
+    signingConfigs {
+        if (!legacyKeystoreProperties.isEmpty()) {
+            release {
+                storeFile = rootProject.file("release/${legacyKeystoreProperties['storeFile']}")
+                storePassword = legacyKeystoreProperties['storePassword']
+                keyAlias = legacyKeystoreProperties['keyAlias']
+                keyPassword = legacyKeystoreProperties['keyPassword']
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled = false
+            if (!legacyKeystoreProperties.isEmpty()) {
+                signingConfig = signingConfigs.release
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
+    }
+    namespace = 'io.github.kennethchoinfosec.haven'
+}
+
+tasks.configureEach { task ->
+    if (task.name == 'packageRelease' || task.name == 'bundleRelease') {
+        task.doFirst {
+            if (legacyKeystoreProperties.isEmpty()) {
+                throw new GradleException('The legacy bridge must be signed with the 0.1.5 release key. Configure release/legacy-keystore.properties; see docs/LEGACY_MIGRATION.md.')
+            }
+        }
+    }
+}

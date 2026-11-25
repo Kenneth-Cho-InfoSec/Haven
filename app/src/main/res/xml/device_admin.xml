@@ -1,4 +1,7 @@
 <device-admin xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-policies>
     </uses-policies>
+    <!-- Lets Haven 0.1.6 (io.github.kennethchoinfosec.haven) hand an existing work profile
+         over to this app with DevicePolicyManager.transferOwnership(). -->
+    <support-transfer-ownership />
 </device-admin>

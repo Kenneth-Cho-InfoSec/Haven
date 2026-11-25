@@ -1,3 +1,9 @@
+Unreleased
+===
+
+- Added a 0.1.6 migration bridge (`legacy-bridge` module, `io.github.kennethchoinfosec.haven`) that transfers an existing 0.1.x Work Profile to `com.arcturus.haven` with `DevicePolicyManager.transferOwnership()`, so apps and data inside the profile are kept.
+- `com.arcturus.haven` now accepts profile ownership transfers (`<support-transfer-ownership/>`), applies its Work Profile policies after a transfer, and detects a transferred profile on first launch instead of starting a new setup.
+
 1.0.0
 ===
 

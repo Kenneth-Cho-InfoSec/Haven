@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Haven</string>
+    <string name="device_admin_label" translatable="false">Haven</string>
+    <string name="device_admin_desc">App Isolation Service</string>
+
+    <string name="migration_title">Move to the new Haven</string>
+    <string name="migration_close">Close</string>
+
+    <string name="migration_need_new_app">Haven 1.0 is now a separate app (com.arcturus.haven). This version only moves your existing work profile to it, so you keep all apps and data inside the profile.\n\nFirst install the new Haven in your personal profile. Do not set up isolation in it yet. Then come back here.</string>
+    <string name="migration_download">Download new Haven</string>
+
+    <string name="migration_ready">The new Haven is installed.\n\nTap Continue to open this screen inside your work profile and move the profile to the new app. Your work apps and their data stay where they are.</string>
+    <string name="migration_continue">Continue in work profile</string>
+    <string name="migration_work_paused">Your work profile is paused. Turn on work apps, then try again.</string>
+    <string name="migration_no_work_profile">No work profile managed by this Haven was found.\n\nIf you have already moved it to the new Haven, you can uninstall this app.</string>
+    <string name="migration_cannot_open_work">Could not open Haven inside the work profile. Open it from the Work tab of your launcher instead.</string>
+
+    <string name="migration_confirm">Move this work profile to the new Haven (com.arcturus.haven)?\n\nApps and data inside the profile are kept. Haven settings, freeze lists and shortcuts created by the old version are not carried over.</string>
+    <string name="migration_start">Move profile</string>
+    <string name="migration_install_failed">The new Haven could not be added to the work profile. Make sure it is installed in your personal profile, then try again.</string>
+    <string name="migration_not_supported">This version of the new Haven cannot take over an existing work profile yet. Update it and try again.\n\n%1$s</string>
+    <string name="migration_failed">Moving the profile failed. Your work profile and its apps were not changed.\n\n%1$s</string>
+    <string name="migration_done">Done. The new Haven now manages this work profile.\n\nOpen the new Haven in your personal profile. After that, uninstall this old Haven from your personal profile and from the Work tab.</string>
+    <string name="migration_already_done">This work profile is already managed by another app. You can uninstall this old Haven.</string>
+</resources>
