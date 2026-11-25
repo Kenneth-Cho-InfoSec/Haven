@@ -2,10 +2,7 @@
 <resources>
     <string name="first_run_alert_cancel">Tot ziens</string>
     <string name="first_run_alert_continue">Ga verder</string>
-    <string name="device_admin_explanation">Haven moet beheerder van dit apparaat worden om zijn isolatietaken uit te voeren.</string>
     <string name="notifications_important">Haven belangrijk</string>
-    <string name="finish_provision_title">Druk hier om het instellen van Haven te voltooien</string>
-    <string name="finish_provision_desc">Gefeliciteerd! Je bent een klik verwijderd om het instellen van Haven te voltooien.</string>
     <string name="device_admin_desc">App isolatiedienst</string>
     <string name="service_title">Haven Service</string>
     <string name="service_desc">Haven is nu actief …</string>
@@ -18,15 +15,6 @@
     <string name="install_app_to_profile">Installeer APK in Haven</string>
     <string name="show_all">Toon Alle Apps</string>
     <string name="install_app_to_profile_success">Installatie applicatie voltooid in werkprofiel.</string>
-    <string name="first_run_alert">Je staat op het punt om Haven in te stellen.
-\n
-\nDeze app hang af van de <b>Werkmodus</b> functie van Android om apps te isoleren. Als je een verkoper / op maat gemaakte ROM die deze functie breekt (bv. MIUI) , zou je nu moeten <b>VERLATEN</b> en gebruik <b>NIET</b> deze app.
-\n
-\nAls je beslist om verder te gaan, zal Haven een Werkmodus voor je opstellen.
-\n
-\nAls je en ontwikkerlaar bent en graag Haven wilt laten werken op deze onverenigbare ROMs zoals MIUI, pull requests zijn altijd welkom. De ontwikkelaar neemt <b>ABSOLUUT GEEN VERANTWOORDELIJKHEID</b> op als je je apperaat met een onverenigbare ROM breekt.
-\n
-\nJe zal een melding moeten krijgen om je instelling af te ronden, zorg er alsjeblieft voor dat je apperaat <b>NIET</b> op Niet Storen staat.</string>
     <string name="setup_wizard_compatibility_text">Haven is ontwikkeld en getest op AOSP-achtige Android-afgeleiden. Dit omvat AOSP (Android Open Source Project), Google Android (op Pixels), en <b>de meeste op AOSP gebaseerde open-source custom ROM\'s</b> zoals LineageOS. Als je telefoon draait op één van de Android afgeleiden hierboven vermeld: gefeliciteerd! Haven zal waarschijnlijk goed werken op je telefoon.
 \n
 \nSommige leveranciers van toestellen voegen zeer ingrijpende aanpassingen aan de Android grondslag code toe, met conflicten, incompatibiliteit en onverwacht gedrag als gevolg. Sommige aangepaste ROM\'s kunnen ook veranderingen toevoegen die de compatibiliteit vernietigen, maar over het algemeen zijn dit zeldzame voorvallen in vergelijking met door de telefoonleverancier toegevoegde incompatibiliteiten.
@@ -67,7 +55,7 @@
 \n
 \nOm Haven te resetten en opnieuw te beginnen, kun je de gegevens van Haven wissen in Instellingen.</string>
     <string name="service_auto_freeze_now">Nu bevriezen</string>
-    <string name="app_installing">Installeren...</string>
+    <string name="app_installing">Installeren…</string>
     <string name="fragment_profile_main">Hoofd</string>
     <string name="fragment_profile_work">Haven</string>
     <string name="list_item_disabled">[Bevroren] %s</string>

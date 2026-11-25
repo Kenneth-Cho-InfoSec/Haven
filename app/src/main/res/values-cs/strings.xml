@@ -3,7 +3,6 @@
     <string name="first_run_alert_cancel">Nashle</string>
     <string name="first_run_alert_continue">Pokračovat</string>
     <string name="device_admin_desc">Služba izolace aplikací</string>
-    <string name="device_admin_explanation">Haven musí být správcem zařízení, aby mohl fungovat.</string>
     <string name="setup_wizard_welcome">Vítejte v Havenu</string>
     <string name="setup_wizard_permissions">Pár slov o oprávněních</string>
     <string name="setup_wizard_welcome_text">Haven je aplikace, která pomáhá spouštět aplikace v izolovaném profilu. Dělá to za použití <b>Pracovního profilu</b>, který je součástí Androidu.
@@ -35,7 +34,6 @@
     <string name="allow_cross_profile_widgets">Povolit widgety v hlavním profilu</string>
     <string name="setup_wizard_action_required">Je vyžadována akce</string>
     <string name="notifications_important">Důležité pro Haven</string>
-    <string name="finish_provision_title">Klikněte zde pro dokončení nastavení Havenu</string>
     <string name="allow_cross_profile_interaction">Povolit interakci napříč profily</string>
     <string name="create_freeze_all_shortcut">Vytvořit zkratku Dávkové zmrazení</string>
     <string name="settings_interaction">Interakce</string>
@@ -63,12 +61,11 @@
 \n
 \nPokud chcete resetovat Haven a začít od začátku, můžete odstranit data Havenu v Nastavení.</string>
     <string name="service_desc">Haven právě běží …</string>
-    <string name="finish_provision_desc">Gratuluji! Jste jeden klik od dokončení nastavování Havenu.</string>
     <string name="service_title">Služba Havenu</string>
     <string name="service_auto_freeze_title">Automatické zmrazení je pozdrženo</string>
     <string name="service_auto_freeze_desc">Haven automaticky zamrazí aplikace spuštěné z \"Rozmrazit &amp; Spustit\" při dalším zamčení obrazovky.</string>
     <string name="service_auto_freeze_now">Ihned zmrazit</string>
-    <string name="app_installing">Instaluji...</string>
+    <string name="app_installing">Instaluji…</string>
     <string name="fragment_profile_main">Hlavní</string>
     <string name="uninstall_app">Odinstalovat</string>
     <string name="unfreeze_app">Rozmrazit</string>
@@ -89,7 +86,6 @@
     <string name="settings_auto_freeze_delay">Prodleva automatického zamrznutí</string>
     <string name="settings_translate">Překlad</string>
     <string name="provision_finished">Nastavení Havenu je kompletní. Nyní se Haven restartuje. Pokud se nespustí automaticky, budete jej muset znova spustit z Vašeho spouštěče.</string>
-    <string name="msg_device_unsupported">Oprávnění bylo zamítnuto nebo používáte nepodporované zařízení</string>
     <string name="work_mode_disabled">Vypadá to, že jste vypnuli Pracovní režim během zapínání Havenu. Pokud jste ho nyní povolili, prosím restartujte Haven.</string>
     <string name="clone_success">Aplikace \"%s\" úspěšně naklonována</string>
     <string name="settings_auto_freeze_service_desc">Pokud je obrazovka uzamčena, automaticky zamrazit aplikace spuštěné ze zkratky \"Rozmrazit a Spustit\".</string>
@@ -97,10 +93,8 @@
     <string name="uninstall_success">Aplikace \"%s\" úspěšně odinstalována</string>
     <string name="uninstall_fail_system_app">Nelze odinstalovat systémové aplikace v profilu, který Haven nemá pod kontrolou.</string>
     <string name="unsupported_launcher">Není možné přidat zkratku na Váš spuštěč. Prosím kontaktuje vývojáře pro další informace.</string>
-    <string name="app_context_menu_title">Operace pro %s</string>
     <string name="freeze_all_success">Všechny aplikace na seznamu \"Automatického zamrznutí\" byly úspěšně zamrazeny.</string>
     <string name="settings_block_contacts_searching">Zamezit hledání kontaktů</string>
-    <string name="shortcut_create_success">Na Vašem spouštěči byl vytvořen zástupce.</string>
     <string name="launch_app_fail">Není možné spustit aplikaci %s, protože nemá GUI.</string>
     <string name="request_system_alert">Haven potřebuje oprávnění <b>Zobrazit přes ostatní aplikace</b> pro správnou funkčnost Výměny souborů. Prosím, povolte jej pro <b>OBĚ DVĚ</b> (Osobní / Pracovní) aplikace Haven zobrazené v dialogu poté, co stisknete \"Ok\". Toto oprávnění je využito pro spuštění služeb Výměny souborů na pozadí.</string>
     <string name="settings_dont_freeze_foreground">Přeskočit aplikace na popředí</string>
@@ -110,7 +104,6 @@
     <string name="settings_source_code">Zdrojový kód</string>
     <string name="continue_anyway">Přesto pokračovat</string>
     <string name="work_profile_not_found">Pracovní profil nenalezen. Restartujte prosím aplikaci pro opětovné nastavení profilu.</string>
-    <string name="work_profile_provision_failed">Nelze zjistit pracovní profil. Můžete to zkusit znovu restartováním Havenu.</string>
     <string name="unfreeze_success">Aplikace \"%s\" úspěšně rozmrazena</string>
     <string name="freeze_success">Aplikace \"%s\" úspěšně zamrazena</string>
     <string name="clone_fail_system_app">Není možné naklonovat systémovou aplikaci, protože Haven nad ní nemá kontrolu.</string>

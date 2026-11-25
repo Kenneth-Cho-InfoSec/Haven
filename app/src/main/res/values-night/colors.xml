@@ -17,7 +17,6 @@
     <color name="md_theme_errorContainer">#93000A</color>
     <color name="md_theme_onErrorContainer">#FFDAD6</color>
     <color name="md_theme_background">#14131A</color>
-    <color name="md_theme_onBackground">#E6E1EA</color>
     <color name="md_theme_surface">#14131A</color>
     <color name="md_theme_onSurface">#E6E1EA</color>
     <color name="md_theme_surfaceVariant">#474650</color>
@@ -26,16 +25,9 @@
     <color name="md_theme_surfaceContainerHigh">#2B2932</color>
     <color name="md_theme_outline">#928F9A</color>
     <color name="md_theme_outlineVariant">#474650</color>
-    <color name="md_theme_inverseSurface">#E6E1EA</color>
-    <color name="md_theme_inverseOnSurface">#303037</color>
 
-    <color name="iconBackground">#384F9C</color>
-    <color name="colorPrimary">@color/md_theme_surface</color>
     <color name="colorAccent">@color/md_theme_primary</color>
-    <color name="colorAccentSetupWizard">@color/md_theme_tertiary</color>
     <color name="colorNavigationBar">@color/md_theme_surfaceContainer</color>
-    <color name="colorNavigationIconTint">@color/md_theme_onSurfaceVariant</color>
-    <color name="colorNavigationIconTintSelected">@color/md_theme_primary</color>
     <color name="colorTextPrimary">@color/md_theme_onSurface</color>
     <color name="colorTextSecondary">@color/md_theme_onSurfaceVariant</color>
     <color name="disabledAppBackground">@color/md_theme_surfaceContainer</color>

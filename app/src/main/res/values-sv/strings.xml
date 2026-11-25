@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="service_auto_freeze_now">Frys Nu</string>
-    <string name="app_installing">Installerar...</string>
+    <string name="app_installing">Installerar…</string>
     <string name="settings_dont_freeze_foreground">Hoppa över förgrundsappar</string>
     <string name="settings_block_contacts_searching_desc">Neka åtkomst från primära profilen till kontakter i arbetsprofilen.</string>
     <string name="show_all_warning">Att manipulera appar som är dolda från listan kan orsaka krascher och flera möjliga oväntade beteenden. Den här funktionen kan dock vara användbar när leverantörsanpassade ROM:er inte aktiverar alla nödvändiga systemappar i arbetsprofilen som standard. Om du väljer att fortsätta gör du det på egen hand.</string>
@@ -21,7 +21,6 @@
     <string name="unfreeze_success">Applikationen \"%s\" tinades upp framgångsrikt</string>
     <string name="freeze_all_success">Alla appar i listan \"Automatisk frysning\" har frysts.</string>
     <string name="unsupported_launcher">Det går inte att lägga till genvägar till din launcher. Kontakta utvecklaren för mer information.</string>
-    <string name="shortcut_create_success">Genväg skapad på din launcher.</string>
     <string name="launch_app_fail">Det går inte att starta appen %s eftersom den har inte något GUI.</string>
     <string name="miui_cannot_clone">Att klona icke-systemappar till en annan profil är för närvarande inte möjligt på MIUI. Vänligen klona ditt systems appbutik (t.ex. <b>Play Butik, FDroid</b>) till den andra profilen och installera sedan appar därifrån.</string>
     <string name="fragment_profile_main">Primär</string>
@@ -29,9 +28,7 @@
     <string name="fragment_profile_work">Haven</string>
     <string name="uninstall_fail_system_app">Det går inte att avinstallera systemappar i en profil som Haven inte har kontroll över.</string>
     <string name="device_admin_desc">App-isoleringstjänst</string>
-    <string name="device_admin_explanation">Haven behöver bli enhetsadministratör för att kunna utföra sina isoleringsuppgifter.</string>
     <string name="notifications_important">Viktigt om Haven</string>
-    <string name="finish_provision_title">Klicka här för att slutföra installationen av Haven</string>
     <string name="service_title">Haven-tjänst</string>
     <string name="service_desc">Haven är nu igång…</string>
     <string name="setup_wizard_welcome_text">Haven är en applikation som kan hjälpa dig att köra andra applikationer i en isolerad profil. Den gör det genom att använda funktionen <b>Arbetsprofil</b> i Android.
@@ -67,12 +64,10 @@
     <string name="setup_wizard_compatibility">Kompatibilitet</string>
     <string name="settings_services">Tjänster</string>
     <string name="settings_bug_report">Buggrapport / Problemspårare</string>
-    <string name="msg_device_unsupported">Behörighet nekas eller enhet som inte stöds</string>
     <string name="provision_finished">Installationen av Haven är klar. Nu startar Haven om. Om Haven inte startade om automatiskt kan du göra det från din launcher.</string>
     <string name="settings_cross_profile_file_chooser_desc">När det är aktiverat kommer du att kunna bläddra / visa / välja / kopiera filer i Haven från huvudprofilen och vice versa, ENDAST via funktionen \"Documents UI\" (som heter Files eller Documents på din launcher) eller via appar med \"Documents UI\"-stöd (de får bara tillfällig åtkomst till filer du väljer i Documents UI), medan filsystemets isolering fortsätter att gälla.</string>
     <string name="setup_wizard_permissions">Några ord om behörigheter</string>
     <string name="work_profile_not_found">Det gick inte att hitta arbetsprofilen. Starta om appen för att omregistrera profilen.</string>
-    <string name="work_profile_provision_failed">Det går inte att tillhandahålla arbetsprofil. Du kan försöka igen genom att starta om Haven.</string>
     <string name="work_mode_disabled">Det verkar som att arbetsprofilen var inaktiverad när Haven startades. Om du nu har aktiverat det, starta om Haven.</string>
     <string name="clone_fail_system_app">Det går inte att klona systemappar till en profil som Haven inte har kontroll över.</string>
     <string name="setup_wizard_ready">Redo?</string>
@@ -81,7 +76,6 @@
     <string name="setup_wizard_failed">Konfigurationen misslyckades</string>
     <string name="setup_wizard_action_required">Åtgärd krävs</string>
     <string name="settings_auto_freeze_service">Automatisk frystjänst</string>
-    <string name="app_context_menu_title">Operationer för %s</string>
     <string name="setup_wizard_action_required_text">Du bör nu se en avisering från Haven. <b>Klicka på det aviseringen</b> för att slutföra installationsprocessen.
 \n
 \nOm du inte ser aviseringen, se till att din enhet inte är i \"Stör ej\"-läge och försök dra ner meddelandecentret.
@@ -105,7 +99,6 @@
 \n
 \nHaven är bara ett gränssnitt till funktionen \"Arbetsprofil\" som tillhandahålls av Android-systemet. Om funktionen som tillhandahålls av systemet är trasig eller icke-standard, kan <b>Haven inte magiskt lösa problemet på egen hand</b>. Om du för närvarande använder en leverantörsmodifierad Android-version som är känd för att bryta arbetsprofilsfunktionen, <b>har du blivit varnad</b>. Du kan fortsätta ändå, men det finns ingen garanti för att Haven ska bete sig korrekt under dessa omständigheter.</string>
     <string name="request_usage_stats">Haven behöver <b>Användningsstatistik</b>-tillstånd för att göra detta. Vänligen aktivera behörigheten för <b>BÅDA TVÅ</b> Haven-appar som visas i dialogrutan efter att du tryckt på \"OK\". Om du inte gör det kommer den här funktionen inte att fungera korrekt.</string>
-    <string name="finish_provision_desc">Grattis! Du är ett klick från att slutföra installationen av Haven.</string>
     <string name="request_storage_manager">Haven behöver åtkomst till <b>Alla filer</b> för File Shuttle. Vänligen aktivera behörigheten för <b>BÅDA TVÅ </b> Haven-appar som visas i dialogrutan efter att du tryckt på \"OK\".</string>
     <string name="service_auto_freeze_title">I väntan på automatisk frysning</string>
     <string name="service_auto_freeze_desc">Haven kommer att automatiskt frysa appar som startas från \"Tina upp &amp; Starta\" vid nästa skärmlåshändelse.</string>

@@ -2,14 +2,10 @@
     <string name="app_name" translatable="false">Haven</string>
     <string name="setup_wizard_back">Back</string>
     <string name="setup_wizard_next">Next</string>
-    <string name="first_run_alert">You are about to set up Haven.\n\nThis app uses Android\'s Work Profile feature to isolate apps. If your device vendor or custom ROM has broken Work Profile support, Haven may not work correctly.\n\nIf you continue, Haven will create and manage a Work Profile on this device.</string>
     <string name="first_run_alert_cancel">Bye</string>
     <string name="first_run_alert_continue">Continue</string>
     <string name="device_admin_label" translatable="false">Haven</string>
     <string name="device_admin_desc">App Isolation Service</string>
-    <string name="device_admin_explanation">Haven needs to become Device Admin in order to perform its isolation tasks.</string>
-    <string name="device_admin_toast">You must grant Device Admin permission for Haven to work. Please try again.</string>
-    <string name="provision_still_pending">Please wait while Haven finishes preparing your Work Profile.</string>
     <string name="payment_stub_description">Payment Service Stub (DO NOT USE)</string>
 
     <!-- Setup Wizard -->
@@ -32,14 +28,12 @@
 
     <!-- Notifications -->
     <string name="notifications_important">Haven Important</string>
-    <string name="finish_provision_title">Click here to finish setting up Haven</string>
-    <string name="finish_provision_desc">Congratulations! You are one click away from finishing setting up Haven.</string>
     <string name="service_title">Haven Service</string>
     <string name="service_desc">Haven is now running &#8230;</string>
     <string name="service_auto_freeze_title">Auto-freeze pending</string>
     <string name="service_auto_freeze_desc">Haven will auto-freeze apps launched from \"Unfreeze &amp; Launch\" on the next screen lock event.</string>
     <string name="service_auto_freeze_now">Freeze Now</string>
-    <string name="app_installing">Installing...</string>
+    <string name="app_installing">Installing…</string>
 
     <!-- Main UI -->
     <string name="fragment_profile_main">Main</string>
@@ -110,9 +104,7 @@
 
     <!-- Toast Long Texts -->
     <string name="provision_finished">Haven setup complete. Now restarting Haven. If Haven didn\'t start automatically, you may launch it again from your launcher.</string>
-    <string name="msg_device_unsupported">Permission is denied or Unsupported device</string>
     <string name="work_profile_not_found">Work profile not found. Please restart the app to re-provision the profile.</string>
-    <string name="work_profile_provision_failed">Cannot provision work profile. You may try again by restarting Haven.</string>
     <string name="work_mode_disabled">It looks like you have disabled Work Mode while starting Haven. If you have enabled it now, please start Haven again.</string>
     <string name="clone_success">Application \"%s\" cloned successfully</string>
     <string name="uninstall_success">Application \"%s\" uninstalled successfully</string>
@@ -122,9 +114,7 @@
     <string name="uninstall_fail_system_app">Cannot uninstall system apps in a profile that Haven has no control of.</string>
     <string name="app_operation_cancelled">The app operation was cancelled or could not be started. Please try again.</string>
     <string name="unsupported_launcher">Cannot add shortcuts to your launcher. Please contact the developer for more information.</string>
-    <string name="app_context_menu_title">Operations for %s</string>
     <string name="freeze_all_success">All apps in \"Auto Freeze\" list have been frozen successfully.</string>
-    <string name="shortcut_create_success">Shortcut created on your launcher.</string>
     <string name="request_usage_stats">Haven needs <b>Usage Stats</b> permission to do this. Please enable the permission for <b>BOTH OF THE TWO</b> Haven apps shown in the dialog after you press \"Ok\". Failing to do so will cause this feature to not work properly.</string>
     <string name="launch_app_fail">Cannot launch app %s because it has no GUI.</string>
     <string name="request_storage_manager">Haven needs access to <b>All Files</b> for File Shuttle. Please enable the permission for <b>BOTH OF THE TWO </b> (Personal / Work) Haven apps shown in the dialog after you press \"Ok\".</string>
@@ -136,4 +126,121 @@
 
     <!-- Formats -->
     <string name="format_minutes">%d min</string>
+
+    <!-- Launcher & Vault -->
+    <string name="isolation_manager_title">Haven Isolation Manager</string>
+    <string name="launcher_settings_title">Haven settings</string>
+    <string name="icon_group_widget_description">A 4×4 group of app icons arranged around your wallpaper.</string>
+    <string name="battery_widget_description">A responsive battery level widget that changes shape as it is resized.</string>
+    <string name="vault_widget_description">Quick status, Haven Vault access, and one-tap Freeze All for isolated apps.</string>
+    <string name="feed_title">Your Feed</string>
+    <string name="apps_title">Apps</string>
+    <string name="folder_label">Folder</string>
+    <string name="accessibility_action_service_label">Haven system actions</string>
+    <string name="accessibility_action_service_description">Allows Haven to open Android system panels, show Recents, and lock the screen when you choose those actions. Haven does not retrieve screen content or act on accessibility event notifications.</string>
+
+    <!-- Widgets & Launcher UI -->
+    <string name="widget_battery_content_description">Battery level</string>
+    <string name="widget_battery_placeholder">—%%</string>
+    <string name="widget_icon_group_app_icon">App shortcut</string>
+    <string name="widget_icon_group_empty_hint">Choose apps in widget settings</string>
+    <string name="widget_vault_title">Haven Vault</string>
+    <string name="widget_vault_checking">Checking profile…</string>
+    <string name="widget_vault_open_button">Vault</string>
+    <string name="widget_vault_freeze_button">Freeze</string>
+
+    <string name="quick_settings_show_all">Show all settings</string>
+    <string name="quick_settings_home_screen">Home screen</string>
+    <string name="quick_settings_highlight_notifications">Highlight apps that have active notifications.</string>
+
+    <string name="gesture_sheet_title">Gestures</string>
+    <string name="gesture_assign_action_title">Assign action to %1$s</string>
+    <string name="gesture_back_widgets">‹  Widgets</string>
+
+    <string name="icon_editor_title">Edit icon</string>
+    <string name="icon_editor_pack_studio">Edit with Icon Pack Studio</string>
+
+    <string name="icon_group_config_title">Icon group</string>
+    <string name="icon_group_config_subtitle">Choose up to 16 apps and arrange them in the 4×4 widget.</string>
+    <string name="icon_group_config_layout">Layout</string>
+    <string name="icon_group_config_add_to_home">Add to Home</string>
+    <plurals name="icon_group_config_selected_count">
+        <item quantity="one">%1$d / %2$d selected</item>
+        <item quantity="other">%1$d / %2$d selected</item>
+    </plurals>
+
+    <string name="widget_picker_icon_group_summary">Choose apps · Flower, Grid, Honeycomb or Arch · 4×4</string>
+    <string name="widget_picker_calendar_sample">Calendar</string>
+    <string name="widget_picker_clock_sample" translatable="false">09:41</string>
+    <string name="widget_picker_stack_title">Widget Stack</string>
+    <string name="widget_picker_stack_summary">Swipe between widgets · Horizontal or vertical</string>
+    <string name="widget_picker_sample_battery_percent" translatable="false">50%%</string>
+    <string name="widget_picker_battery_sizes">Responsive · 2×1, 1×2, 2×2, 3×2</string>
+    <string name="widget_picker_vault_summary">Profile status · Open Vault · Freeze all</string>
+    <string name="widget_picker_work_profile_label">Haven (Work Profile)</string>
+
+    <string name="home_weather_prompt">Tap for weather</string>
+    <string name="home_drawer_title">All apps</string>
+    <string name="home_drawer_tab_personal">Personal</string>
+    <string name="home_drawer_tab_vault">Haven Vault</string>
+    <string name="vault_state_unprovisioned_title">Work profile not set up</string>
+    <string name="vault_state_unprovisioned_subtitle">Create an isolated Work Profile to clone and freeze apps.</string>
+    <string name="vault_action_setup">Set up</string>
+    <string name="vault_state_pending_title">Setup pending</string>
+    <string name="vault_state_pending_subtitle">Tap the provisioning notification or resume setup.</string>
+    <string name="vault_action_resume">Resume</string>
+    <string name="vault_state_paused_title">Work profile paused</string>
+    <string name="vault_state_paused_subtitle">Isolated apps and background jobs are suspended.</string>
+    <string name="vault_action_pause">Pause</string>
+    <string name="folder_empty_title">This folder is empty</string>
+    <string name="folder_empty_subtitle">Tap the \"+\" button to start adding icons here</string>
+    <string name="folder_add_icon_title">Add icon</string>
+    <string name="folder_add_all_apps">ALL APPS</string>
+    <string name="action_add">Add</string>
+    <string name="home_battery_label">Battery</string>
+    <string name="home_weather_temperature_f">%1$d°F</string>
+    <string name="widget_stack_empty">Empty stack, tap to configure</string>
+    <string name="widget_stack_intro">Add widgets to the stack, then press and drag to reorder them.</string>
+    <string name="widget_stack_scroll_orientation">Scroll orientation</string>
+    <string name="widget_stack_orientation_horizontal">Horizontal</string>
+    <string name="widget_stack_orientation_vertical">Vertical</string>
+    <string name="widget_stack_auto_rotate">Auto rotate widgets</string>
+    <string name="widget_stack_switch_interval">Switch interval  ·  %1$ds</string>
+    <string name="widget_stack_reset_on_return">Reset on return</string>
+    <string name="widget_stack_widgets_header">Widgets · drag to reorder</string>
+    <string name="widget_stack_no_widgets">No widgets yet. Use Add widget to choose one.</string>
+    <string name="widget_resize_title">Resize %1$s</string>
+    <string name="action_done">Done</string>
+
+    <string name="settings_global_appearance">Global appearance</string>
+    <string name="settings_edit_theme">Edit theme</string>
+    <string name="settings_weather_preview" translatable="false">28 C°</string>
+    <string name="settings_launcher_theme_label">Launcher Theme</string>
+    <string name="settings_adaptive_icons_title">Adaptive icons</string>
+    <string name="settings_adaptive_icons_subtitle">Customize the shape of your icons</string>
+    <string name="settings_shape_heading">Shape</string>
+    <string name="settings_folder_icons">Folder icons</string>
+    <string name="settings_icon_pack_title">Icon pack</string>
+    <string name="settings_font_preview_sample">Teres Launcher · Aa 123</string>
+    <string name="settings_icon_size_label">Icon size</string>
+    <string name="settings_dp_value">%1$d dp</string>
+    <string name="settings_icon_size_cd">Icon size %1$d dp</string>
+    <string name="settings_icon_size_summary">Changes Home and dock icons together.</string>
+    <string name="settings_double_tap_title">Double tap</string>
+
+    <!-- Welcome & Modular Experience Mode -->
+    <string name="welcome_mode_title">Choose how you use Haven</string>
+    <string name="welcome_mode_subtitle">Pick the modules you want active on this device. You can switch modes anytime in Settings.</string>
+    <string name="welcome_mode_recommended">Recommended</string>
+    <string name="welcome_mode_both_title">Launcher &amp; Isolation</string>
+    <string name="welcome_mode_both_desc">Use Haven as your home screen and app drawer with built-in Haven Vault app isolation.</string>
+    <string name="welcome_mode_launcher_title">Launcher only</string>
+    <string name="welcome_mode_launcher_desc">Use the customizable home screen, widgets, gestures, and fast app drawer without work-profile isolation UI.</string>
+    <string name="welcome_mode_isolation_title">Isolation only</string>
+    <string name="welcome_mode_isolation_desc">Keep your current home screen and manage isolated apps, freezing, and File Shuttle inside Haven.</string>
+    <string name="welcome_mode_continue">Continue</string>
+    <string name="welcome_mode_apply">Apply mode</string>
+    <string name="settings_experience_mode_title">Experience mode</string>
+    <string name="settings_experience_mode_pref_title">Haven experience mode</string>
+    <string name="mode_isolation_disabled_hint">Isolation features are hidden in Launcher-only mode. Enable them in Experience mode settings.</string>
 </resources>

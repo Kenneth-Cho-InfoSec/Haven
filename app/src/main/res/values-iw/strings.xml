@@ -6,7 +6,6 @@
     <string name="setup_wizard_compatibility">תאימות</string>
     <string name="first_run_alert_cancel">ביי</string>
     <string name="device_admin_desc">שירות בידוד אפליקציות</string>
-    <string name="device_admin_explanation">Haven צריך להפוך ל-מנהל המכשיר כדי לבצע את משימות הבידוד שלו.</string>
     <string name="setup_wizard_welcome_text">Haven הוא יישום שעוזר לך להפעיל יישומים אחרים בפרופיל מבודד. זה עושה זאת על ידי שימוש בתכונה <b>פרופיל עבודה</b> של Android.
 \n
 \nלחץ על \"הבא\", ואנו נספק לך מידע נוסף על Haven, וננחה אותך בתהליך ההגדרה.
@@ -28,14 +27,12 @@
 \n
 \nכדי לאפס את Haven ולהתחיל מחדש, אתה יכול לנקות את הנתונים של Haven בהגדרות.</string>
     <string name="notifications_important">מקלט חשוב</string>
-    <string name="finish_provision_title">לחץ כאן כדי לסיים את הגדרת מקלט</string>
-    <string name="finish_provision_desc">מזל טוב! אתה במרחק קליק אחד מסיום ההגדרה של Haven.</string>
     <string name="service_desc">Haven פועל כעת…</string>
     <string name="service_auto_freeze_title">הקפאה אוטומטית בהמתנה</string>
     <string name="service_title">שירות Haven</string>
     <string name="service_auto_freeze_desc">Haven יקפיא אוטומטית אפליקציות שהושקו מ-\"Unfreeze &amp; Launch\" באירוע נעילת המסך הבא.</string>
     <string name="service_auto_freeze_now">להקפיא עכשיו</string>
-    <string name="app_installing">מתקין...</string>
+    <string name="app_installing">מתקין…</string>
     <string name="fragment_profile_main">ראשי</string>
     <string name="fragment_profile_work">Haven</string>
     <string name="list_item_disabled">[מוקפא] %s</string>
@@ -86,19 +83,15 @@
     <string name="settings_version">גירסה</string>
     <string name="settings_translate">תרגם</string>
     <string name="settings_bug_report">דוח באגים / מעקב אחר בעיות</string>
-    <string name="work_profile_provision_failed">לא ניתן להקצות פרופיל עבודה. תוכל לנסות שוב על ידי הפעלה מחדש של Haven.</string>
     <string name="uninstall_success">היישום \"%s\" הוסר בהצלחה</string>
     <string name="freeze_success">האפליקציה \"%s\" הוקפאה בהצלחה</string>
     <string name="unsupported_launcher">לא ניתן להוסיף קיצורי דרך למפעיל שלך. אנא צור קשר עם המפתח לקבלת מידע נוסף.</string>
-    <string name="app_context_menu_title">פעולות עבור %s</string>
-    <string name="shortcut_create_success">קיצור דרך נוצר על הלאנצר שלך.</string>
     <string name="launch_app_fail">לא ניתן להפעיל את האפליקציה %s כי אין לה GUI.</string>
     <string name="miui_cannot_clone">שכפול אפליקציות שאינן מערכתיות לפרופיל אחר אינו אפשרי כרגע ב-MIUI. נא לשכפל את חנות האפליקציות של המערכת שלך (למשל <b>חנות Play</b>) לפרופיל האחר ולאחר מכן התקן אפליקציות משם.</string>
     <string name="continue_anyway">המשך בכל זאת</string>
     <string name="freeze_all_success">כל האפליקציות ברשימת \"הקפאה אוטומטית\" הוקפאו בהצלחה.</string>
     <string name="work_mode_disabled">נראה שהשבתת את מצב עבודה בזמן הפעלת Haven. אם הפעלת את זה עכשיו, הפעל שוב את Haven.</string>
     <string name="provision_finished">הגדרת המקלט הושלמה. כעת מפעיל מחדש את Haven. אם Haven לא הופעל אוטומטית, תוכל להפעיל אותו שוב מהמפעיל שלך.</string>
-    <string name="msg_device_unsupported">ההרשאה נדחתה או מכשיר לא נתמך</string>
     <string name="clone_success">היישום \"%s\" שוכפל בהצלחה</string>
     <string name="work_profile_not_found">פרופיל עבודה לא נמצא. אנא הפעל מחדש את האפליקציה כדי להקצות מחדש את הפרופיל.</string>
     <string name="settings_dont_freeze_foreground_desc">אל תקפיא אפליקציות בחזית (עם פעילות גלויה) כאשר אתה נועל את המסך. זה יכול להיות שימושי עבור אפליקציות כמו נגני מוזיקה, אבל תצטרך להקפיא אותן באופן ידני באמצעות \"קיצור דרך להקפאת אצווה\" לאחר מכן.</string>

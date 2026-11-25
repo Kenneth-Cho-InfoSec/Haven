@@ -1,5 +1,5 @@
 [versions]
-agp = "9.4.1"
+agp = "9.5.2"
 activity = "1.13.0"
 annotation = "1.11.0"
 appcompat = "1.8.0"
@@ -8,9 +8,10 @@ core = "1.19.1"
 espresso = "3.7.0"
 fragment = "1.9.1"
 junit = "4.13.2"
-lifecycle = "2.11.0"
+lifecycle = "2.11.1"
 material = "1.14.0"
 preference = "1.2.1"
+profileinstaller = "1.4.1"
 recyclerview = "1.4.0"
 swiperefreshlayout = "1.2.0"
 testRunner = "1.7.0"
@@ -21,11 +22,12 @@ androidx-activity = { module = "androidx.activity:activity", version.ref = "acti
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
-androidx-core = { module = "androidx.core:core", version.ref = "core" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core" }
 androidx-fragment = { module = "androidx.fragment:fragment", version.ref = "fragment" }
 androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle" }
 androidx-preference = { module = "androidx.preference:preference", version.ref = "preference" }
+androidx-profileinstaller = { module = "androidx.profileinstaller:profileinstaller", version.ref = "profileinstaller" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "testRunner" }

@@ -25,11 +25,39 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <intent>
+            <action android:name="com.novalauncher.THEME" />
+        </intent>
+        <intent>
+            <action android:name="org.adw.launcher.THEMES" />
+        </intent>
+        <intent>
+            <action android:name="com.anddoes.launcher.THEME" />
+        </intent>
+        <intent>
+            <action android:name="com.teslacoilsw.launcher.THEME" />
+        </intent>
+    </queries>
 
     <permission
-        android:name="io.github.kennethchoinfosec.haven.permission.INTERNAL_PROFILE_IPC"
+        android:name="com.arcturus.haven.permission.INTERNAL_PROFILE_IPC"
         android:protectionLevel="signature" />
-    <uses-permission android:name="io.github.kennethchoinfosec.haven.permission.INTERNAL_PROFILE_IPC" />
+    <uses-permission android:name="com.arcturus.haven.permission.INTERNAL_PROFILE_IPC" />
 
     <application
         android:name=".HavenApplication"
@@ -38,19 +66,78 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher_egg"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_egg_round"
+        android:roundIcon="@mipmap/ic_launcher_egg"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- The main activity for UI -->
-        <activity android:name=".ui.MainActivity"
-            android:launchMode="singleTask"
-            android:exported="true">
+        <profileable android:shell="true" />
+
+        <!-- Initial Welcome & Modular Experience Chooser -->
+        <activity
+            android:name=".ui.WelcomeModeActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Primary Launcher Home entry point -->
+        <activity
+            android:name=".launcher.launcher.HomeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Teres">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.content.pm.action.CONFIRM_PIN_SHORTCUT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Full 2-tab Isolation Manager activity -->
+        <activity android:name=".ui.MainActivity"
+            android:label="@string/isolation_manager_title"
+            android:launchMode="singleTask"
+            android:exported="false" />
+
+        <activity
+            android:name=".launcher.settings.LauncherSettingsActivity"
+            android:exported="false"
+            android:label="@string/launcher_settings_title"
+            android:theme="@style/Theme.Teres" />
+
+        <activity
+            android:name=".launcher.search.LauncherSearchActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Teres"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".launcher.launcher.FeedActivity"
+            android:exported="false"
+            android:label="@string/feed_title"
+            android:theme="@style/Theme.Teres"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".launcher.widgets.IconGroupWidgetConfigActivity"
+            android:exported="false"
+            android:label="@string/icon_group_widget_description"
+            android:theme="@style/Theme.Teres"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".launcher.widgets.WidgetPickerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Teres"
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- Setup Wizard -->
         <activity android:name=".ui.SetupWizardActivity"
@@ -68,24 +155,24 @@
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:theme="@style/Theme.Haven.Translucent.NoTitleBar"
-            android:permission="io.github.kennethchoinfosec.haven.permission.INTERNAL_PROFILE_IPC"
+            android:permission="com.arcturus.haven.permission.INTERNAL_PROFILE_IPC"
             android:exported="true">
             <intent-filter>
-                <action android:name="io.github.kennethchoinfosec.haven.action.FINALIZE_PROVISION" />
-                <action android:name="io.github.kennethchoinfosec.haven.action.START_SERVICE" />
-                <action android:name="io.github.kennethchoinfosec.haven.action.TRY_START_SERVICE" />
-                <action android:name="io.github.kennethchoinfosec.haven.action.INSTALL_PACKAGE" />
-                <action android:name="io.github.kennethchoinfosec.haven.action.UNINSTALL_PACKAGE" />
-                <action android:name="io.github.kennethchoinfosec.haven.action.UNFREEZE_AND_LAUNCH" />
-                <action android:name="io.github.kennethchoinfosec.haven.action.PUBLIC_UNFREEZE_AND_LAUNCH" />
-                <action android:name="io.github.kennethchoinfosec.haven.action.PUBLIC_FREEZE_ALL" />
-                <action android:name="io.github.kennethchoinfosec.haven.action.FREEZE_ALL_IN_LIST" />
+                <action android:name="com.arcturus.haven.action.FINALIZE_PROVISION" />
+                <action android:name="com.arcturus.haven.action.START_SERVICE" />
+                <action android:name="com.arcturus.haven.action.TRY_START_SERVICE" />
+                <action android:name="com.arcturus.haven.action.INSTALL_PACKAGE" />
+                <action android:name="com.arcturus.haven.action.UNINSTALL_PACKAGE" />
+                <action android:name="com.arcturus.haven.action.UNFREEZE_AND_LAUNCH" />
+                <action android:name="com.arcturus.haven.action.PUBLIC_UNFREEZE_AND_LAUNCH" />
+                <action android:name="com.arcturus.haven.action.PUBLIC_FREEZE_ALL" />
+                <action android:name="com.arcturus.haven.action.FREEZE_ALL_IN_LIST" />
                 <!-- We need two of these to avoid being prompted with an action chooser dialog -->
                 <!-- When the intent is actually already forwarded to work profile -->
-                <action android:name="io.github.kennethchoinfosec.haven.action.START_FILE_SHUTTLE" />
-                <action android:name="io.github.kennethchoinfosec.haven.action.START_FILE_SHUTTLE_2" />
-                <action android:name="io.github.kennethchoinfosec.haven.action.SYNCHRONIZE_PREFERENCE" />
-                <action android:name="io.github.kennethchoinfosec.haven.action.PACKAGEINSTALLER_CALLBACK" />
+                <action android:name="com.arcturus.haven.action.START_FILE_SHUTTLE" />
+                <action android:name="com.arcturus.haven.action.START_FILE_SHUTTLE_2" />
+                <action android:name="com.arcturus.haven.action.SYNCHRONIZE_PREFERENCE" />
+                <action android:name="com.arcturus.haven.action.PACKAGEINSTALLER_CALLBACK" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -121,8 +208,8 @@
 
         <!-- A FileProvider that proxies opened Fd from the other profile -->
         <provider
-            android:name="io.github.kennethchoinfosec.haven.util.FileProviderProxy"
-            android:authorities="io.github.kennethchoinfosec.haven.files"
+            android:name="com.arcturus.haven.util.FileProviderProxy"
+            android:authorities="com.arcturus.haven.files"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data
@@ -132,8 +219,8 @@
 
         <!-- A DocumentsProvider that lists files in another profile -->
         <provider
-            android:name="io.github.kennethchoinfosec.haven.util.CrossProfileDocumentsProvider"
-            android:authorities="io.github.kennethchoinfosec.haven.documents"
+            android:name="com.arcturus.haven.util.CrossProfileDocumentsProvider"
+            android:authorities="com.arcturus.haven.documents"
             android:grantUriPermissions="true"
             android:permission="android.permission.MANAGE_DOCUMENTS"
             android:exported="true"
@@ -156,9 +243,65 @@
                 android:exported="true"
                 android:permission="android.permission.BIND_DEVICE_ADMIN" />
 
-        <!-- A hack service to ensure every HavenService is killed when App is removed -->
-        <!-- from recent tasks -->
-        <service android:name=".services.KillerService" />
+        <!-- Launcher widgets & system integration services -->
+        <receiver
+            android:name=".launcher.widgets.IconGroupWidgetProvider"
+            android:exported="true"
+            android:label="Icon group">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/icon_group_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".launcher.widgets.BatteryWidgetProvider"
+            android:exported="true"
+            android:label="Battery">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/battery_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".launcher.widgets.VaultControlWidgetProvider"
+            android:exported="true"
+            android:label="Haven Vault">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/vault_control_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".launcher.launcher.NotificationHighlightService"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".launcher.core.permissions.LauncherActionAccessibilityService"
+            android:exported="true"
+            android:label="@string/accessibility_action_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/launcher_action_accessibility" />
+        </service>
 
         <!-- Service to freeze apps on screen lock -->
         <service android:name=".services.FreezeService"

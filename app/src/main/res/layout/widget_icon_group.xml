@@ -1,0 +1,79 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:padding="2dp">
+
+    <GridLayout
+        android:id="@+id/icon_group_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alignmentMode="alignBounds"
+        android:columnCount="4"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:rowCount="4"
+        android:useDefaultMargins="false">
+
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_0" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_1" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_2" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_3" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_4" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_5" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_6" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_7" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_8" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_9" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_10" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_11" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_12" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_13" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_14" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="0dp" android:layout_columnWeight="1" android:layout_rowWeight="1" android:clipChildren="false" android:clipToPadding="false">
+            <ImageView android:id="@+id/icon_15" android:layout_width="52dp" android:layout_height="52dp" android:layout_gravity="center" android:contentDescription="@string/widget_icon_group_app_icon" android:scaleType="fitCenter" android:visibility="gone" />
+        </FrameLayout>
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/icon_group_empty_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/widget_icon_group_empty_hint"
+        android:textColor="#FFFFFFFF"
+        android:textSize="14sp"
+        android:visibility="gone" />
+</FrameLayout>

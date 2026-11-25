@@ -2,6 +2,10 @@
 <androidx.preference.PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <androidx.preference.Preference
+        android:key="settings_experience_mode"
+        android:title="@string/settings_experience_mode_pref_title" />
+
     <androidx.preference.PreferenceCategory
         android:title="@string/settings_interaction">
 

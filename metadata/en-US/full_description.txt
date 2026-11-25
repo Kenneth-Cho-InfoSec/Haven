@@ -1,6 +1,6 @@
 Haven is a Free and Open-Source app that leverages the "Work Profile" feature of Android to provide an isolated space that you can install or clone apps into.
 
-Haven uses the application id io.github.kennethchoinfosec.haven, so it installs as a separate app and does not upgrade or replace existing installs of the original app.
+Haven uses the application id com.arcturus.haven, so it installs as a separate app and does not upgrade or replace existing installs of the original app.
 
 The main use-cases of Haven include:
 

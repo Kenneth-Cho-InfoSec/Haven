@@ -1,0 +1,25 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/battery_widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="@string/widget_battery_content_description"
+    android:padding="2dp">
+
+    <ImageView
+        android:id="@+id/battery_gauge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/battery_value"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/widget_battery_placeholder"
+        android:textColor="#C6FFE7"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+</FrameLayout>

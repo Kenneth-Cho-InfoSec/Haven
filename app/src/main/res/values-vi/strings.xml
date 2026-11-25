@@ -12,7 +12,6 @@
 \nNếu bạn không thấy thông báo đó, hãy chắc chắn là thiết bị của bạn đang không ở chế độ Không làm phiền và thử kéo trung tâm thông báo xuống.
 \n
 \nĐể đặt lại Haven và bắt đầu lại, bạn có thể xoá dữ liệu của Haven trong Cài đặt.</string>
-    <string name="finish_provision_desc">Chúc mừng! Bạn còn một cú nhấn nữa để hoàn tất thiết lập Haven.</string>
     <string name="service_auto_freeze_desc">Haven sẽ tự động đóng băng các ứng dụng được chạy từ \"Huỷ đóng băng &amp; Chạy\" vào sự kiện khoá màn hình tiếp theo.</string>
     <string name="unfreeze_app">Huỷ đóng băng</string>
     <string name="allow_cross_profile_widgets">Cho phép tiện ích trong Hồ sơ chính</string>
@@ -20,7 +19,6 @@
     <string name="show_all_warning">Việc điều khiển các ứng dụng bị ẩn khỏi danh sách có thể sẽ gây ra dừng đột ngột và nhiều hành vi không mong đợi. Tuy nhiên, tính năng này có thể hữu ích khi các bản ROM có lỗi do hãng tuỳ biến không bật tất cả các ứng dụng hệ thống cần thiết trong hồ sơ công việc theo mặc định. Nếu bạn tiếp tục, bạn tự chịu trách nhiệm.</string>
     <string name="first_run_alert_continue">Tiếp tục</string>
     <string name="device_admin_desc">Dịch vụ cô lập ứng dụng</string>
-    <string name="device_admin_explanation">Haven cần trở thành Quản trị viên thiết bị để thực hiện các công việc cô lập của nó.</string>
     <string name="setup_wizard_permissions">Một lời về các quyền</string>
     <string name="setup_wizard_compatibility">Sự tương thích</string>
     <string name="setup_wizard_ready">Sẵn sàng chưa?</string>
@@ -28,7 +26,6 @@
     <string name="setup_wizard_failed">Thiết lập thất bại</string>
     <string name="setup_wizard_action_required">Yêu cầu hành động</string>
     <string name="notifications_important">Haven - Quan trọng</string>
-    <string name="finish_provision_title">Nhấn vào đây để hoàn tất thiết lập Haven</string>
     <string name="service_title">Dịch vụ Haven</string>
     <string name="service_desc">Haven hiện đang chạy…</string>
     <string name="service_auto_freeze_title">Đang chờ tự động đóng băng</string>
@@ -99,14 +96,10 @@
     <string name="settings_about">Giới thiệu</string>
     <string name="settings_version">Phiên bản</string>
     <string name="settings_source_code">Mã nguồn</string>
-    <string name="msg_device_unsupported">Quyền bị từ chối hoặc thiết bị không được hỗ trợ</string>
-    <string name="work_profile_provision_failed">Không thể quản lý hồ sơ công việc. Bạn có thể thử lại bằng cách khởi động lại Haven.</string>
     <string name="clone_success">Đã nhân bản ứng dụng \"%s\" thành công</string>
     <string name="uninstall_success">Đã gỡ cài đặt ứng dụng \"%s\" thành công</string>
     <string name="unfreeze_success">Đã huỷ đóng băng ứng dụng \"%s\" thành công</string>
     <string name="unsupported_launcher">Không thể thêm lối tắt vào launcher. Vui lòng liên hệ với nhà phát triển để biết thêm thông tin.</string>
-    <string name="app_context_menu_title">Hoạt động cho %s</string>
-    <string name="shortcut_create_success">Đã tạo lối tắt trên launcher.</string>
     <string name="launch_app_fail">Không thể chạy ứng dụng %s vì nó không có giao diện đồ hoạ.</string>
     <string name="request_storage_manager">Haven cần quyền truy cập <b>Tất cả tệp</b> cho Chia sẻ tệp. Vui lòng bật quyền đó cho <b>CẢ HAI</b> ứng dụng Haven (Cá nhân / Công việc) được hiện trong hộp thoại sau khi bạn nhấn \"Ok\".</string>
     <string name="request_system_alert">Haven cần <b>Hiện trên các ứng dụng khác</b> để Chia sẻ tệp hoạt động đúng. Vui lòng bật quyền đó cho <b>CẢ HAI</b> ứng dụng Haven (Cá nhân / Công việc) được hiện trong hộp thoại sau khi bạn nhấn \"Ok\". Quyền này được sử dụng để khởi động các dịch vụ Chia sẻ tệp trong nền.</string>

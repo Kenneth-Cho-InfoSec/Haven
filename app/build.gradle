@@ -1,4 +1,6 @@
-apply plugin: 'com.android.application'
+plugins {
+    alias(libs.plugins.android.application)
+}
 
 def releaseKeystorePropertiesFile = rootProject.file('release/keystore.properties')
 def releaseKeystoreProperties = new Properties()
@@ -9,11 +11,11 @@ if (releaseKeystorePropertiesFile.exists()) {
 android {
     compileSdk = 37
     defaultConfig {
-        applicationId = "io.github.kennethchoinfosec.haven"
-        minSdk = 24
+        applicationId = "com.arcturus.haven"
+        minSdk = 28
         targetSdk = 37
-        versionCode = 9
-        versionName = "0.1.5"
+        versionCode = 10
+        versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -40,13 +42,18 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
+    }
     lint {
         disable 'MissingTranslation', 'ExtraTranslation', 'GoogleAppIndexingWarning', 'InvalidFragmentVersionForActivityResult'
     }
     buildFeatures {
         aidl = true
     }
-    namespace = 'io.github.kennethchoinfosec.haven'
+    namespace = 'com.arcturus.haven'
 }
 
 // Never produce a release APK that Android will sign with a temporary debug key or leave
@@ -67,11 +74,12 @@ dependencies {
     implementation libs.androidx.annotation
     implementation libs.androidx.appcompat
     implementation libs.androidx.constraintlayout
-    implementation libs.androidx.core
+    implementation libs.androidx.core.ktx
     implementation libs.androidx.fragment
     implementation libs.androidx.lifecycle.livedata
     implementation libs.androidx.lifecycle.viewmodel
     implementation libs.androidx.preference
+    implementation libs.androidx.profileinstaller
     implementation libs.androidx.recyclerview
     implementation libs.androidx.swiperefreshlayout
     implementation libs.androidx.viewpager2

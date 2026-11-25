@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/welcome_scroll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/welcome_content_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingTop="28dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="24dp">
+
+        <ImageView
+            android:id="@+id/welcome_logo"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="start"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/ic_launcher_egg" />
+
+        <TextView
+            android:id="@+id/welcome_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/welcome_mode_title"
+            android:textAppearance="@style/TextAppearance.Haven.DisplaySmall"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/welcome_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/welcome_mode_subtitle"
+            android:textAppearance="@style/TextAppearance.Haven.BodyLarge"
+            android:textSize="15sp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_mode_both"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:minHeight="96dp"
+            app:cardBackgroundColor="@color/md_theme_surfaceContainer"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:checkedIcon="@drawable/ic_feed_check"
+            app:checkedIconTint="@color/md_theme_primary"
+            app:strokeColor="@color/md_theme_outlineVariant"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="18dp">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="16dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_home"
+                    app:tint="@color/md_theme_primary" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/welcome_mode_both_title"
+                            android:textColor="@color/md_theme_onSurface"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:background="@color/md_theme_primaryContainer"
+                            android:paddingStart="8dp"
+                            android:paddingTop="2dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="2dp"
+                            android:text="@string/welcome_mode_recommended"
+                            android:textColor="@color/md_theme_onPrimaryContainer"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/welcome_mode_both_desc"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="13.5sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_mode_launcher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:minHeight="96dp"
+            app:cardBackgroundColor="@color/md_theme_surfaceContainer"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:checkedIcon="@drawable/ic_feed_check"
+            app:checkedIconTint="@color/md_theme_primary"
+            app:strokeColor="@color/md_theme_outlineVariant"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="18dp">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="16dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_teres_mark"
+                    app:tint="@color/md_theme_primary" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/welcome_mode_launcher_title"
+                        android:textColor="@color/md_theme_onSurface"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/welcome_mode_launcher_desc"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="13.5sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_mode_isolation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:minHeight="96dp"
+            app:cardBackgroundColor="@color/md_theme_surfaceContainer"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:checkedIcon="@drawable/ic_feed_check"
+            app:checkedIconTint="@color/md_theme_primary"
+            app:strokeColor="@color/md_theme_outlineVariant"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="18dp">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="16dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_vault_shield"
+                    app:tint="@color/md_theme_primary" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/welcome_mode_isolation_title"
+                        android:textColor="@color/md_theme_onSurface"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/welcome_mode_isolation_desc"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="13.5sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/welcome_continue_button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@string/welcome_mode_continue"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</ScrollView>

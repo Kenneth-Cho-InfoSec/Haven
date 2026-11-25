@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="device_admin_desc">Сервіс ізоляції додатку</string>
-    <string name="device_admin_explanation">Haven має стати адміністратором пристрою, щоб виконувати свої завдання ізоляції.</string>
     <string name="first_run_alert_cancel">Закрити</string>
     <string name="first_run_alert_continue">Продовжити</string>
     <string name="setup_wizard_welcome">Ласкаво просимо до Haven</string>

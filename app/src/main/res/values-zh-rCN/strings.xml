@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="first_run_alert">您正在使用 Haven。\n\n这个应用依赖于 Android 的 <b>工作用户</b> 功能来隔离 App。如果你使用的厂商 / 自定义 ROM 破坏了这个功能 (如 MIUI)，您应该立即 <b>退出</b> 并且 <b>停止使用</b> 本应用。\n\n如果你选择继续，Haven 将为您初始化工作用户。\n\n如果您是开发者并且希望将 Haven 带到那些目前不能使用的 ROM 上，欢迎您提交 Pull Request。本应用的开发者对您在不兼容的 ROM 上运行该 App 带来的任何后果 <b>不负任何责任</b>。\n\n您将需要通过点击通知来完成初始化过程，请确保您的设备<b>没有开启</b>免打扰模式。</string>
     <string name="first_run_alert_cancel">再见</string>
     <string name="first_run_alert_continue">继续</string>
     <string name="device_admin_desc">App 隔离服务</string>
-    <string name="device_admin_explanation">Haven 需要成为设备管理员才能正常进行 App 隔离等操作。</string>
     <!-- Notifications -->
     <string name="notifications_important">Haven 重要通知</string>
-    <string name="finish_provision_title">点击这里完成 Haven 初始化</string>
-    <string name="finish_provision_desc">您距离使用 Haven 仅有一步之遥。</string>
     <string name="service_title">Haven 服务</string>
     <string name="service_desc">Haven 正在运行 …</string>
     <string name="service_auto_freeze_title">自动冻结等待中</string>
@@ -56,12 +52,8 @@
     <string name="settings_source_code">源代码</string>
     <string name="settings_bug_report">Bug 报告</string>
     <!-- Toast Long Texts -->
-    <string name="device_admin_toast">Haven 必须拥有设备管理员权限以正常工作，请再试一次</string>
-    <string name="provision_still_pending">正在为您准备 Haven, 请稍候 …</string>
     <string name="provision_finished">Haven 已初始化完成，正在启动 Haven。如果 Haven 没有自动启动，请您从启动器手动启动它。</string>
-    <string name="msg_device_unsupported">权限不足 / 设备不兼容</string>
     <string name="work_profile_not_found">工作用户不可用，请重新启动 Haven 以重新初始化。</string>
-    <string name="work_profile_provision_failed">无法创建工作用户，您可以重启 Haven 并再试一次。</string>
     <string name="work_mode_disabled">工作模式 (Work Mode) 已被您关闭，请开启后再启动 Haven。</string>
     <string name="clone_success">应用 \"%s\" 克隆成功</string>
     <string name="uninstall_success">应用 \"%s\" 卸载成功</string>
@@ -70,9 +62,7 @@
     <string name="clone_fail_system_app">无法将系统应用克隆到 Haven 无权管理的用户下。</string>
     <string name="uninstall_fail_system_app">无法在 Haven 无权管理的用户中卸载系统应用。</string>
     <string name="unsupported_launcher">无法在您的启动器上添加快捷方式，请联系开发者。</string>
-    <string name="app_context_menu_title">%s 可用操作</string>
     <string name="freeze_all_success">所有在 \"自动冻结\" 列表中的应用都已经冻结成功。</string>
-    <string name="shortcut_create_success">快捷方式已创建。</string>
     <string name="request_usage_stats">Haven 需要 <b>使用情况数据</b> 来做这件事。请在按 \"确定\" 后出现的窗口中，对 <b>两个</b> Haven都打开此权限。如果没有全部打开，该功能将无法正确运作。</string>
     <string name="launch_app_fail">无法启动没有用户界面的应用 %s。</string>
     <!-- MIUI -->

@@ -1,0 +1,11 @@
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/battery_widget_description"
+    android:initialLayout="@layout/widget_battery"
+    android:minWidth="120dp"
+    android:minHeight="60dp"
+    android:minResizeWidth="60dp"
+    android:minResizeHeight="60dp"
+    android:previewImage="@mipmap/ic_launcher_egg"
+    android:resizeMode="horizontal|vertical"
+    android:updatePeriodMillis="1800000"
+    android:widgetCategory="home_screen" />

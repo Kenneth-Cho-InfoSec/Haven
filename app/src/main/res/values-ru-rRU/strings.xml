@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="first_run_alert">Сейчас Haven будет настроен.
-\n
-\nЭто приложение зависит от реализации <b>Рабочего профиля</b> системой Android для изоляции приложений. Если ваш производитель / кастомная прошивка не поддерживают эту функцию или сломали ее (как, например, MIUI), вам следует <b>ВЫЙТИ</b> и <b>НЕ ИСПОЛЬЗОВАТЬ</b> это приложение.
-\n
-\nЕсли вы продолжите, Haven настроит Рабочий профиль для вас.
-\n
-\nЕсли вы являетесь разработчиком и хотели бы сделать так, чтобы Haven работал на этих сломаных прошивках, таких как MIUI, - пулл реквесты в Git с удовольствием принимаются. Разработчик приложения не несет <b>АБСОЛЮТНО НИКАКОЙ ОТВЕТСТВЕННОСТИ</b> если вы сломаете ваше устройство с несовместимой прошивкой.
-\n
-\nВам нужно будет кликнуть на оповещение для успешного завершения установки, убедитесь, что устройство находится <b>НЕ</b> в режиме \"Не беспокоить\".</string>
     <string name="first_run_alert_cancel">Выйти</string>
     <string name="first_run_alert_continue">Продолжить</string>
     <string name="device_admin_desc">Служба изоляции приложений</string>
-    <string name="device_admin_explanation">Haven требуется стать администратором устройства, чтобы управлять изоляцией.</string>
     <string name="service_title">Служба Haven</string>
     <string name="service_desc">Haven запущен …</string>
     <string name="fragment_profile_main">Основной</string>
@@ -35,12 +25,8 @@
     <string name="settings_version">Версия</string>
     <string name="settings_source_code">Исходный код</string>
     <string name="settings_bug_report">Отслеживание проблем</string>
-    <string name="device_admin_toast">Вам необходимо дать Haven права Администратора устройства для правильной работы. Пожалуйста, попробуйте снова.</string>
-    <string name="provision_still_pending">Пожалуйста подождите пока мы подготавливаем профиль Haven для вас …</string>
     <string name="provision_finished">Настройка Haven завершена. Перезапускам Haven. Если Haven не откроется сам, запустите его из вашего лаучнера.</string>
-    <string name="msg_device_unsupported">Доступ запрещён или устройство не поддерживается</string>
     <string name="work_profile_not_found">Рабочий профиль не найден. Перезапустите приложение, чтобы пересоздать профиль.</string>
-    <string name="work_profile_provision_failed">Невозможно создать рабочий профиль. Вы можете попробовать снова, перезапустив Haven.</string>
     <string name="work_mode_disabled">Похоже, что вы отключили рабочий режим, пока Haven запускался. Если вы включили его сейчас, то перезапустите Haven.</string>
     <string name="clone_success">Приложение \"%s\" успешно клонировано</string>
     <string name="uninstall_success">Приложение \"%s\" успешно удалено</string>
@@ -49,12 +35,9 @@
     <string name="clone_fail_system_app">Невозможно клонировать системные приложения в профиль, который Haven не контролирует.</string>
     <string name="uninstall_fail_system_app">Невозможно удалить системные приложения в профиле, который Haven не контролирует.</string>
     <string name="unsupported_launcher">Невозможно добавить ярлык в ваш лаунчер. Пожалуйста, свяжитесь с разработчиком.</string>
-    <string name="app_context_menu_title">Операции для %s</string>
     <string name="freeze_all_success">Все приложения в списке автозаморозки были успешно заморожены.</string>
-    <string name="shortcut_create_success">Ярлык создан в вашем лаунчере.</string>
     <string name="miui_cannot_clone">Клонирование несистемных приложений в другой профиль в данный момент невозможно на MIUI. Пожалуйста, клонируйте магазин приложений вашей системы (например, <b>Play Маркет</b>) в ваш другой профиль и установите приложения оттуда.</string>
-    <string name="finish_provision_title">Нажмите, чтобы завершить настройку Haven</string>
-    <string name="app_installing">Установка...</string>
+    <string name="app_installing">Установка…</string>
     <string name="allow_cross_profile_widgets">Виджеты в осн. профиле</string>
     <string name="search">Поиск</string>
     <string name="service_auto_freeze_title">Ожидание автозаморозки</string>
@@ -71,7 +54,6 @@
     <string name="settings_services">Службы</string>
     <string name="continue_anyway">Всё равно продолжить</string>
     <string name="notifications_important">Haven: важное</string>
-    <string name="finish_provision_desc">Поздравляем! Вы в одном шаге от завершения настройки Haven.</string>
     <string name="install_app_to_profile">Установить APK в Haven</string>
     <string name="install_app_to_profile_success">Приложение установлено в рабочий профиль.</string>
     <string name="settings_block_contacts_searching">Не отслеживать контакты</string>

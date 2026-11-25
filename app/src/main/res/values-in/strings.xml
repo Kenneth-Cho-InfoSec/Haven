@@ -2,7 +2,6 @@
 <resources>
     <string name="first_run_alert_cancel">Selamat tinggal</string>
     <string name="first_run_alert_continue">Lanjutkan</string>
-    <string name="device_admin_explanation">Haven harus menjadi Admin Perangkat untuk melakukan tugas isolasinya.</string>
     <string name="device_admin_desc">Layanan Isolasi Aplikasi</string>
     <string name="setup_wizard_welcome">Selamat datang di Haven</string>
     <string name="setup_wizard_permissions">Sepatah kata tentang izin</string>
@@ -37,14 +36,12 @@
 \n
 \nUntuk menyetel ulang Haven dan memulai kembali, Anda dapat menghapus data Haven di Setelan.</string>
     <string name="notifications_important">Penampungan Penting</string>
-    <string name="finish_provision_title">Klik di sini untuk menyelesaikan penyiapan Haven</string>
-    <string name="finish_provision_desc">Selamat! Anda hanya perlu satu klik untuk menyelesaikan penyiapan Haven.</string>
     <string name="service_title">Layanan Haven</string>
     <string name="service_desc">Haven sekarang berjalan …</string>
     <string name="service_auto_freeze_title">Pembekuan otomatis tertunda</string>
     <string name="service_auto_freeze_desc">Haven akan membekukan aplikasi secara otomatis yang diluncurkan dari \"Cairan &amp; Luncurkan\" pada acara penguncian layar berikutnya.</string>
     <string name="service_auto_freeze_now">Bekukan Sekarang</string>
-    <string name="app_installing">Memasang...</string>
+    <string name="app_installing">Memasang…</string>
     <string name="fragment_profile_main">Utama</string>
     <string name="fragment_profile_work">Haven</string>
     <string name="list_item_disabled">[Bekukan] %s</string>
@@ -70,18 +67,14 @@
     <string name="settings_translate">Terjemah</string>
     <string name="settings_bug_report">Laporan Masalah / Pelacak Masalah</string>
     <string name="provision_finished">Pengaturan tempat berlindung selesai. Sekarang memulai kembali Haven. Jika Haven tidak memulai secara otomatis, Anda dapat meluncurkannya lagi dari peluncur.</string>
-    <string name="msg_device_unsupported">Izin ditolak atau Perangkat tidak didukung</string>
     <string name="work_profile_not_found">Profil kerja tidak ditemukan. Mulai ulang aplikasi untuk menyediakan ulang profil.</string>
-    <string name="work_profile_provision_failed">Tidak dapat menyediakan profil kerja. Anda dapat mencoba lagi dengan memulai ulang Haven.</string>
     <string name="clone_success">Aplikasi \"%s\" berhasil digandakan</string>
     <string name="uninstall_success">Aplikasi \"%s\" berhasil dihapus instalasinya</string>
     <string name="freeze_success">Aplikasi \"%s\" berhasil dibekukan</string>
     <string name="unfreeze_success">Aplikasi \"%s\" berhasil dicairkan</string>
     <string name="clone_fail_system_app">Tidak dapat mengkloning aplikasi sistem ke profil yang tidak dapat dikontrol oleh Haven.</string>
     <string name="unsupported_launcher">Tidak dapat menambahkan pintasan ke peluncur Anda. Silakan hubungi pengembang untuk informasi lebih lanjut.</string>
-    <string name="app_context_menu_title">Operasi untuk %s</string>
     <string name="freeze_all_success">Semua aplikasi dalam daftar \"Bekukan Otomatis\" telah berhasil dibekukan.</string>
-    <string name="shortcut_create_success">Pintasan dibuat di peluncur Anda.</string>
     <string name="launch_app_fail">Tidak dapat meluncurkan aplikasi %s karena tidak memiliki GUI.</string>
     <string name="continue_anyway">Tetap lanjutkan</string>
     <string name="setup_wizard_permissions_text">Secara bawaan, Haven tidak akan meminta izin individu apa pun. Namun, setelah Anda melanjutkan proses penyiapan, Haven akan mencoba menyiapkan Profil Kerja dan karenanya menjadi <b>pengelola profil</b> profil tersebut.

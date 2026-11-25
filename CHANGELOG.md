@@ -1,3 +1,13 @@
+1.0.0
+===
+
+- Unified Haven into an Android Home Launcher & Work Profile Isolation suite under `com.arcturus.haven`.
+- Added Modular Experience Modes (`Launcher & Isolation`, `Launcher only`, and `Isolation only`) switchable on first launch or in Settings.
+- Added simplified default Home workspace (Dock + Haven Search, clean wallpaper canvas) with configurable clock/date/weather, battery tile, 4–8 column grid, Widget Stacks, built-in Battery/Icon Group/Vault Control widgets, workspace/icon gestures, and Your Feed RSS/Atom reader.
+- Added high-performance Kotlin app drawer (`DrawerIconPipeline`, `CircularAppIconDrawable`), icon pack & adaptive shape support, launch views, sorting/categories, hidden apps, notification dots, and configurable Personal / Haven Vault tab switcher bar (disabled by default).
+- Added Haven Search across on-device apps, contacts, media, calendar, app shortcuts, Android settings, web suggestions, and Play Store, plus JSON workspace/settings backup & restore.
+- Streamlined the Kotlin/Java codebase across 84 Kotlin files, 29 Java files, and 11 AIDL interfaces on Android 17 (API 37), AGP 9.5.2, Gradle 9.9.2, and Kotlin 2.4.21.
+
 0.1.5
 ===
 

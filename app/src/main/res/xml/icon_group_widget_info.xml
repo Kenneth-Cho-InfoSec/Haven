@@ -1,0 +1,12 @@
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/icon_group_widget_description"
+    android:initialLayout="@layout/widget_icon_group"
+    android:configure="com.arcturus.haven.launcher.widgets.IconGroupWidgetConfigActivity"
+    android:minWidth="240dp"
+    android:minHeight="240dp"
+    android:minResizeWidth="120dp"
+    android:minResizeHeight="120dp"
+    android:previewImage="@mipmap/ic_launcher_egg"
+    android:resizeMode="horizontal|vertical"
+    android:updatePeriodMillis="0"
+    android:widgetCategory="home_screen" />

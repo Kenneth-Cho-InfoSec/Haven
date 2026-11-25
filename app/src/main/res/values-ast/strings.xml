@@ -3,13 +3,10 @@
     <string name="setup_wizard_permissions">Falemos de los permisos</string>
     <string name="setup_wizard_compatibility">Compatibilidá</string>
     <string name="provision_finished">Completóse la configuración de Haven y va reaniciase. Si Haven nun s\'anició automáticamente, pues volver llanzalu dende\'l llanzador.</string>
-    <string name="msg_device_unsupported">Negóse\'l permisu o\'l preséu nun ta sofitáu</string>
     <string name="work_profile_not_found">Nun s\'atopó\'l perfil de trabayu. Volvi aniciar l\'aplicación pa volver fornir el perfil, por favor.</string>
-    <string name="work_profile_provision_failed">Nun pue fornise\'l perfil de trabayu. Pues volver tentalo reaniciando Haven.</string>
     <string name="first_run_alert_cancel">Marchar d\'equí</string>
     <string name="first_run_alert_continue">Siguir</string>
     <string name="device_admin_desc">Serviciu d\'aislamientu d\'aplicaciones</string>
-    <string name="device_admin_explanation">Haven ha convertise n\'alministrador del preséu pa facer les xeres d\'aislamientu.</string>
     <string name="setup_wizard_welcome">Afáyate en Haven</string>
     <string name="setup_wizard_welcome_text">Haven ye una aplicación que t\'ayuda a executar aplicaciones nun perfil aisláu. Esto ye posible per duana de la carauterística <b>Perfil de trabayu</b> d\'Android.
 \n
@@ -40,8 +37,6 @@
 \n
 \nPa reafitar Haven y volver comenzar, pues llimpiar los datos de Haven n\'Axustes.</string>
     <string name="notifications_important">Avisu importante</string>
-    <string name="finish_provision_title">Calca equí pa finar la configuración de Haven</string>
-    <string name="finish_provision_desc">¡Norabona! Tas a un calcu de finar la configuración de Haven.</string>
     <string name="service_title">Serviciu d\'aislamientu</string>
     <string name="service_desc">Haven ta n\'execución…</string>
     <string name="service_auto_freeze_title">Desactivación automática pendiente</string>
@@ -96,9 +91,7 @@
     <string name="clone_fail_system_app">Nun puen clonase les aplicaciones del sistema a un perfil nel que Shellter nun tien el control.</string>
     <string name="uninstall_fail_system_app">Nun puen desinstalase les aplicaciones d\'un perfil nel que Haven nun tien el control.</string>
     <string name="unsupported_launcher">Nun puen amestase atayos al llanzador. Ponte en contautu col desendolcador pa consiguir más información, por favor.</string>
-    <string name="app_context_menu_title">Operaciones pa %s</string>
     <string name="freeze_all_success">Toles aplicaciones de la llista «Desactivación automática» desactiváronse con ésitu.</string>
-    <string name="shortcut_create_success">L\'atayu creóse nel llanzador.</string>
     <string name="request_usage_stats">Haven precisa\'l permisu <b>Estadístiques d\'usu</b> pa facer esto. Activa\'l permisu pa les instancies de Haven <b>DE LOS DOS PERFILES</b> nel diálogu qu\'apaez dempués de primir «D\'acuerdu». Si nun lo faes, carauterística nun va funcionar afayadizamente.</string>
     <string name="launch_app_fail">Nun pue llanzase l\'aplicación %s porque nun tien nenguna interfaz gráfica.</string>
     <string name="request_storage_manager">Haven tien d\'acceder a <b>Tolos ficheros</b> pa la pasera de ficheros. Activa\'l permisu pa les instancies de Haven <b>DE LOS DOS PERFILES</b> nel diálogu qu\'apaez dempués de primir «D\'acuerdu».</string>

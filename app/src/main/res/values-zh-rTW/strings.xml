@@ -9,18 +9,13 @@
     <string name="settings_source_code">源代碼</string>
     <string name="settings_translate">翻譯</string>
     <string name="settings_bug_report">Bug 報告</string>
-    <string name="device_admin_toast">您必須授予「裝置管理員」權限才能使 Haven 正常工作。請重試。</string>
-    <string name="provision_still_pending">我們正在爲您準備 Haven 帳戶，請稍候……</string>
-    <string name="msg_device_unsupported">權限不足 / 設備不兼容</string>
     <string name="work_profile_not_found">工作用戶不可用，請重新啓動 Haven 以重新初始化。</string>
-    <string name="work_profile_provision_failed">無法創建工作用戶，您可以重啓 Haven 並再試一次。</string>
     <string name="uninstall_success">應用 \"%s\" 卸載成功</string>
     <string name="clone_success">應用 \"%s\" 克隆成功</string>
     <string name="freeze_success">應用 \"%s\" 凍結成功</string>
     <string name="unfreeze_success">應用 \"%s\" 解凍成功</string>
     <string name="clone_fail_system_app">無法將系統應用克隆到 Haven 無權管理的用戶下。</string>
     <string name="uninstall_fail_system_app">無法在 Haven 無權管理的用戶中卸載系統應用。</string>
-    <string name="app_context_menu_title">%s 可用操作</string>
     <string name="freeze_all_success">所有在 \"自動凍結\" 列表中的應用都已經凍結成功。</string>
     <string name="launch_app_fail">無法啓動沒有用戶界面的應用 %s。</string>
     <string name="miui_cannot_clone">目前無法在 MIUI 上克隆非系統應用。請先克隆您的系統應用商店 (如 <b>Play Store</b>) 然後從克隆的應用商店中安裝應用。</string>
@@ -28,19 +23,9 @@
     <string name="show_all_warning">對列表中默認隱藏的應用執行操作可能導致崩潰以及其他各種無法預料的行爲。但是，當您的手機廠商沒有正確在工作用戶中開啓所有必要的系統組件應用的時候，這個功能可以幫助您解決問題。如果您選擇繼續，您確保您瞭解您在做什麼，Haven 無法提供任何保證。</string>
     <string name="provision_finished">Haven 已初始化完成，正在啓動 Haven。如果 Haven 沒有自動啓動，請您從啓動器手動啓動它。</string>
     <string name="settings_dont_freeze_foreground">跳過前臺應用</string>
-    <string name="first_run_alert">您即將開始設定 Haven。 
-\n 
-\n此應用程式基於 Android 的 <b>工作資料夾</b> 功能以隔離應用程式。如果您正在使用的廠商/客製化 ROM 破壞了此功能（如 MIUI），您應該立即 <b>退出</b> 並 <b>不要</b> 使用此應用程式。 
-\n 
-\n如果您選擇繼續，Haven 將爲您創建工作資料夾。 
-\n 
-\n如果您是開發者並希望使 Haven 在 MIUI 等不相容的 ROM 上工作，歡迎提交 pull request。如果您的裝置在運行不相容的 ROM 時損毀，開發者將 <b>不承擔任何責任</b> 。 
-\n 
-\n您將在完成設定後收到一則通知，請確定您的裝置 <b>不在</b> 勿擾模式中。</string>
     <string name="settings_cross_profile_file_chooser_desc">打開以後，您將可以且僅可以從系統的 Documents UI (啓動器上的名稱爲 文件 或 下載) 或支持 Documents UI 的 APP 中 瀏覽 / 查看 / 選擇 / 複製 Haven 內的文件到主用戶，反之亦然。這不會影響對文件系統的隔離。即使是支持 Documents UI 的 App 也只能臨時獲取您選擇的文件的訪問權限。</string>
     <string name="settings_dont_freeze_foreground_desc">在您鎖屏的時候，不要凍結前臺應用 (鎖屏時仍有可見窗口的應用)。這主要用於音樂播放器等 App，但您將需要在使用完成後手動使用 \"批量凍結\" 快捷方式凍結它們。</string>
     <string name="work_mode_disabled">工作模式 (Work Mode) 已被您關閉，請開啓後再啓動 Haven。</string>
-    <string name="shortcut_create_success">快捷方式已創建。</string>
     <string name="request_usage_stats">Haven 需要 <b>使用情況數據</b> 來做這件事。請在按 \"確定\" 後出現的窗口中，對 <b>兩個</b> Haven都打開此權限。如果沒有全部打開，該功能將無法正確運作。</string>
     <string name="request_storage_manager">File Shuttle 需要訪問 <b>全部文件</b> 的權限。請在接下來的對話框中對 <b>兩個 Haven</b> (工作用戶內 / 外) 都啓用該權限。</string>
     <string name="request_system_alert">File Shuttle 需要 <b>懸浮窗</b> 權限才能在 Haven 不在運行時正常啓動。請在接下來的對話框中對 <b>兩個 Haven</b> (工作用戶內 / 外) 都打開該權限。</string>
@@ -50,9 +35,6 @@
     <string name="first_run_alert_cancel">再見</string>
     <string name="first_run_alert_continue">繼續</string>
     <string name="device_admin_desc">App 隔離服務</string>
-    <string name="device_admin_explanation">Haven 需要成爲設備管理員才能正常進行 App 隔離等操作。</string>
-    <string name="finish_provision_title">點擊這裏完成 Haven 初始化</string>
-    <string name="finish_provision_desc">您距離使用 Haven 僅有一步之遙。</string>
     <string name="service_title">Haven 服務</string>
     <string name="service_desc">Haven 正在運行 …</string>
     <string name="service_auto_freeze_title">自動凍結等待中</string>

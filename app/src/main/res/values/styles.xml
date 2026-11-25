@@ -38,7 +38,8 @@
     </style>
 
     <style name="AppTheme.Override" parent="AppTheme.Base">
-        <!-- Empty; override from specific styles. -->
+        <item name="android:navigationBarColor">@color/md_theme_surfaceContainer</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="AppTheme" parent="AppTheme.Override">
@@ -77,12 +78,6 @@
 
     <style name="Widget.Haven.PopupMenu.Overflow" parent="Widget.AppCompat.PopupMenu.Overflow">
         <item name="android:popupBackground">@color/md_theme_surface</item>
-    </style>
-
-    <style name="Widget.Haven.Toolbar" parent="Widget.Material3Expressive.Toolbar">
-        <item name="titleTextAppearance">@style/TextAppearance.Haven.TitleLarge</item>
-        <item name="subtitleTextAppearance">@style/TextAppearance.Material3.BodyMedium</item>
-        <item name="android:background">@color/md_theme_surface</item>
     </style>
 
     <style name="Widget.Haven.BottomNavigation" parent="Widget.Material3Expressive.BottomNavigationView">
@@ -139,5 +134,87 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+
+    <style name="Theme.Teres" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorAccent">#8ED8D2</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:colorAccent">#8ED8D2</item>
+        <item name="android:alertDialogTheme">@style/Theme.Teres.Dialog.Dark</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Teres.Light" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">#4CACA5</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:colorAccent">#4CACA5</item>
+        <item name="android:alertDialogTheme">@style/Theme.Teres.Dialog.Light</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Teres.FullscreenDialog" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    </style>
+
+    <style name="Theme.Teres.Dialog.Dark" parent="android:style/Theme.Material.Dialog.Alert">
+        <item name="android:colorAccent">#8ED8D2</item>
+        <item name="android:colorBackground">#202A2C</item>
+        <item name="android:textColorPrimary">#F1F5F4</item>
+        <item name="android:textColorSecondary">#D0D9D7</item>
+        <item name="android:dialogCornerRadius">28dp</item>
+        <item name="android:windowMinWidthMinor">87%</item>
+        <item name="android:windowMinWidthMajor">65%</item>
+    </style>
+
+    <style name="Theme.Teres.Dialog.Light" parent="android:style/Theme.Material.Light.Dialog.Alert">
+        <item name="android:colorAccent">#4CACA5</item>
+        <item name="android:colorBackground">#FFFFFF</item>
+        <item name="android:textColorPrimary">#172021</item>
+        <item name="android:textColorSecondary">#4B5A58</item>
+        <item name="android:dialogCornerRadius">28dp</item>
+        <item name="android:windowMinWidthMinor">87%</item>
+        <item name="android:windowMinWidthMajor">65%</item>
+    </style>
+
+    <style name="TeresTypographyPoppins">
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TeresTypographySystem">
+        <item name="android:fontFamily">sans</item>
+    </style>
+
+    <style name="TeresTypographySans">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TeresTypographySerif">
+        <item name="android:fontFamily">serif</item>
+    </style>
+
+    <style name="TeresTypographyMono">
+        <item name="android:fontFamily">monospace</item>
     </style>
 </resources>

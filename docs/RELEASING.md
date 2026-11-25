@@ -44,5 +44,17 @@ Publish the full SHA-256 certificate digest and state which APK it belongs to.
 Users can run the same command on a downloaded APK and compare the digest. Keep
 the keystore backed up securely; losing it prevents in-place updates. The
 published `v0.1.4` APK uses a different certificate from `v0.1.5`, so users on
-`v0.1.4` must uninstall before installing `v0.1.5`. Future releases must continue
-using the new private key to allow in-place updates from `v0.1.5` onward.
+`v0.1.4` must uninstall before installing `v0.1.5`.
+
+## Release `v1.0.0` signing identity
+
+Version `1.0.0` (`applicationId = com.arcturus.haven`, `versionCode = 10`) is signed
+with the Haven release keystore stored locally at `release/haven-release.jks`.
+Its certificate SHA-256 digest is:
+`304c04d39ad4cd0b45c8d368521a87edec6bbaf75bb1420166a48108a55bea67`.
+
+Because this key differs from the earlier `v0.1.5` key
+(`3f041588698bcd386a9f9bc0ab06ef0cf6b32f226e1cb53510a48bbb3f6cfef5`), users upgrading
+from prior releases must uninstall any conflicting older build before installing
+`v1.0.0`. Future releases from `v1.0.0` onward should keep using
+`release/haven-release.jks` to preserve in-place updates.

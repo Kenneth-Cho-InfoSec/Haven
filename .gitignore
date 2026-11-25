@@ -84,3 +84,6 @@ fastlane/readme.md
 # temporary google play repackaging tool
 repackage/*
 !repackage/repackage.sh
+
+# Local knowledge graph output
+graphify-out/

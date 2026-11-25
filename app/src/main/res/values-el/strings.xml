@@ -25,19 +25,14 @@
     <string name="settings_version">Έκδοση</string>
     <string name="settings_source_code">Πηγαίος κώδικας</string>
     <string name="settings_translate">Μετάφραση</string>
-    <string name="msg_device_unsupported">Άρνηση αδειοδότησης ή μη υποστηριζόμενη συσκευή</string>
-    <string name="work_profile_provision_failed">Αποτυχία φόρτωσης του Προφίλ Εργασίας. Προσπάθησε ξανά επανεκκινώντας το Haven.</string>
     <string name="clone_success">Η εφαρμογή \"%s\" κλωνοποιήθηκε επιτυχώς</string>
     <string name="uninstall_success">Η εφαρμογή \"%s\" απεγκαταστάθηκε επιτυχώς</string>
     <string name="freeze_success">Η εφαρμογή \"%s\" πάγωσε επιτυχώς</string>
     <string name="unfreeze_success">Η εφαρμογή \"%s\" ξεπάγωσε επιτυχώς</string>
     <string name="uninstall_fail_system_app">Αδυναμία απεγκατάστασης εφαρμογών συστήματος από ένα προφίλ που δεν ελέγχεται από το Haven.</string>
     <string name="freeze_all_success">Όλες οι εφαρμογές στη λίστα \"Πάγωσε Αυτόματα\" έχουν παγώσει επιτυχώς.</string>
-    <string name="shortcut_create_success">Επιτυχής δημιουργία συντόμευσης.</string>
-    <string name="app_context_menu_title">Διεργασίες για την εφαρμογή %s</string>
     <string name="continue_anyway">Συνέχισε παρόλα αυτά</string>
     <string name="miui_cannot_clone">Η κλωνοποίηση εφαρμογών χρήστη μεταξύ των Προφίλ είναι προς το παρόν αδύνατη στο MIUI. Μια πιθανή λύση σε αυτό το πρόβλημα είναι η κλωνοποίηση του καταστήματος εφαρμογών του συστήματος (πχ. <b>Play Store, Fdroid</b>) στο Προφίλ Εργασίας και η εγκατάσταση εφαρμογών από εκεί.</string>
-    <string name="device_admin_explanation">Το Haven χρειάζεται να οριστεί ως Διαχειριστής Συσκευής ώστε να εκτελέσει τις υπηρεσίες απομόνωσης.</string>
     <string name="settings_auto_freeze_service_desc">Όταν η οθόνη είναι κλειδωμένη, πάγωσε αυτόματα εφαρμογές που έχουν εκκινηθεί από τη συντόμευση \"Ξεπάγωσε και τρέξε\".</string>
     <string name="setup_wizard_welcome_text">To Haven είναι μια εφαρμογή που δίνει τη δυνατότητα να τρέξουν άλλες εφαρμογές μέσα σε ένα απομονωμένο προφίλ. Αυτό επιτυγχάνεται μέσω της χρήσης του <b>Προφίλ Εργασίας</b> , που αποτελεί μια δυνατότητα του Android.
 \n
@@ -101,13 +96,11 @@
     <string name="setup_wizard_failed">Αποτυχία ενεργοποίησης</string>
     <string name="setup_wizard_action_required">Απαιτείται ενέργεια</string>
     <string name="notifications_important">Σημαντικό για το Haven</string>
-    <string name="finish_provision_title">Πάτησε εδώ για να ολοκληρώσεις την ενεργοποίηση του Haven</string>
-    <string name="finish_provision_desc">Συγχαρητήρια! Είσαι μόνο ένα κλικ μακριά από την ολοκλήρωση ενεργοποίησης του Haven.</string>
     <string name="service_title">Υπηρεσία του Haven</string>
     <string name="service_desc">Το Haven είναι σε λειτουργία…</string>
     <string name="service_auto_freeze_title">Αναμονή αυτόματου παγώματος εφαρμογών</string>
     <string name="service_auto_freeze_now">Πάγωσε τώρα</string>
-    <string name="app_installing">Εγκατάσταση...</string>
+    <string name="app_installing">Εγκατάσταση…</string>
     <string name="fragment_profile_main">Κύριο</string>
     <string name="fragment_profile_work">Haven</string>
     <string name="list_item_disabled">[Παγωμένο] %s</string>

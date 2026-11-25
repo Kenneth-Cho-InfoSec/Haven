@@ -5,7 +5,6 @@
     android:id="@+id/wizard_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_theme_surface"
     android:paddingStart="24dp"
     android:paddingEnd="24dp">
 
