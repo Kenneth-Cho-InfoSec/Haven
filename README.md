@@ -111,7 +111,7 @@ On Windows, use `gradlew.bat` instead of `./gradlew`. Release packaging (`packag
 - **Core Work Profile Permissions**: App discovery across Personal and Work Profiles requires `QUERY_ALL_PACKAGES`. File Shuttle accesses shared storage directly and requires `MANAGE_EXTERNAL_STORAGE`. Both permissions are restricted for Google Play distribution and require a policy eligibility review before publishing there; F-Droid and direct APK channels follow separate rules.
 - **Optional Launcher Permissions**: Requested only when you enable the corresponding feature—approximate foreground location (`ACCESS_COARSE_LOCATION`) and network (`INTERNET`) for Open-Meteo weather, RSS feeds, and web suggestions; Contacts, Calendar, and Media (`READ_CONTACTS`, `READ_CALENDAR`, `READ_MEDIA_*`) for on-device search; Notification Listener for notification dots; Usage Stats for usage sorting; and Accessibility Service (`canRetrieveWindowContent="false"`) strictly for lock/system gesture actions.
 - **Vendor ROM Compatibility**: Haven relies on Android's Work Profile and Device Policy APIs. Vendor ROMs that disable or heavily alter managed profiles may fail provisioning or restrict features.
-- **Separate Package Identity**: Because Haven uses `com.arcturus.haven`, it does not inherit profile ownership, data, shortcuts, or permissions from Shelter, Island, or older `io.github.kennethchoinfosec.haven` builds.
+- **Separate Package Identity**: Because Haven uses `com.arcturus.haven`, it does not inherit profile ownership, data, shortcuts, or permissions from Shelter, Island, or older `io.github.kennethchoinfosec.haven` builds. Users of `io.github.kennethchoinfosec.haven` 0.1.x can keep their existing Work Profile by updating to the 0.1.6 migration bridge, which transfers profile ownership to `com.arcturus.haven`; see [docs/LEGACY_MIGRATION.md](docs/LEGACY_MIGRATION.md).
 - **Release Signing Key (`v1.0.0+`)**: The `v1.0.0` APK (`applicationId = com.arcturus.haven`, `versionCode = 10`) is signed with the Haven release certificate SHA-256 digest `304c04d39ad4cd0b45c8d368521a87edec6bbaf75bb1420166a48108a55bea67` (different from the legacy `v0.1.5` key `3f041588698bcd386a9f9bc0ab06ef0cf6b32f226e1cb53510a48bbb3f6cfef5`). Uninstall any earlier differently signed build before installing `v1.0.0`; see [docs/RELEASING.md](docs/RELEASING.md).
 - **Uninstalling Haven**: If you provisioned a Work Profile, remove the Work Profile in Android Settings first, then uninstall Haven normally.
 
@@ -121,6 +121,7 @@ On Windows, use `gradlew.bat` instead of `./gradlew`. Release packaging (`packag
 - **Issues**: https://github.com/Kenneth-Cho-InfoSec/Haven/issues
 - **Issue Remediation Notes**: [docs/ISSUE_REMEDIATION.md](docs/ISSUE_REMEDIATION.md)
 - **Release Signing Guide**: [docs/RELEASING.md](docs/RELEASING.md)
+- **Migrating from 0.1.x**: [docs/LEGACY_MIGRATION.md](docs/LEGACY_MIGRATION.md)
 - **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
 ## License

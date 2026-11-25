@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = 'Haven'
 
 include ':app'
+include ':legacy-bridge'

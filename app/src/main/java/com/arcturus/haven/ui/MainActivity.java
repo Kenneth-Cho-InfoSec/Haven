@@ -120,7 +120,10 @@ public class MainActivity extends AppCompatActivity {
             // System has already finished provisioning, but Haven still
             // needs to be brought up inside the work profile
             mResumeSetup.launch(null);
-        } else if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
+        } else if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)
+                && !Utility.isWorkProfileAvailable(this)) {
+            // No work profile of ours exists yet. isWorkProfileAvailable() also catches a
+            // profile that was transferred to us from Haven 0.1.x and marks setup as done.
             mStartSetup.launch(null);
         } else {
             // Initialize the settings

@@ -112,6 +112,18 @@ public class Utility {
         }
     }
 
+    // Finish setting up a work profile whose ownership was transferred to us
+    // (see HavenDeviceAdminReceiver#onTransferOwnershipComplete). Safe to call more than once.
+    public static void adoptTransferredWorkProfile(Context context) {
+        if (!isProfileOwner(context)) {
+            return;
+        }
+        enforceWorkProfilePolicies(context);
+        enforceUserRestrictions(context);
+        SettingsManager.getInstance().applyAll();
+        hideMainActivityInManagedProfile(context);
+    }
+
     // Enforce policies and configurations in the work profile
     public static void enforceWorkProfilePolicies(Context context) {
         DevicePolicyManager manager = context.getSystemService(DevicePolicyManager.class);
